@@ -123,7 +123,7 @@ margin-top: 10%;
 	<BODY class="bg" onLoad = 'document.loginform.username.focus()'>
 	<?php 
 		include 'database.php'; 
-		
+		session_start();
 		include "usersession.php";
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$username = $_POST['username'];

@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+
 if ( isset($_SESSION['Office']) ) {
     // User is already logged in, redirect to another page
 	if ($_SESSION['Office'] == 'RECORDS') {

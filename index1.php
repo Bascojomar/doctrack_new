@@ -147,195 +147,179 @@ margin-top: 10%;
 				}
 			
 				if ($_SESSION['Office'] === 'RECORDS') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to Records dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "records/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'records/dashboard'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'SITE ADMIN') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to Admin dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "admin/admin";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'admin/admin'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to President dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/vpaa";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT1') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to President Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "president/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+    echo "<script>Swal.fire({
+        title: 'Login Successful!',
+        text: 'Redirecting to admin dashboard...',
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false
+    }).then(function() { window.location = 'president/dashboard'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT2') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to President Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "president/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+    echo "<script>Swal.fire({
+        title: 'Login Successful!',
+        text: 'Redirecting to admin dashboard...',
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false
+    }).then(function() { window.location = 'president/dashboard'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'VPAA') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPAA dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/vpaa";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'VPABM') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPABM dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/vpaa";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'VPRET') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPRET dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/vpaa";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'VPAA1') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPAA Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/dashboard'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'VPAA2') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPAA Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpaa/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpaa/dashboard'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'VPABM1') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPABM Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpabm/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpabm/dashboard'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'VPABM2') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPABM Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpabm/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpabm/dashboard'; });</script>";
 				}
 				elseif ($_SESSION['Office'] === 'VPRET1') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPRET Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpret/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpret/dashboard'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'VPRET2') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to VPRET Staff dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "vpret/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'vpret/dashboard'; });</script>";
 				} 
 				elseif ($_SESSION['Office'] === 'PROCUREMENT') {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to Procurement dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "procurement/dashboard";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'procurement/dashboard'; });</script>";
 				} else {
-					echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-					echo '<script>
-					        swal({
-					          title: "Login Successful",
-					          text: "Redirecting to Other dashboard...",
-					          icon: "success"
-					        }).then(function() {
-					          window.location.href = "others/track";
-					        });
-      					</script>';
+					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to admin dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'others/track'; });</script>";
 					exit();
 				}
 			} else {

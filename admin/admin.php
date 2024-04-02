@@ -29,19 +29,19 @@ elseif($office == 'VPABM2'){
 elseif($office == 'VPRET'){
   header('location: ../vpaa/vpaa');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET1'){
   header('location: ../vpret/dashboard');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET2'){
   header('location: ../vpret/dashboard');
 }
 elseif($office == 'PRESIDENT'){
   header('location: ../vpaa/vpaa');
 }
-elseif($office == 'PRESIDENT'){
+elseif($office == 'PRESIDENT1'){
   header('location: ../president/dashboard');
 }
-elseif($office == 'PRESIDENT'){
+elseif($office == 'PRESIDENT2'){
   header('location: ../president/dashboard');
 }
 elseif($office == 'PROCUREMENT'){

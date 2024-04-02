@@ -38,10 +38,10 @@ elseif($office == 'VPABM2'){
 elseif($office == 'VPRET'){
   header('location: ../vpaa/vpaa');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET1'){
   header('location: ../vpret/dashboard');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET2'){
   header('location: ../vpret/dashboard');
 }
 elseif($office == 'PRESIDENT'){

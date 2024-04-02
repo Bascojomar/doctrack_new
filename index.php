@@ -102,15 +102,18 @@ img{
             </ol>
             <div class="carousel-inner" role="listbox" style="width: 100%; height: 100%;">
                 <div class="carousel-item active">
-                    <img src="mainBG.png" class="w-100 d-block" style="width: 100%; height: 100%;" alt="First slide" />
+                    <img src="FrontNEUST2.jpg   " class="w-100 d-block" style="width: 100%; height: 100%;" alt="First slide" />
                 </div>
                 <div class="carousel-item">
-                    <img src="mainBG.png" class="w-100 d-block" style="width: 100%; height: 100%;" alt="Second slide" />
+                    <img src="centerN.jpg" class="w-100 d-block" style="width: 100%; height: 100%;" alt="Second slide" />
                 </div>
                 <div class="carousel-item">
-                    <img src="mainBG.png" class="w-100 d-block" style="width: 100%; height: 100%;" alt="Third slide" />
+                    <img src="roomN.jpg" class="w-100 d-block" style="width: 100%; height: 100%;" alt="Third slide" />
                 </div>
             </div>
+            <div class="text-center">
+            <img class="img-fluid" src="neust.png" alt="">
+        </div>
             <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -124,19 +127,24 @@ img{
 </section>
 
   <!-- About Section -->
+  <!-- About Section -->
   <section id="about" class="section">
     <div class="container">
         <div class="p-5 my-5">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">About Us</h1>
-                <p class="col-md-8 fs-4">
-                    Using a series of utilities, you can create this jumbotron, just
-                    like the one in previous versions of Bootstrap. Check out the
-                    examples below for how you can remix and restyle it to your liking.
-                </p>
-                <button class="btn btn-primary btn-lg learn-more" type="button">
-                    Learn more
-                </button>
+            <div class="container-fluid py-5"></div>
+                <div class="row">
+                    <div class="col col-8">
+                        <h1 class="display-5 fw-bold">About Us</h1>
+                        <p class="col-md-8 fs-4">
+                            Using a series of utilities, you can create this jumbotron, just
+                            like the one in previous versions of Bootstrap. Check out the
+                            examples below for how you can remix and restyle it to your liking.
+                        </p>
+                    </div>
+                    <div class="col col-4">
+                        <img class="img-fluid" src="neust_logo-1.png" alt="">
+                    </div>
+                </div>
             </div>
           </div>
   </section>
@@ -152,12 +160,12 @@ img{
                 <div class="accordion-item mb-2">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Accordion Item #1
+                        Which purpose does neust's document tracking system serve?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            This is the first item's accordion body.
+                        To increase productivity and cut down on time spent, NEUST'S Document Tracking System is utilized to monitor documents. Additionally, this is utilized to simplify and improve a number of facets of document management, assisting firms in enhancing productivity, security, compliance, and teamwork.
                         </div>
                     </div>
                 </div>
@@ -166,12 +174,12 @@ img{
                 <div class="accordion-item mb-2">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Accordion Item #2
+                        How do i access the document tracking system?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            This is the second item's accordion body.
+                        Only the individual to whom an account has granted access can access the document tracking system by signing into your designated account.
                         </div>
                     </div>
                 </div>
@@ -180,26 +188,12 @@ img{
                 <div class="accordion-item mb-2">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Accordion Item #3
+                        How can i download files from the system?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            This is the third item's accordion body.
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Accordion Item #4 -->
-                <div class="accordion-item mb-2">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Accordion Item #4
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            This is the fourth item's accordion body.
+                        You can download the desired file by visiting the load updates page and selecting the "download" button.
                         </div>
                     </div>
                 </div>
@@ -208,12 +202,12 @@ img{
                 <div class="accordion-item mb-2">
                     <h2 class="accordion-header" id="headingFive">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Accordion Item #5
+                        What sould i do when i encountered an error while using the system?
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            This is the fifth item's accordion body.
+                        Users can get in touch with help if they run into problems. Contact the system's support if the error persists and you can't come up with a fix. Give them the specifics of the mistake, any pertinent screenshots, and a rundown of your activities at the time it happened.
                         </div>
                     </div>
                 </div>

@@ -185,9 +185,7 @@ while ($row = $result->fetch_assoc()) {
 
             <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
             ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
-        <div class="nav-item order-2 order-lg-1 d-none d-lg-block">
-            <img src="texture_2.png" alt="" style="width: 100vh; position: relative; left: -69vh; opacity: 25%;">
-        </div>
+
         </div>
     </div>
     </nav>

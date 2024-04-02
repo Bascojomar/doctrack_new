@@ -290,7 +290,7 @@ echo'
                         echo "<td class='query'><a href=' " . $rows["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
                         echo "<TD class='querycells'>";
                         if ($rows["Upload"]) {
-                            echo "<FORM action='../download' method='post'>";
+                            echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
                             echo "<button type='submit' name='download_file'>";
                             echo '<i class="bi bi-cloud-arrow-down-fill"></i>';

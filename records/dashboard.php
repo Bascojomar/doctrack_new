@@ -349,7 +349,7 @@ while ($row = $result->fetch_assoc()) {
                 echo "<TD class='query'>";
                 echo "<DIV class='querycells'>";
                 if ($rows["Upload"]) {
-                  echo "<FORM action='../download.php' method='post'>";
+                  echo "<FORM action='download.php' method='post'>";
                   echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
                   echo "<button type='submit' name='download_file' value='Download'>";
                   echo "<i class='bi bi-cloud-arrow-down-fill'></i></button>";

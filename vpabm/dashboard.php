@@ -350,7 +350,7 @@ while ($row = $result->fetch_assoc()) {
             echo "<TD class='query'>";
             echo "<DIV class='sub'>";
             if ($rows["Upload"]) {
-              echo "<FORM action='../download.php' method='post'>";
+              echo "<FORM action='download.php' method='post'>";
               echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
               echo "<INPUT type='submit' name='download_file' value='Download'>";
               echo "</FORM>";

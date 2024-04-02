@@ -11,6 +11,8 @@
 include '../database.php';
 include '../session.php';
 
+
+
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = '$office'";
 $result = $conn->query($sql);
 

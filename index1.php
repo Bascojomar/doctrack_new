@@ -323,16 +323,15 @@ margin-top: 10%;
 					exit();
 				}
 			} else {
-				echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-				echo '<script>
-						swal({
-						  title: "Invalid Credential",
-						  text: "Redirecting to Log-in Page...",
-						  icon: "warning"
-						}).then(function() {
-						  window.location.href = "index1";
-						});
-					  </script>';
+				echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
+				echo "<script>Swal.fire({
+					title: 'Login Successful!',
+					text: 'Redirecting to admin dashboard...',
+					icon: 'warning',
+					timer: 2000,
+					timerProgressBar: true,
+					showConfirmButton: false
+				}).then(function() { window.location = 'index1'; });</script>";
 			}
 		}
 

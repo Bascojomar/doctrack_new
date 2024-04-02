@@ -2,10 +2,11 @@
 include '../database.php';
 include '../session.php';
 
+
 $office = $_SESSION['Office'];
 
-if ($office == 'SITE ADMIN' ){
-  header('location: ../admin/admin');
+if ($office == 'RECORDS' ){
+  header('location: ../records/dashboard');
 }
 elseif($office == 'VPAA'){
   header('location: ../vpaa/vpaa');
@@ -45,9 +46,6 @@ elseif($office == 'PRESIDENT2'){
 }
 elseif($office == 'PROCUREMENT'){
   header('location: ../produrement/dashboard');
-}
-elseif($office == 'REOCORDS'){
-  header('location: ../records/dashboard');
 }
 
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'SITE ADMIN'";

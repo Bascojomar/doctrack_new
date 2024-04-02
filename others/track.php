@@ -55,6 +55,9 @@ elseif($office == 'PRESIDENT2'){
 elseif($office == 'PROCUREMENT'){
   header('location: ../produrement/dashboard');
 }
+elseif($office == 'REOCORDS'){
+  header('location: ../records/dashboard');
+}
 
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = '$office'";
 $result = $conn->query($sql);

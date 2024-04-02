@@ -11,6 +11,9 @@
 include '../database.php';
 include '../session.php';
 
+
+$office = $_SESSION['Office'];
+
 if ($office == 'SITE ADMIN' ){
   header('location: ../admin/admin');
 }
@@ -53,7 +56,6 @@ elseif($office == 'PRESIDENT2'){
 elseif($office == 'RECORDS'){
   header('location: ../records/dashboard');
 }
-
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'PROCUREMENT'";
 $result = $conn->query($sql);
 

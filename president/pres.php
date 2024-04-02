@@ -12,6 +12,7 @@ include '../database.php';
 include '../session.php';
 
 
+
 $office = $_SESSION['Office'];
 
 if ($office == 'SITE ADMIN' ){
@@ -38,17 +39,14 @@ elseif($office == 'VPABM2'){
 elseif($office == 'VPRET'){
   header('location: ../vpaa/vpaa');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET1'){
   header('location: ../vpret/dashboard');
 }
-elseif($office == 'VPRET'){
+elseif($office == 'VPRET2'){
   header('location: ../vpret/dashboard');
 }
-elseif($office == 'PRESIDENT1'){
-  header('location: ../president/vpdashboardaa');
-}
-elseif($office == 'PRESIDENT2'){
-  header('location: ../president/dashboard');
+elseif($office == 'PRESIDENT'){
+  header('location: ../vpaa/vpaa');
 }
 elseif($office == 'RECORDS'){
   header('location: ../records/dashboard');

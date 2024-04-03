@@ -19,6 +19,7 @@ while ($row = $result->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/neustlogo.png" type="image/ico">
     <title>NEUST DOCUMENT TRACKING</title>
 </head>
 <body>

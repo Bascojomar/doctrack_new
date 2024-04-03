@@ -126,8 +126,8 @@ margin-top: 10%;
 		session_start();
 		include "usersession.php";
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$username = $_POST['username'];
-			$password = $_POST['password'];
+			$username = mysqli_real_escape_string($conn,$_POST['username']);
+			$password = mysqli_real_escape_string($conn,$_POST['password']);
 		
 			$sql = "SELECT * FROM doctrack.tbl_users WHERE UserName='$username' AND Password='$password'";
 			$result = $conn->query($sql);

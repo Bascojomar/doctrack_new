@@ -1,5 +1,5 @@
 <?php
-include 'database.php';
+include '../database.php';
 $campus_id = $_GET['campus_id'];
 
 

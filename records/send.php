@@ -286,33 +286,22 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
             
-  echo'<select id="campus" name= "campus" onchange="Campus_Load();">';
-  echo'<option>Campus</option>';
-  $rs = mysqli_query($conn,'SELECT campus_id, campus_name from tbl_campus order by campus_name');
-  while($rw = mysqli_fetch_array($rs)){
-    echo'<option value="'.$rw['campus_id'].'">'.$rw['campus_name'].'</option>';
-  }
-  echo'</select>';
-
-
-  /*echo "<SELECT name='campus' id='campus' class='forminput' required onchange='handleCampusSelection()'>";
-  echo "<OPTION disabled selected hidden>Campus</OPTION>";
-  echo "<OPTION>General Tinio</OPTION>";
-  echo "<OPTION>San Isidro</OPTION>";
-  echo "<OPTION>Sumacab</OPTION>";
-  echo "<OPTION>Gabaldon</OPTION>";
-  echo "<OPTION>Atate</OPTION>";
-  echo "<OPTION>Fort Magsaysay</OPTION>";
-  ECHO "</SELECT>";*/
-
+                echo'<select id="campus" name= "campus"  class="form-control" onchange="Campus_Load();">';
+                echo'<option>Campus</option>';
+                $rs = mysqli_query($conn,'SELECT campus_id, campus_name from tbl_campus order by campus_name');
+                while($rw = mysqli_fetch_array($rs)){
+                  echo'<option value="'.$rw['campus_id'].'">'.$rw['campus_name'].'</option>';
+                }
+                echo'</select>';
                 echo'</div>
 
                 <div class="col- 2 fw-bold col-form-label">From Office</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
                 echo "<label>From Office</label>";
+
                 echo "<span id='show_campus'>
-                      <SELECT name='fromoffice' id='fromoffice' class='forminput'>
+                      <SELECT name='fromoffice' id='fromoffice' class='form-control'>
                 <OPTION value = '' disabled selected hidden>Select Office</OPTION>
                 </SELECT>
                 

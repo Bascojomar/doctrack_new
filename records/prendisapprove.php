@@ -2,7 +2,7 @@
 // Include your database connection code here
 include '../database.php';
 session_start();
-include 'log.php';
+if(!isset($_SESSION['Office'])){header("Location: ../index1");}
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

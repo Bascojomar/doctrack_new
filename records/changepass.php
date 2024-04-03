@@ -1,7 +1,7 @@
 <?php
 
 include '../database.php';
-
+if(!isset($_SESSION['Office'])){header("Location: ../index1");}
 $currentpass = $_POST['currentpass'];
 $newpass = $_POST['newpass'];
 $confirmpass = $_POST['confirmpass'];

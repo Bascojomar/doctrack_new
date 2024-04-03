@@ -2,6 +2,7 @@
 // Include your database connection code here
 include '../database.php';
 session_start();
+include 'log.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

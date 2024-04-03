@@ -1,7 +1,8 @@
 <?php
 include '../database.php';
-session_start();
 
+session_start();
+include 'log.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;

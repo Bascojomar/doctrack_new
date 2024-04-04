@@ -176,7 +176,7 @@ while ($row = $result->fetch_assoc()) {
           <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
             <i class="bi bi-speedometer2 me-3"></i><span>Dashboard</span></a>
 
-          <a href="sendl" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+          <a href="send" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
             <i class="bi bi-folder-plus me-3 text-white"></i><span>New Document</span></a>
 
           <a href="updaterec" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"

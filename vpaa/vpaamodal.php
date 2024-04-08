@@ -18,6 +18,13 @@ if (isset($_POST['dateup'])) {
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc' WHERE Channel = 'VPAA' AND Reference = '$reference' AND DocInOut = 'OUT'";
     $result = $conn->query($updateQuery);
 
+    $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
+    WHEN Channel = 'VPAA' AND DocInOut = 'OUT' THEN 'RELEASED'
+    ELSE '-'
+  END 
+  WHERE Reference = '$reference' and Channel='VPAA'";
+  $results = $conn->query($updateQuery);
+
     if ($result) {
         if ($doc === 'COMPLETED') {
             // Send an email
@@ -67,7 +74,7 @@ if (isset($_POST['dateup'])) {
                               buttons: false,
                               timer: 1200
                             }).then(function() {
-                              window.location.href = "vpaa1";
+                              window.location.href = "update";
                             });
                           };
                         });
@@ -122,7 +129,7 @@ if (isset($_POST['dateup'])) {
 
               $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
               WHEN Channel = 'VPAA' AND DocInOut = 'IN' THEN 'DISAPPROVED'
-              ELSE 'NULL'
+              ELSE '-'
             END 
             WHERE Reference = '$reference'";
             $results = $conn->query($updateQuery);
@@ -206,7 +213,7 @@ if (isset($_POST['dateup'])) {
 
                   $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
                   WHEN Channel = 'RECORDS' AND DocInOut = 'IN' THEN 'PENDING'
-                  ELSE 'NULL'
+                  ELSE '-'
                 END 
                 WHERE Reference = '$reference'";
                 $results = $conn->query($updateQuery);

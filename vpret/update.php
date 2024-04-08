@@ -146,7 +146,7 @@ while ($row = $result->fetch_assoc()) {
           <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
           ><i class="bi bi-speedometer2 me-3"></i><span>Dashboard</span></a>
   
-        <a href="vpaa1" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
+        <a href="vpret1" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
           <i class="bi bi-card-list me-3"></i><span>Receive Document</span></a>
   
         <a href="update" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
@@ -284,7 +284,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">';
-      echo"<FORM method='post' action='vpabmmodal'>";
+      echo"<FORM method='post' action='vpretmodal'>";
 
         echo "<div class='reference'>
         <input type='hidden' name='reference' value='". $rows['Reference'] ."'>

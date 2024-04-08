@@ -19,7 +19,7 @@ if (isset($_POST['dateup'])) {
     $result = $conn->query($updateQuery);
 
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
-    WHEN Channel = 'VPAA1' AND DocInOut = 'OUT' THEN 'RELEASED'
+    WHEN Channel = 'PROCUREMENT' AND DocInOut = 'OUT' THEN 'COMPLETED'
     ELSE ''
   END 
   WHERE Reference = '$reference' and Channel='PROCUREMENT'";

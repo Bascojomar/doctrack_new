@@ -11,7 +11,7 @@
 include '../database.php';
 include '../session.php';
 include 'log.php';
-$sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'PROCUREMENT'";
+$sql = "SELECT * FROM doctrack.tbl_users WHERE Office = '$office'";
 $result = $conn->query($sql);
 
 while ($row = $result->fetch_assoc()) {
@@ -128,35 +128,24 @@ $_SESSION['allowedoffice'] = $office;
 *{
       font-family: arial;
     }
-
-    button {
-    border: none;
-    background: none; /* Optional: Removes any background color */
-    padding: 0; /* Optional: Remove any default padding */
-    font-size: 1.7em;
-  }
-
-  .querycells {
-    text-align: center;
-  }
 </style>
 
 <header>
     <!-- Sidebar -->
     <?php
 
-$sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'PROCUREMENT'";
+$sql = "SELECT * FROM doctrack.tbl_users WHERE Office = '$office'";
 $result = $conn->query($sql);
 
 while ($row = $result->fetch_assoc()) {
     $imagePath = $row['Image'];
     $position = $row['Position'];
     $owner = $row['Owner'];
-    echo '
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-primary text-white">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-2 mt-3">
-          <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
+    echo '<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-primary text-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-2 mt-3">
+  
+        <a href="dashboard"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
           ><i class="bi bi-speedometer2 me-3"></i><span>Dashboard</span></a>
   
         <a href="pro" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
@@ -165,20 +154,20 @@ while ($row = $result->fetch_assoc()) {
         <a href="update" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
         ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
   
-        <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+        <a href="release"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
           <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
-
+  
           <a href="propass"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
           ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
 
-            <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
-            ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
-        <div class="nav-item order-2 order-lg-1 d-none d-lg-block">
-            <img src="texture_2.png" alt="" style="width: 100vh; position: relative; left: -69vh; opacity: 25%;">
-        </div>
-        </div>
-    </div>
-    </nav>
+          <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
+          ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
+      <div class="nav-item order-2 order-lg-1 d-none d-lg-block">
+          <img src="texture_2.png" alt="" style="width: 100vh; position: relative; left: -69vh; opacity: 25%;">
+      </div>
+      </div>
+  </div>
+  </nav>
     <!-- Sidebar -->
 
     <!-- Navbar -->
@@ -206,23 +195,16 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Right links -->
     <ul class="navbar-nav ms-auto d-flex flex-row align-items-center">
-        <!-- Avatar -->
-        <div class="d-flex align-items-center">
-        <img
-        src="' . $imagePath .'"
-        class="rounded-circle"
-        style="height: 9vh;width: 9vh;"
-    />
-            <img src="../file/logos.png" class=" rounded-circle"
-            style="height: 9vh; position: absolute;"/>
-            <div class="d-flex flex-column mx-2">
-                <p class="text-white fw-semibold mb-0">
-                    '.$owner.'
-                </p>
-                <span class="text-white" style="font-size: smaller; margin-top: -5px;">'.$position.'</span>
-            </div>
+    <!-- Avatar -->
+
+        <div class="d-flex flex-column mx-2">
+            <p class="text-white fw-semibold mb-0">
+                '.$owner.'
+            </p>
+            <span class="text-white" style="font-size: smaller;">'.$position.'</span>
         </div>
-    </ul>
+    </div>
+</ul>
     </div>
     <!-- Container wrapper -->
 </nav>
@@ -235,7 +217,7 @@ echo'
             <div class="title-sub fw-bold">UPDATE DOCUMENTS</div>
             
           </div>';
-          $query = "SELECT * FROM tbl_inout WHERE Channel = 'PROCUREMENT' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
+          $query = "SELECT * FROM tbl_inout WHERE Channel = 'PRESIDENT' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
             $result = $conn->query($query);
             $numrows = $result->num_rows;
                     echo'<div class="table-container mt-2">
@@ -279,8 +261,7 @@ echo'
                         if ($rows["Upload"]) {
                             echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<button type='submit' name='download_file' value='Download'>";
-                            echo "<i class='bi bi-cloud-arrow-down-fill'></i></button>";
+                            echo "<INPUT type='submit' name='download_file' value='Download'>";
                             echo "</FORM>";
                         }
                         echo "</TD>";
@@ -290,12 +271,59 @@ echo'
                               echo'</div>';
                         echo "</TD>";
                        echo' </tr>
-                        </tbody>
+                        </tbody
                     </table>
                     </div>
             
         </div>
 </main>';
+
+
+// echo "<div class='modal' id='updateModal'>
+// <div class='modal-content'>
+// <span class='close-button closeModal'>&times;</span>
+//    <h2>Update Document Status</h2>
+//    <FORM method='post' action='vpaa1modal'>";
+
+// $sql = "SELECT * FROM doctrack.tbl_inout WHERE DocInOut = 'OUT' and Channel = 'PROCUREMENT'";
+// $result = $conn->query($sql);
+// if ($result && $result->num_rows > 0) {
+// $row = $result->fetch_assoc();
+// $reference = $row['Reference'];
+// echo "<div class='reference'>
+// 	   <input type='hidden' name='reference' value='$reference'>
+// 	 </div>";
+// }
+
+// echo "
+//    <div class='action'>
+//    <label>Action Taken:</label>
+//    <select name='action' id ='action' onchange = 'Action(this.value)' required>
+// 	   <option value='' disabled selected>Action Taken</option>
+// 	   <option value='APPROVED'>APPROVED</option>
+// 	   <option value='PENDING'>PENDING</option>
+// 	   <option value='DISAPPROVED'>DISAPPROVED</option>
+//    </select>
+//    </div>
+//    <div class='remarks'>
+//    <label for='remarks'>Remarks:</label>
+//    <input type='text' name='remarks'>
+//    </div>
+//    <div class='doc'>
+//    <label>DocStatus:</label>
+//    <select name='doc' id ='doc' required>
+// 	   <option value='' disabled selected>Status</option>
+// 	   <option value='RELEASED'>RELEASED</option>
+//    </select>
+//    </div>
+//    <div class='submit'>
+//    <input type='submit' value='Submit' name='dateup'>
+//    </div>
+//    </form>
+// </div>
+// </div>";	
+
+
 echo '<div class="modal fade" id="update" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
   <div class="modal-content">
@@ -305,7 +333,6 @@ echo '<div class="modal fade" id="update" tabindex="-1">
     </div>
     <div class="modal-body">';
       echo"<FORM method='post' action='promodal'>";
-
 
         echo "<div class='reference'>
         <input type='hidden' name='reference' value='". $rows['Reference'] ."'>
@@ -329,7 +356,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
           echo "
           <select name='doc' id ='doc' class='form-control' required>
           	   <option value='' disabled selected>Status</option>
-          	   <option value='RELEASED'>RELEASED</option>
+          	   <option value='COMPLETED'>COMPLETED</option>
              </select>";
         echo '</div>
       
@@ -343,9 +370,10 @@ echo '<div class="modal fade" id="update" tabindex="-1">
 </div>
 </div>
 </div>';
-                      }
-                    }
-?><script>
+}
+}
+?>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("updateModal");
     const closeModal = document.querySelector(".closeModal"); // Change to querySelector
@@ -377,22 +405,13 @@ function Action(selectedValue) {
   if (selectedValue === 'DISAPPROVED') {
     // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
     docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
-  } else {
-    // Reset the "DocStatus" dropdown to its default options.
-    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
-  }
-}
-
-function Action(selectedValue) {
-  var docSelect = document.getElementById('doc');
-  if (selectedValue === 'PENDING') {
+  } else if (selectedValue === 'PENDING') {
     // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
     docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
   } else {
     // Reset the "DocStatus" dropdown to its default options.
     docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
+                         '<option value="COMPLETED">COMPLETED</option>';
   }
 }
 </script>

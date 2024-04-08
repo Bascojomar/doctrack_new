@@ -219,7 +219,7 @@ while ($row = $result->fetch_assoc()) {
 
     echo'<div class="mx-4 px-2 pb-2">
       <div class="title d-flex justify-content-between align-items-center">
-        <div class="title-sub fw-bold">RECEIVE DOCUMENTS</div>';
+        <div class="title-sub fw-bold">RECEIVED DOCUMENTS</div>';
         echo "<FORM action='presfunc' method='post' onsubmit='return validateSearch();'>";
         echo '<div class="search-bar input-group" style="width: 250px;">
             <input type="text" class="form-control" name = "reference" class = "searchinput" placeholder="NEUST***********"">

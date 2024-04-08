@@ -314,13 +314,13 @@ while ($row = $result->fetch_assoc()) {
             echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
             echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
             echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-            echo "<td class='query'><a href=' " . $rows["Upload"] . "'>View</a></td>";
+            echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
             echo "<TD class='query'>";
             echo "<DIV class='sub'>";
             if ($rows["Upload"]) {
               echo "<FORM action='download.php' method='post'>";
               echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-              echo "<INPUT type='submit' name='download_file' value='Download'>";
+              echo "<div class='text-center'> <INPUT class='btn btn-success' type='submit' name='download_file' value='Download'> </div> "; 
               echo "</FORM>";
             }
             echo "</TD>";

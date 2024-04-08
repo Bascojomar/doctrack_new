@@ -255,19 +255,24 @@ echo'
                         echo "<TD class = 'query'>".$rows["DocStatus"]."</TD>";
                         echo "<TD class = 'query'>".$difference."</TD>";
                         echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-                        echo "<td class='query'><a href=' " . $rows["Upload"] . "'>View</a></td>";
+                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo "<TD class='query'>";
                         echo "<DIV class='sub'>";
                         if ($rows["Upload"]) {
                             echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<INPUT type='submit' name='download_file' value='Download'>";
+                            echo "<div class='text-center'><INPUT class='btn btn-success' type='submit' name='download_file' value='Download'></div>";
                             echo "</FORM>";
                         }
                         echo "</TD>";
                         echo "<TD class='querycells'>";
+<<<<<<< Updated upstream
                         echo '<div class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#update">';
                         echo "<INPUT type='button' class='update-button btn btn-danger btn-sm' data-reference='" . $rows['Reference'] . "' value='Update'>";
+=======
+                        echo '<div class="" data-bs-toggle="modal" data-bs-target="#update">';
+                        echo "<div class='text-center'> <INPUT type='button' class='btn btn-danger' data-reference='" . $rows['Reference'] . "' value='Update'>";
+>>>>>>> Stashed changes
                               echo'</div>';
                         echo "</TD>";
                        echo' </tr>

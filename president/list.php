@@ -298,7 +298,7 @@ while ($row = $result->fetch_assoc()) {
                         echo "<td class='querycells'>" . $rowsload["FromOffice"] . "</td>";
                         echo "<TD class='querycells'>" . $difference . "</TD>";
                         echo "<td class='querycells'>" . $rowsload["DocStatus"] . "</td>";
-                        echo "<td class='query'><a href=' " . $rowsload["Upload"] . "'>View</a></td>";
+                        echo "<td class='query text-center'><a href=' " . $rowsload["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo'</tr>
                         </tbody
                     </table>

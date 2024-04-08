@@ -325,14 +325,14 @@ echo '
                                     echo "<form action='send_pass' method='post'>";
                                     echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
                                     echo "<button type='submit' name='send_pass' value='Send' class='btn btn-primary btn-sm m-1'>";
-                                    echo '<i class="bi bi-trash3"></i></button>';
+                                    echo '<i class="bi bi-send"></i></button>';
 
                                     echo "</form>";
 
                                     echo "<form action='delete' method='post'>";
                                     echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
                                     echo "<button type='submit' name='delete_user' value='Delete' class='btn btn-danger btn-sm m-1'>";
-                                    echo "<i class='bi bi-send'></i></button>";
+                                    echo "<i class='bi bi-trash3'></i></button>";
                                   echo "</form>";
 
                                   echo "</div>";

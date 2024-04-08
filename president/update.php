@@ -255,24 +255,19 @@ echo'
                         echo "<TD class = 'query'>".$rows["DocStatus"]."</TD>";
                         echo "<TD class = 'query'>".$difference."</TD>";
                         echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
+                        echo "<td class='query'><a href=' " . $rows["Upload"] . "'>View</a></td>";
                         echo "<TD class='query'>";
                         echo "<DIV class='sub'>";
                         if ($rows["Upload"]) {
                             echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<div class='text-center'><INPUT class='btn btn-success' type='submit' name='download_file' value='Download'></div>";
+                            echo "<INPUT type='submit' name='download_file' value='Download'>";
                             echo "</FORM>";
                         }
                         echo "</TD>";
                         echo "<TD class='querycells'>";
-<<<<<<< Updated upstream
                         echo '<div class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#update">';
                         echo "<INPUT type='button' class='update-button btn btn-danger btn-sm' data-reference='" . $rows['Reference'] . "' value='Update'>";
-=======
-                        echo '<div class="" data-bs-toggle="modal" data-bs-target="#update">';
-                        echo "<div class='text-center'> <INPUT type='button' class='btn btn-danger' data-reference='" . $rows['Reference'] . "' value='Update'>";
->>>>>>> Stashed changes
                               echo'</div>';
                         echo "</TD>";
                        echo' </tr>
@@ -377,56 +372,24 @@ echo '<div class="modal fade" id="update" tabindex="-1">
 </div>';
 }
 }
-?><script>
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("updateModal");
-    const closeModal = document.querySelector(".closeModal"); // Change to querySelector
-    const updateButtons = document.querySelectorAll(".update-button");
-    const referenceInput = document.querySelector(".reference input");
-    
-    // Event listener for clicking an "Update" button
-    updateButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            // Get the reference number from the data attribute of the clicked button
-            const reference = button.getAttribute("data-reference");
-            
-            // Populate the reference input field in the modal with the reference number
-            referenceInput.value = reference;
-
-            // Show the modal
-            modal.classList.add("show-modal");
-        });
-    });
-
-    // Event listener for clicking the close button
-    closeModal.addEventListener("click", () => {
-        modal.classList.remove("show-modal");
-    });
-});
+?>
+<script>
 
 function Action(selectedValue) {
-  var docSelect = document.getElementById('doc');
-  if (selectedValue === 'DISAPPROVED') {
-    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
-    docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
-  } else {
-    // Reset the "DocStatus" dropdown to its default options.
-    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
-  }
+    var docSelect = document.getElementById('doc');
+    if (selectedValue === 'DISAPPROVED') {
+        // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
+        docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
+    } else if (selectedValue === 'PENDING') {
+        // If "PENDING" is selected, update the options in the "DocStatus" dropdown.
+        docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
+    } else {
+        // Reset the "DocStatus" dropdown to its default options.
+        docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
+                             '<option value="COMPLETED">COMPLETED</option>';
+    }
 }
 
-function Action(selectedValue) {
-  var docSelect = document.getElementById('doc');
-  if (selectedValue === 'PENDING') {
-    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
-    docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
-  } else {
-    // Reset the "DocStatus" dropdown to its default options.
-    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
-  }
-}
 </script>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>

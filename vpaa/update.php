@@ -298,7 +298,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
       echo"<FORM method='post' action='vpaamodal'>";
 
         echo "<div class='referennce'>
-            <input type='text' name='reference' value='". $rows['Reference']."'>
+            <input type='hidden' name='reference' value='". $rows['Reference']."'>
           </div>";
         
         echo'<div class="mb-3 fw-bold">

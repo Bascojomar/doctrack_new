@@ -216,7 +216,7 @@ echo'
             <div class="title-sub fw-bold">UPDATE DOCUMENTS</div>
             
           </div>';
-          $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
+          $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RECEIVED' and DocInOut='IN' ORDER BY CDate DESC";
             $result = $conn->query($query);
             $numrows = $result->num_rows;
                     echo'<div class="table-container mt-2">

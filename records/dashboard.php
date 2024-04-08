@@ -259,7 +259,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="card text-start bg-danger text-white">
                     <div class="card-body">
                         <h4 class="card-title">Outgoing Documents</h4>';
-                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'RECEiVED' AND DocInout = 'IN'";
+                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'RECEiVED' AND DocInOut = 'IN'";
 		                $result = mysqli_query($conn, $queryload);
                         
                         if ($result) {
@@ -276,7 +276,7 @@ while ($row = $result->fetch_assoc()) {
                     <div class="card-body">
                         <h4 class="card-title">Pending Documents</h4>
                         <h5 class="card-text">';
-                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'PENDING' AND DocInout = 'IN'";
+                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'PENDING' AND DocInOut = 'IN'";
                         $result = mysqli_query($conn, $queryload);
                         
                         if ($result) {
@@ -292,7 +292,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="card text-start bg-success text-white">
                     <div class="card-body">
                         <h4 class="card-title">Complete Documents</h4>';
-                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'COMPLETED' AND DocInout = 'IN'";
+                        $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'COMPLETED' AND DocInOut = 'IN'";
                         $result = mysqli_query($conn, $queryload);
                         
                         if ($result) {

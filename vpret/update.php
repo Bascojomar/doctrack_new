@@ -270,7 +270,7 @@ echo'
                               echo'</div>';
                         echo "</TD>";
                        echo' </tr>
-                        </tbody>
+                        </tbody
                     </table>
                     </div>
             

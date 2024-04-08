@@ -252,65 +252,65 @@ while ($row = $result->fetch_assoc()) {
 </header>
 <main>';
 
-    echo'<div class="mx-4 px-2 pb-2">
-    <div class="title">
-        <div class="title-sub fw-bold">DASHBOARD</div>
+echo'<div class="mx-4 px-2 pb-2">
+<div class="title">
+    <div class="title-sub fw-bold">DASHBOARD</div>
 
+</div>
+<div class="table-container mt-2">
+<div class="row mx-2 my-2">
+    <div class="col">
+        <div class="card text-start bg-danger text-white">
+            <div class="card-body">
+                <h4 class="card-title">Incoming Documents</h4>';
+                $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = '-' AND DocInOut = 'IN'";
+            $result = mysqli_query($conn, $queryload);
+                
+                if ($result) {
+                    $row = mysqli_fetch_assoc($result);
+                    $count = $row['count'];
+                }
+                
+                echo ''.$count.'</h5>
+            </div>
+        </div>
     </div>
-    <div class="table-container mt-2">
-    <div class="row mx-2 my-2">
-        <div class="col">
-            <div class="card text-start bg-danger text-white">
-                <div class="card-body">
-                    <h4 class="card-title">Incoming Documents</h4>';
-                    $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = '-' AND DocInOut = 'IN'";
+    <div class="col">
+        <div class="card text-start bg-warning text-white">
+            <div class="card-body">
+                <h4 class="card-title">Receive Documents</h4>
+                <h5 class="card-text">';
+                $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RECEIVED' AND DocInOut = 'IN'";
                 $result = mysqli_query($conn, $queryload);
-                    
-                    if ($result) {
-                        $row = mysqli_fetch_assoc($result);
-                        $count = $row['count'];
-                    }
-                    
-                    echo ''.$count.'</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card text-start bg-warning text-white">
-                <div class="card-body">
-                    <h4 class="card-title">Receive Documents</h4>
-                    <h5 class="card-text">';
-                    $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RECEIVED' AND DocInOutss = 'IN'";
-                    $result = mysqli_query($conn, $queryload);
-                    
-                    if ($result) {
-                        $row = mysqli_fetch_assoc($result);
-                        $count = $row['count'];
-                    }
-                    
-                    echo ''.$count.'</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card text-start bg-success text-white">
-                <div class="card-body">
-                    <h4 class="card-title">Release Documents</h4>';
-                    $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RELEASED' AND DocInOut = 'OUT'";
-                    $result = mysqli_query($conn, $queryload);
-                    
-                    if ($result) {
-                        $row = mysqli_fetch_assoc($result);
-                        $count = $row['count'];
-                    }
-                    
-                    echo ''.$count.'</h5>
-                </div>
+                
+                if ($result) {
+                    $row = mysqli_fetch_assoc($result);
+                    $count = $row['count'];
+                }
+                
+                echo ''.$count.'</h5>
             </div>
         </div>
     </div>
-    <table class="ms-3">
-    ';
+    <div class="col">
+        <div class="card text-start bg-success text-white">
+            <div class="card-body">
+                <h4 class="card-title">Release Documents</h4>';
+                $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = 'RELEASED' AND DocInOut = 'OUT'";
+                $result = mysqli_query($conn, $queryload);
+                
+                if ($result) {
+                    $row = mysqli_fetch_assoc($result);
+                    $count = $row['count'];
+                }
+                
+                echo ''.$count.'</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="ms-3">
+';
     $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET'and DocInOut='IN' and DocStatus='RECEIVED' ORDER BY CDate DESC";
     $result = $conn->query($query);
     $numrows = $result->num_rows;

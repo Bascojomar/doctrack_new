@@ -334,6 +334,7 @@ echo '
                                     echo "<button type='submit' name='delete_user' value='Delete' class='btn btn-danger btn-sm m-1'>";
                                     echo "<i class='bi bi-send'></i></button>";
                                   echo "</form>";
+
                                   echo "</div>";
                                   }
                                   echo ' </td>
@@ -346,8 +347,11 @@ echo '
                 
             </div>
             ';
-                                }}
+
+                                }
+                              }
 }
+
             ?>
 
             

@@ -1,7 +1,6 @@
 <?php
 include '../database.php';
 include '../session.php';
-include 'log.php';
 
 
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'RECORDS'";
@@ -19,7 +18,6 @@ while ($row = $result->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/neustlogo.png" type="image/ico">
     <title>NEUST DOCUMENT TRACKING</title>
 </head>
 <body>
@@ -286,28 +284,23 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col- 2 fw-bold col-form-label">Campus</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-            
-                echo'<select id="campus" name= "campus"  class="form-control" onchange="Campus_Load();">';
-                echo'<option>Campus</option>';
-                $rs = mysqli_query($conn,'SELECT campus_id, campus_name from tbl_campus order by campus_name');
-                while($rw = mysqli_fetch_array($rs)){
-                  echo'<option value="'.$rw['campus_id'].'">'.$rw['campus_name'].'</option>';
-                }
-                echo'</select>';
+                echo "<SELECT name='campus' id='campus' class='form-control' required onchange='handleCampusSelection()'>";
+                echo "<OPTION disabled selected hidden>Campus</OPTION>";
+                echo "<OPTION>General Tinio</OPTION>";
+                echo "<OPTION>San Isidro</OPTION>";
+                echo "<OPTION>Sumacab</OPTION>";
+                echo "<OPTION>Gabaldon</OPTION>";
+                echo "<OPTION>Atate</OPTION>";
+                echo "<OPTION>Fort Magsaysay</OPTION>";
+                ECHO "</SELECT>";
                 echo'</div>
 
                 <div class="col- 2 fw-bold col-form-label">From Office</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<label>From Office</label>";
-
-                echo "<span id='show_campus'>
-                      <SELECT name='fromoffice' id='fromoffice' class='form-control'>
-                <OPTION value = '' disabled selected hidden>Select Office</OPTION>
-                </SELECT>
-                
-                </span>";
-
+                echo "<SELECT name='fromoffice' id='fromoffice' class='form-control' onchange = 'DisableOffice(this.value)' required>";
+                echo "<OPTION value = '' disabled selected hidden>From Office</OPTION>";
+                echo "</SELECT>";
                 echo'</div>
 
                 <div class="col- 2 fw-bold col-form-label">Other Office</div>
@@ -443,26 +436,9 @@ while ($row = $result->fetch_assoc()) {
         ?>
 </main>
 <!--Main layout-->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
-
-
-function Campus_Load() {
-        $.ajax({
-            url: 'send_select_campus.php?campus_id='+document.getElementById('campus').value, // Path to your PHP file
-            type: 'GET', // HTTP method
-            success: function(response) {
-                $('#show_campus').html(response); // Update content div with the response
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.statusText); // Log any errors
-            }
-        });
-      }
-
-
   
 	function DisableOffice(elementName) {
 
@@ -503,6 +479,228 @@ else{
 
 }
 
+  function handleCampusSelection() {
+            var campusSelect = document.getElementById("campus");
+            var fromOfficeSelect = document.getElementById("fromoffice");
+            var selectedCampus = campusSelect.value;
+
+            // Reset the 'From Office' dropdown
+            fromOfficeSelect.innerHTML = "<option value='' disabled selected hidden>From Office</option>";
+
+            if (selectedCampus === "San Isidro") {
+                fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+                fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+            if (selectedCampus === "General Tinio") {
+                fromOfficeSelect.innerHTML += "<option>COAS</option>";
+                fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>CIT</option>";
+                fromOfficeSelect.innerHTML += "<option>CON</option>";
+                fromOfficeSelect.innerHTML += "<option>GS</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+            if (selectedCampus === "Gabaldon") {
+				fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+				fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+				fromOfficeSelect.innerHTML += "<option>COA</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+            
+            if (selectedCampus === "Atate") {
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+            if (selectedCampus === "Fort Magsaysay") {
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+            if (selectedCampus === "Sumacab") {
+                fromOfficeSelect.innerHTML += "<option>COA</option>";
+                fromOfficeSelect.innerHTML += "<option>COE</option>";
+                fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>COC</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+                fromOfficeSelect.innerHTML += "<option>COPADM</option>";
+                fromOfficeSelect.innerHTML += "<option>COARCH</option>";
+                fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>PLANNING</option>";
+                fromOfficeSelect.innerHTML += "<option>DATA CENTER</option>";
+                fromOfficeSelect.innerHTML += "<option>GEN SERVICES</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+            }
+        }
+        function handleCampsSelection() {
+            var campusSelect = document.getElementById("campus");
+            var fromOfficeSelect = document.getElementById("office");
+            var selectedCampus = campusSelect.value;
+
+            // Reset the 'From Office' dropdown
+            fromOfficeSelect.innerHTML = "<option value='' disabled selected hidden>From Office</option>";
+
+            if (selectedCampus === "San Isidro") {
+              fromOfficeSelect.innerHTML += "<option>COED</option>";
+              fromOfficeSelect.innerHTML += "<option>CLINIC</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+                fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+            if (selectedCampus === "General Tinio") {
+              fromOfficeSelect.innerHTML += "<option>COAS</option>";
+                fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>CIT</option>";
+                fromOfficeSelect.innerHTML += "<option>CON</option>";
+                fromOfficeSelect.innerHTML += "<option>GS</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+            if (selectedCampus === "Gabaldon") {
+              fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+                fromOfficeSelect.innerHTML += "<option>COA</option>";
+                fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+            if (selectedCampus === "Atate") {
+              fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+            if (selectedCampus === "Fort Magsaysay") {
+              fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+				fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+            if (selectedCampus === "Sumacab") {
+              fromOfficeSelect.innerHTML += "<option>COA</option>";
+                fromOfficeSelect.innerHTML += "<option>COE</option>";
+                fromOfficeSelect.innerHTML += "<option>COED</option>";
+                fromOfficeSelect.innerHTML += "<option>COC</option>";
+                fromOfficeSelect.innerHTML += "<option>CICT</option>";
+                fromOfficeSelect.innerHTML += "<option>CMBT</option>";
+                fromOfficeSelect.innerHTML += "<option>COPADM</option>";
+                fromOfficeSelect.innerHTML += "<option>COARCH</option>";
+                fromOfficeSelect.innerHTML += "<option>LIBRARY</option>";
+                fromOfficeSelect.innerHTML += "<option>PLANNING</option>";
+                fromOfficeSelect.innerHTML += "<option>DATA CENTER</option>";
+                fromOfficeSelect.innerHTML += "<option>GEN SERVICES</option>";
+                fromOfficeSelect.innerHTML += "<option>ADMISSION</option>";
+                fromOfficeSelect.innerHTML += "<option>ALUMNI</option>";
+                fromOfficeSelect.innerHTML += "<option>SPORTS</option>";
+                fromOfficeSelect.innerHTML += "<option>NSTP</option>";
+                fromOfficeSelect.innerHTML += "<option>CURRICULUM</option>";
+                fromOfficeSelect.innerHTML += "<option>MIS</option>";
+                fromOfficeSelect.innerHTML += "<option>USG</option>";
+                fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
+                fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
+            }
+        }
 </script>
 </body>
 </html>

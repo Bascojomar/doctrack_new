@@ -284,7 +284,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">';
-      echo"<FORM method='post' action='vpretmodal'>";
+      echo"<FORM method='post' action='vpabmmodal'>";
 
         echo "<div class='reference'>
         <input type='hidden' name='reference' value='". $rows['Reference'] ."'>

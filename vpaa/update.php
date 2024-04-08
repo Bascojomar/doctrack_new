@@ -286,7 +286,6 @@ echo'
             
         </div>
 </main>';
-
 echo '<div class="modal fade" id="update" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
   <div class="modal-content">
@@ -295,10 +294,10 @@ echo '<div class="modal fade" id="update" tabindex="-1">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">';
-      echo"<FORM method='post' action='vpaamodal'>";
+      echo"<FORM method='post' action='vpabmmodal'>";
 
-        echo "<div class='referennce'>
-            <input type='hidden' name='reference' value='". $rows['Reference']."'>
+        echo "<div class='reference'>
+        <input type='text' name='reference' value='". $rows['Reference'] ."'>
           </div>";
         
         echo'<div class="mb-3 fw-bold">

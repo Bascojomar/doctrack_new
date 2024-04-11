@@ -303,7 +303,7 @@ while ($row = $result->fetch_assoc()) {
                         echo "<td class='query'>" . $rowsload["FromOffice"] . "</td>";
                         echo "<td class='query'>" . $difference . "</td>";
                         echo "<td class='query'>" . $rowsload["DocStatus"] . "</td>";
-                        echo "<td class='querycells'><a href=' " . $rowsload["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='querycellstext-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                               echo '
                             </td>
                         </tr>

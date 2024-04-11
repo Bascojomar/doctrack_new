@@ -330,8 +330,7 @@ while ($row = $result->fetch_assoc()) {
         <TH>Office Origin</TH>
         <TH>Subject</TH>
         <TH>Remarks</TH>
-        <TH>View</TH>
-        <TH>Download</TH>
+        <TH>Actions</TH>
         </tr>
         </thead>';
         while ($rows = $result->fetch_assoc()) 
@@ -353,15 +352,15 @@ while ($row = $result->fetch_assoc()) {
             echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
             echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
             echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-            echo "<td class='querycells'><a href=' " . $rows["Upload"] . "'>  <i class='i bi-eye'></i></a></td>";
-            echo "<TD class='query'>";
-            echo "<DIV class='querycells'>";
+            echo "<td class='query text-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a>";
+            echo "<DIV class='sub'>";
             if ($rows["Upload"]) {
               echo "<FORM action='download.php' method='post'>";
               echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-              echo "<button type='submit' name='download_file' value='Download'>";
-              echo '<i class="bi bi-cloud-arrow-down-fill"></i>';
-              echo "</button>";
+              echo "<div class='text-center'>
+              <button class='btn btn-success' type='submit' name='download_file'>
+                                          <i class='bi bi-download'></i>
+                            </button>"; 
               echo "</FORM>";
             }
             echo "</TD>";

@@ -403,8 +403,8 @@ while ($row = $result->fetch_assoc()) {
                                 echo "<INPUT type='hidden' name='archive_id' value='" . $rowsload['ID'] . "'>";
                                 echo '</div>
                                 <div class="col-4">';
-                                echo "<button type='submit' name='archive'>";
-                                echo '<i class="bi bi-arrow-clockwise"></i></button> ';
+                                echo " <div class='text-start'> <button type='submit' class='update-button btn btn-danger' name='archive'>";
+                        echo '<i class="bi bi-pencil-square"></i></button> ';
                                 echo "</FORM>";
                             }
                                 echo'</div>

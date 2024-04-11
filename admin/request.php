@@ -256,7 +256,9 @@ echo '
                                           <p class="card-text fw-semibold">'. $rows["Request"] . $rows["Letter"] .'</p>
                                         </div>
                                         <div class="col-2">
-                                          <input type="submit" class="btn btn-primary mt-5" name="approved" value="Approved">
+                                        <button type="submit" class="btn btn-success mt-5" name="approved" style="">
+                                          <i class="bi bi-hand-thumbs-up" style="font-size:22px;"></i> Approve
+                                        </button>
                                         </div>
                                       </div>
                                     </div>

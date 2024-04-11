@@ -326,13 +326,13 @@ while ($row = $result->fetch_assoc()) {
                         echo "<TD class = 'query'>".$rowsload["Subject"]."</TD>";
                         echo "<TD class = 'query'>".$rowsload["FromOffice"]."</TD>";
                         echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
-                        echo "<td class='querycells'><a href=' " . $rowsload["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='querycells text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                                 echo "<TD class='querycells'>";
                                     if ($rowsload["Upload"]) {
                                     echo "<FORM action='download' method='post'>";
                                     echo "<INPUT type='hidden' name='id' value='" . $rowsload['ID'] . "'>";
-                                    echo "<button type='submit' name='download_file' value='Download'>";
-                                    echo '<i class="bi bi-cloud-arrow-down-fill"></i></button>';
+                                    echo "<button type='submit' name='download_file' class='update-button btn btn-success' value='Download'>";
+                                    echo '<i class="bi bi-download"></i></button>';
                                     echo "</FORM>";
                                     }
                                 echo'

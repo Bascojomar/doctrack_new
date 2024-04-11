@@ -273,8 +273,8 @@ while ($row = $result->fetch_assoc()) {
                         </thead>
                         <tbody>';
                         $queryload = "SELECT * FROM tbl_inout 
-                        WHERE Channel IN ('PROCUREMENT', 'VPAA', 'VPRET', 'VPABM', 'PRESIDENT', 'RECORDS') 
-                        AND DocStatus IN ('STORED') 
+                        -- WHERE Channel IN ('PROCUREMENT', 'VPAA', 'VPRET', 'VPABM', 'PRESIDENT', 'RECORDS') 
+                        -- AND DocStatus IN ('STORED') 
                         ORDER BY CDate DESC";
                         $resultload = $conn->query($queryload);
                         
@@ -290,7 +290,7 @@ while ($row = $result->fetch_assoc()) {
                         echo "<td class='auto-shrink'>" . $rowsload["FromOffice"] . "</td>";
                         echo "<td class='auto-shrink'>" . $rowsload["Subject"] . "</td>";
                         echo "<td class='auto-shrink'>" . $rowsload["DocStatus"] . "</td>";
-                        echo "<td class='auto-shrink'><a href=' " . $rowsload["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='auto-shrink text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo "<td class='auto-shrink'>" . $rowsload["Received"] . "</td>";
                         echo'</tr>';
                         echo'</tbody';

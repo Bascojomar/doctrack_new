@@ -262,9 +262,9 @@ echo'
                         echo "<TH>Subject</TH>";
                         echo "<TH>Document Status</TH>";
                         echo "<TH>Remarks</TH>";
-                        echo "<TH>View</TH>";
-                        echo "<TH>Download</TH>";
-                        echo "<TH>Update</TH>";
+                        echo "<TH class='text-center'>View</TH>";
+                        echo "<TH class='text-center'>Download</TH>";
+                        echo "<TH class='text-center'>Update</TH>";
                         echo'</tr>
                         </thead>';
 
@@ -287,14 +287,16 @@ echo'
                         echo "<TD class = 'query'>".$rows["DocStatus"]."</TD>";
                         echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
             
-                        echo "<td class='query'><a href=' " . $rows["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo "<TD class='querycells'>";
                         if ($rows["Upload"]) {
                             echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<button type='submit' name='download_file'>";
-                            echo '<i class="bi bi-cloud-arrow-down-fill"></i>';
-                            echo "</button>";
+                            echo "<div class='text-center'>
+                            
+                            <button class='btn btn-success' type='submit' name='download_file'>
+                            <i class='bi bi-download'></i>
+                            </button> </div>";
                             echo "</FORM>";
                         }
                         echo "</TD>";
@@ -302,8 +304,8 @@ echo'
                         if ($rows["DocStatus"]) {
                         echo "<FORM action='recordscomplete' method='post'>";
                         echo "<INPUT type='hidden' name='archive_id' value='" . $rows['ID'] . "'>";
-                        echo "<button type='submit' name='archive'>";
-                        echo '<i class="bi bi-arrow-clockwise"></i></button> ';
+                        echo "<div class='text-center'>  <button type='submit' class='update-button btn btn-danger' name='archive'>";
+                        echo '<i class="bi bi-pencil-square"></i></button> </div>';
                         echo "</FORM>";
                         }
                         echo'</tr>

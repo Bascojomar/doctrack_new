@@ -255,20 +255,25 @@ echo'
                         echo "<TD class = 'query'>".$rows["DocStatus"]."</TD>";
                         echo "<TD class = 'query'>".$difference."</TD>";
                         echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-                        echo "<td class='query'><a href=' " . $rows["Upload"] . "'>View</a></td>";
+                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo "<TD class='query'>";
                         echo "<DIV class='sub'>";
                         if ($rows["Upload"]) {
                             echo "<FORM action='download' method='post'>";
                             echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<INPUT type='submit' name='download_file' value='Download'>";
+                            echo "<div class='text-center'>
+                            
+                            <button class='btn btn-success' type='submit' name='download_file'>
+                            <i class='bi bi-download'></i>
+                            </button> </div>";
                             echo "</FORM>";
                         }
                         echo "</TD>";
                         echo "<TD class='querycells'>";
-                        echo '<div class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#update">';
-                        echo "<INPUT type='button' class='update-button btn btn-danger btn-sm' data-reference='" . $rows['Reference'] . "' value='Update'>";
-                              echo'</div>';
+                        echo '<div class="text-center" data-bs-toggle="modal" data-bs-target="#update">';
+                        echo "<button type='button' class='update-button btn btn-danger' data-reference='" . $rows['Reference'] . "' value='Update'>
+                            <i class='bi bi-download'></i>
+                            </button> </div>";
                         echo "</TD>";
                        echo' </tr>
                         </tbody

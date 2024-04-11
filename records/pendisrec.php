@@ -264,8 +264,8 @@ while ($row = $result->fetch_assoc()) {
 </header>
 <main>';
 $query = "SELECT * FROM tbl_inout 
-          WHERE Channel IN ('RECORDS') 
-          AND DocStatus IN ('PENDING', 'DISAPPROVED') 
+          -- WHERE Channel IN ('RECORDS') 
+          -- AND DocStatus IN ('PENDING', 'DISAPPROVED') 
           ORDER BY CDate DESC";
 
 $result = $conn->query($query);
@@ -287,8 +287,8 @@ $numrows = $result->num_rows;
                             <th>Office Origin</th>
                             <th>Subject</th>
                             <th>Remarks</th>
-                            <th>View</th>
-                            <th class="text-center">Action</th>
+                            <th class="text-center">View</th>
+                            <th class="text-center">Update</th>
                             <!-- <th class="text-center">Action</th> -->
                         </tr>
                         </thead>';
@@ -306,14 +306,14 @@ $numrows = $result->num_rows;
                         echo "<TD class='query'>" . $rows["Subject"] . "</TD>";
                         echo "<TD class='query'>" . $rows["PresidentRemarks"] . "</TD>";
                 
-                        echo "<td class='querycells'><a href=' " . $rows["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo "<TD class='query'>";
                         echo "<DIV class='sub'>";
                         if ($rows["DocStatus"]) {
                           echo "<FORM action='prendisapprove' method='post'>";
                           echo "<INPUT type='hidden' name='archive_id' value='" . $rows['ID'] . "'>";
-                         echo "<button type='submit' name='archive'>";
-                        echo '<i class="bi bi-arrow-clockwise"></i></button> ';
+                         echo " <div class='text-center'> <button type='submit' class='update-button btn btn-danger' name='archive'>";
+                        echo '<i class="bi bi-pencil-square"></i></button> ';
                           echo "</FORM>";
                         }
                         echo "</DIV>";

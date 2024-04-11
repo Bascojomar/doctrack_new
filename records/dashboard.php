@@ -320,9 +320,9 @@ while ($row = $result->fetch_assoc()) {
             <TH>Office Origin</TH>
             <TH>Subject</TH>
             <TH>Remarks</TH>
-            <TH>View</TH>
-            <TH>Download</TH>
-            <TH>Update</TH>
+            <TH class="text-center">View</TH>
+            <TH class="text-center">Download</TH>
+            <TH class="text-center">Update</TH>
             </tr>
             </thead>';
             while ($rows = $result->fetch_assoc()) 
@@ -344,14 +344,17 @@ while ($row = $result->fetch_assoc()) {
                 echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
                 echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
                 echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-                echo "<td class='query'><a href=' " . $rows["Upload"] . "'>  <i class='bi bi-eye'></i></a></td>";
+                echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                 echo "<TD class='query'>";
                 echo "<DIV class='querycells'>";
                 if ($rows["Upload"]) {
                   echo "<FORM action='download.php' method='post'>";
                   echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                  echo "<button type='submit' name='download_file' value='Download'>";
-                  echo "<i class='bi bi-cloud-arrow-down-fill'></i></button>";
+                  echo "<div class='text-center'>
+                            
+                            <button class='btn btn-success' type='submit' name='download_file'>
+                            <i class='bi bi-download'></i>
+                            </button> </div>";
                   echo "</FORM>";
                 }
                 echo "</TD>";
@@ -361,8 +364,8 @@ while ($row = $result->fetch_assoc()) {
                 if ($rows["DocStatus"]) {
                 echo "<FORM action='recordscomplete' method='post'>";
                 echo "<INPUT type='hidden' name='archive_id' value='" . $rows['ID'] . "'>";
-                echo "<button type='submit' name='archive'>";
-                echo '<i class="bi bi-arrow-clockwise"></i></button> ';
+                echo "<div class='text-center'>  <button type='submit' class='update-button btn btn-danger' name='archive'>";
+                echo '<i class="bi bi-pencil-square"></i></button> </div>';
                 echo "</FORM>";
                 }
             echo '</tr>

@@ -201,19 +201,31 @@ echo '<!-- Navbar -->
             <div class="title-sub fw-bold">MY ACCOUNT</div>
           </div>
                     <div class="table-container mt-2">
-                        <div class="row my-2 mx-2">
+                        <div class="row my-2 mx-3 mt-3">
 
-                            <div class="col-2 mb-3 form">
+                        <div class="row my-2 mx-3 my-3">
+                        <h4>Profile Picture</h4>
+                        <div class="col-2 mb-3 form">
                                 <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px; position: absolute">
                                 <img src="../file/frame.png" style="width:110px; border: 1px solid gray; border-radius: 5px; position: relative"  />
                             </div>
 
-                            <div class="col-10 mt-3">
+                            <div class="col-8 mt-3">
                                 <label for="" class="form-label">Choose Profile Picture</label>
                                 <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId"/>
                             </div>
 
-                            <div class="col-1 fw-bold col-form-label">Name</div>
+                            <div class="col-2 mt-2 text-center">
+                            <button type="submit" class="btn btn-primary mt-5" name="approved">
+                                          <i class="bi bi-upload"></i> Upload Profile
+                            </button>
+                            </div>
+                        
+                        </div>
+
+                        <div class="row my-2 mx-3 my-3">
+                        <h4>Account Information</h4>
+                        <div class="col-1 fw-bold col-form-label">Name</div>
                             <div class="col-11 mb-2">
                                 <input type="text" class="form-control" name="" id="" placeholder="'.$owner.'" disabled>
                             </div>
@@ -252,6 +264,9 @@ echo '<!-- Navbar -->
                             <div class="col-11 mb-1">
                                 <input type="password" class="form-control" name="confirmpass" placeholder="Confirm New Password" >
                             </div>
+
+                        </div>
+
                         </div>
                         <div class="text-center">
                         <INPUT type ="submit" value = "SAVE" name="save" class="btn btn-primary px-5" />

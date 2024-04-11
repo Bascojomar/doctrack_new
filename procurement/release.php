@@ -160,7 +160,7 @@ while ($row = $result->fetch_assoc()) {
         ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
   
         <a href="release" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
-          <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
+          <i class="bi bi-check2-square me-3 text-white"></i><span>Complte Document</span></a>
 
           <a href="propass"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
           ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
@@ -226,7 +226,7 @@ while ($row = $result->fetch_assoc()) {
 echo'
     <div class="mx-4 px-2 pb-2">
         <div class="title">
-            <div class="title-sub fw-bold">RELEASE DOCUMENTS</div>
+            <div class="title-sub fw-bold">COMPLETED DOCUMENTS</div>
             <!-- <div class="btn btn-primary pt-2" data-bs-toggle="modal" data-bs-target="#addAcc">
                 Add Account
             </div> -->
@@ -253,7 +253,7 @@ echo'
                             echo "<TD class = 'query'>".$rowsload["FromOffice"]."</TD>";
                             echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
                         echo'</tr>
-                        </tbody>
+                        </tbody
                     </table>
                     </div>
             

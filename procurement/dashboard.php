@@ -172,7 +172,7 @@ while ($row = $result->fetch_assoc()) {
         ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
   
         <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
-          <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
+          <i class="bi bi-check2-square me-3 text-white"></i><span>Complete Document</span></a>
   
           <a href="propass"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
           ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
@@ -280,7 +280,7 @@ while ($row = $result->fetch_assoc()) {
             <div class="card text-start bg-success text-white">
                 <div class="card-body">
                     <h4 class="card-title">Complet Documents</h4>';
-                    $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'PROCUREMENT' AND DocStatus = 'COMPLETED' AND DocInOut = 'OUT'";
+                    $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'PROCUREMENT' AND DocStatus = 'COMPLETED    ' AND DocInOut = 'OUT'";
                     $result = mysqli_query($conn, $queryload);
                     
                     if ($result) {

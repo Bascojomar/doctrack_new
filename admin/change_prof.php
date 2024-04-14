@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "UPDATE tbl_users SET Image='$target_file' WHERE ID='$owner'";
                 if (mysqli_query($conn, $sql)) {
                     // Redirect to my_account page
-                    header("Location: my_account.php");
+                    header("Location: my_account");
                     exit(); // Ensure script stops execution after redirect
                 } else {
                     echo "Error updating image path: " . mysqli_error($conn);

@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEUST DOCUMENT TRACKING</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 </head>
 <body>
 
@@ -238,18 +245,18 @@ while ($row = $result->fetch_assoc()) {
     <!-- Navbar -->
 </header>
 <main>
-    <div class="mx-4 px-2 pb-2">
-      <div class="title d-flex justify-content-between align-items-center">
+    <div class="mx-4 mt-5 px-2 pb-2">
+      <div class="title mt-5 d-flex justify-content-between align-items-center">
         <div class="title-sub fw-bold">LIST OF ALL DOCUMENTS</div>
         <div class="search-bar input-group" style="width: 250px;">';
-        echo "<FORM action='search' method='post' onsubmit='return validateSearch();'>";
-        echo '<div class="search-bar input-group" style="width: 250px;">
-            <input type="text" class="form-control" name = "searchref" class = "searchinput" placeholder="NEUST***********"">
-            <button class="btn btn-outline-secondary" type="submit" name="submit" id = "searchbuttonref">
-                <i class="bi bi-search"></i> <!-- Bootstrap Icon for Search -->
-            </button>
-        </div>';
-        echo "</FORM>";
+        // echo "<FORM action='search' method='post' onsubmit='return validateSearch();'>";
+        // echo '<div class="search-bar input-group" style="width: 250px;">
+        //     <input type="text" class="form-control" name = "searchref" class = "searchinput" placeholder="NEUST***********"">
+        //     <button class="btn btn-outline-secondary" type="submit" name="submit" id = "searchbuttonref">
+        //         <i class="bi bi-search"></i> <!-- Bootstrap Icon for Search -->
+        //     </button>
+        // </div>';
+        // echo "</FORM>";
         echo '</div>
 
         <!-- Search bar -->
@@ -260,8 +267,8 @@ while ($row = $result->fetch_assoc()) {
             </button>
         </div> -->
     </div>
-                    <div class="table-container mt-2">
-                    <table>
+                    <div class="table-container mt-2 px-3">
+                    <table id="example" class="table table-striped" style="width:100%">
                         <thead>';
                         echo "	<tr class='queryrows'>
                         <th class='query'>Tracking Number</th>
@@ -272,7 +279,9 @@ while ($row = $result->fetch_assoc()) {
                         <th class='query'>Document Status</th>
                         <th class='query'>View Status</th>";
                         echo'</tr>
-                        </thead>';
+                        </thead>
+                        <tbody>'; // Move tbody opening tag here
+
                         $queryload = "SELECT *, 
     CASE 
         WHEN DATEDIFF(CURDATE(), CDate) >= 3 THEN 0
@@ -290,8 +299,7 @@ while ($row = $result->fetch_assoc()) {
                 $today = time();
                 $difference = floor(($today - $from) / 86400);
             
-                        echo'<tbody>
-                        <tr">';
+                        echo'<tr>'; // Move table row opening tag here
                         echo "<td class='querycells'>" . $rowsload["Reference"] . "</td>";
                         echo "<td class='querycells'>" . $rowsload["Channel"] . "</td>";
                         echo "<td class='querycells'>" . $rowsload["Subject"] . "</td>";
@@ -299,19 +307,24 @@ while ($row = $result->fetch_assoc()) {
                         echo "<TD class='querycells'>" . $difference . "</TD>";
                         echo "<td class='querycells'>" . $rowsload["DocStatus"] . "</td>";
                         echo "<td class='query text-center'><a href=' " . $rowsload["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
-                        echo'</tr>
-                        </tbody
+            }
+        }
+        echo '</tbody>
                     </table>
                     </div>
             
         </div>
 </main>';
-    }
-}
-}
+      }
 ?>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // console.log("Document ready!"); // Check if this line appears in the console
+    $('#example').DataTable();
+  });
+</script>
 </body>
 </html>

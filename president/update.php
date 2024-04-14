@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEUST DOCUMENT TRACKING</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 </head>
 <body>
 
@@ -211,74 +218,71 @@ while ($row = $result->fetch_assoc()) {
 <!-- Navbar -->
 </header>
 <main>';
-echo'
-    <div class="mx-4 px-2 pb-2">
-        <div class="title">
-            <div class="title-sub fw-bold">UPDATE DOCUMENTS</div>
-            
-          </div>';
-          $query = "SELECT * FROM tbl_inout WHERE Channel = 'PRESIDENT' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
-            $result = $conn->query($query);
-            $numrows = $result->num_rows;
-                    echo'<div class="table-container mt-2">
-                    <table>
-                        <thead>
-                        <tr>';
-                        echo "<TH class = 'query'>Tracking Number</TH>";
-                        echo "<TH class = 'query'>Date</TH>";
-                        echo "<TH class = 'query'>Campus</TH>";
-                        echo "<TH class = 'query'>Office Origin</TH>";
-                        echo "<TH class = 'query'>Subject</TH>";
-                        echo "<TH class = 'query'>Document Status</TH>";
-                        echo "<TH class = 'query'>Days Idle</TH>";
-                        echo "<TH class = 'query'>Remarks</TH>";
-                        echo "<TH class = 'query'>View</TH>";
-                        echo "<TH class = 'query'>Download</TH>";
-                        echo "<TH class = 'query'>Update</TH>";
-                        echo'</tr>
-                        </thead>
-                        <tbody>';
-                        while ($rows = $result->fetch_assoc()) 
-{
-
-                      $from = strtotime($rows["CDate"]);
-                      $today = time();
-                      $difference = floor(($today - $from) / 86400);
-
-                      $currentDate = date("Y/m/d");
-                        echo '<tr>';
-                        echo "<TD class = 'query'>".$rows["Reference"]."</TD>";
-                        echo "<TD class = 'query'>". $currentDate ." </TD>";
-                        echo "<TD class = 'query'>".$rows["Campus"]."</TD>";
-                        echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
-                        echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
-                        echo "<TD class = 'query'>".$rows["DocStatus"]."</TD>";
-                        echo "<TD class = 'query'>".$difference."</TD>";
-                        echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
-                        echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
-                        echo "<TD class='query'>";
-                        echo "<DIV class='sub'>";
-                        if ($rows["Upload"]) {
-                            echo "<FORM action='download' method='post'>";
-                            echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                            echo "<div class='text-center'>
-                            
-                            <button class='btn btn-success' type='submit' name='download_file'>
-                            <i class='bi bi-download'></i>
-                            </button> </div>";
-                            echo "</FORM>";
-                        }
-                        echo "</TD>";
-                        echo "<TD class='querycells'>";
-                        echo '<div class="text-center" data-bs-toggle="modal" data-bs-target="#update">';
-                        echo "<button type='button' class='update-button btn btn-danger' data-reference='" . $rows['Reference'] . "' value='Update'>
-                            <i class='bi bi-pencil-square'></i>
-                            </button> </div>";
-                        echo "</TD>";
-                       echo' </tr>
-                        </tbody
-                    </table>
-                    </div>
+echo '
+<div class="mx-4 px-2 pb-2">
+    <div class="title">
+        <div class="title-sub fw-bold">UPDATE DOCUMENTS</div>
+    </div>';
+$query = "SELECT * FROM tbl_inout WHERE Channel = 'PRESIDENT' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
+$result = $conn->query($query);
+$numrows = $result->num_rows;
+echo '<div class="table-container mt-2 px-3">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="query">Tracking Number</th>
+                    <th class="query">Date</th>
+                    <th class="query">Campus</th>
+                    <th class="query">Office Origin</th>
+                    <th class="query">Subject</th>
+                    <th class="query">Document Status</th>
+                    <th class="query">Days Idle</th>
+                    <th class="query">Remarks</th>
+                    <th class="query text-center">View</th>
+                    <th class="query text-center">Download</th>
+                    <th class="query text-center">Update</th>
+                </tr>
+            </thead>
+            <tbody>';
+while ($rows = $result->fetch_assoc()) {
+    $from = strtotime($rows["CDate"]);
+    $today = time();
+    $difference = floor(($today - $from) / 86400);
+    $currentDate = date("Y/m/d");
+    echo '<tr>';
+    echo "<td class='query'>".$rows["Reference"]."</td>";
+    echo "<td class='query'>". $currentDate ."</td>";
+    echo "<td class='query'>".$rows["Campus"]."</td>";
+    echo "<td class='query'>".$rows["FromOffice"]."</td>";
+    echo "<td class='query'>".$rows["Subject"]."</td>";
+    echo "<td class='query'>".$rows["DocStatus"]."</td>";
+    echo "<td class='query'>".$difference."</td>";
+    echo "<td class='query'>".$rows["PresidentRemarks"]."</td>";
+    echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
+    echo "<TD class='query'>";
+    echo "<DIV class='sub'>";
+    if ($rows["Upload"]) {
+        echo "<FORM action='download' method='post'>";
+        echo "<INPUT type='hidden' name='id' value='" . $rows['ID'] . "'>";
+        echo "<div class='text-center'>
+        
+        <button class='btn btn-success' type='submit' name='download_file'>
+        <i class='bi bi-download'></i>
+        </button> </div>";
+        echo "</FORM>";
+    }
+    echo "</TD>";
+    echo "<TD class='querycells'>";
+    echo '<div class="text-center" data-bs-toggle="modal" data-bs-target="#update">';
+    echo "<button type='button' class='update-button btn btn-danger' data-reference='" . $rows['Reference'] . "' value='Update'>
+        <i class='bi bi-pencil-square'></i>
+        </button> </div>";
+    echo "</TD>";
+    echo '</tr>';
+}
+echo '</tbody>
+        </table>
+    </div>
             
         </div>
 </main>';
@@ -376,52 +380,33 @@ echo '<div class="modal fade" id="update" tabindex="-1">
 </div>
 </div>';
 }
-}
 ?>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("updateModal");
-    const closeModal = document.querySelector(".closeModal"); // Change to querySelector
-    const updateButtons = document.querySelectorAll(".update-button");
-    const referenceInput = document.querySelector(".reference input");
-    
-    // Event listener for clicking an "Update" button
-    updateButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            // Get the reference number from the data attribute of the clicked button
-            const reference = button.getAttribute("data-reference");
-            
-            // Populate the reference input field in the modal with the reference number
-            referenceInput.value = reference;
-
-            // Show the modal
-            modal.classList.add("show-modal");
-        });
-    });
-
-    // Event listener for clicking the close button
-    closeModal.addEventListener("click", () => {
-        modal.classList.remove("show-modal");
-    });
-});
 
 function Action(selectedValue) {
-  var docSelect = document.getElementById('doc');
-  if (selectedValue === 'DISAPPROVED') {
-    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
-    docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
-  } else if (selectedValue === 'PENDING') {
-    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
-    docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
-  } else {
-    // Reset the "DocStatus" dropdown to its default options.
-    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="COMPLETED">COMPLETED</option>';
-  }
+    var docSelect = document.getElementById('doc');
+    if (selectedValue === 'DISAPPROVED') {
+        // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
+        docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
+    } else if (selectedValue === 'PENDING') {
+        // If "PENDING" is selected, update the options in the "DocStatus" dropdown.
+        docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
+    } else {
+        // Reset the "DocStatus" dropdown to its default options.
+        docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
+                             '<option value="COMPLETED">COMPLETED</option>';
+    }
 }
+
 </script>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // console.log("Document ready!"); // Check if this line appears in the console
+    $('#example').DataTable();
+  });
+</script>
 </body>
 </html>

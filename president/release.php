@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEUST DOCUMENT TRACKING</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 </head>
 <body>
 
@@ -228,8 +235,8 @@ echo'
           $queryload = "SELECT * FROM tbl_inout WHERE Channel = 'PRESIDENT' and DocInOut = 'OUT' and DocStatus = 'COMPLETED' ORDER BY CDate DESC";
             $resultload = $conn->query($queryload);
             $numrowsload = $resultload->num_rows;
-                    echo'<div class="table-container mt-2">
-                    <table>
+                    echo'<div class="table-container mt-2 px-3">
+                    <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                         <tr>';
                         echo "<TH class = 'text-center'>Tracking Number</TH>";
@@ -246,18 +253,25 @@ echo'
                             echo "<TD class = 'query'>".$rowsload["Subject"]."</TD>";
                             echo "<TD class = 'query'>".$rowsload["FromOffice"]."</TD>";
                             echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
-                        echo'</tr>
-                        </tbody
+                        echo'</tr>';
+                        }
+                    echo '</tbody>
                     </table>
                     </div>
             
         </div>
 </main>';
-                        }
+                        
 }
 ?>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // console.log("Document ready!"); // Check if this line appears in the console
+    $('#example').DataTable();
+  });
+</script>
 </body>
 </html>

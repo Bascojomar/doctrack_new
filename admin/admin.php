@@ -18,6 +18,13 @@ while ($row = $result->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEUST DOCUMENT TRACKING</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 </head>
 <body>
     <!--Main Navigation-->
@@ -139,7 +146,6 @@ while ($row = $result->fetch_assoc()) {
 
 <header>
 <?php
-
 $sql = "SELECT * FROM doctrack.tbl_users WHERE Office = 'SITE ADMIN'";
 $result = $conn->query($sql);
 
@@ -147,212 +153,184 @@ while ($row = $result->fetch_assoc()) {
     $imagePath = $row['Image'];
     $position = $row['Position'];
     $owner = $row['Owner'];
-echo '
+?>
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-primary text-white">
-            <div class="position-sticky">
-                <div class="list-group list-group-flush mx-2 mt-3">
-                    <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
-                        <i class="bi bi-person-add me-3"></i><span>Create Accounts</span></a>
+        <div class="position-sticky">
+            <div class="list-group list-group-flush mx-2 mt-3">
+                <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
+                    <i class="bi bi-person-add me-3"></i><span>Create Accounts</span></a>
 
-                    <a href="request" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
-                        <i class="bi bi-card-checklist me-3 text-white"></i><span>Password Request</span></a>
+                <a href="request" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+                    <i class="bi bi-card-checklist me-3 text-white"></i><span>Password Request</span></a>
 
-                    <a href="my_account" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
-                        ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
+                <a href="my_account" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+                    <i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
 
-                        <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
-                        ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
-
-                </div>
+                <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white">
+                    <i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
             </div>
-        </nav>
-  
-        <!-- Navbar -->
-        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
-            <!-- Container wrapper -->
-            <div class="container-fluid">
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
             <!-- Toggle button -->
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#sidebarMenu"
-                aria-controls="sidebarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                onclick="toggleSidebar()"
-            >
-            <i class="fas fa-bars"></i>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand my-auto d-flex flex-row" href="#">
-
-            </a>
+            <a class="navbar-brand my-auto d-flex flex-row" href="#"></a>
 
             <!-- Right links -->
             <ul class="navbar-nav ms-auto d-flex flex-row align-items-center">
                 <!-- Avatar -->
                 <div class="d-flex align-items-center">
-                <img
-                src="' . $imagePath .'"
-                class="rounded-circle"
-                style="height: 9vh;width: 9vh;"
-            />
-                    <img src="../file/logos.png" class=" rounded-circle"
-                    style="height: 9vh; position: absolute;"/>
+                    <img src="<?php echo $imagePath; ?>" class="rounded-circle" style="height: 9vh;width: 9vh;" />
+                    <img src="../file/logos.png" class=" rounded-circle" style="height: 9vh; position: absolute;" />
                     <div class="d-flex flex-column mx-2">
-                        <p class="text-white fw-semibold mb-0">
-                            '.$owner.'
-                        </p>
-                        <span class="text-white" style="font-size: smaller; margin-top: -5px;">'.$position.'</span>
+                        <p class="text-white fw-semibold mb-0"><?php echo $owner; ?></p>
+                        <span class="text-white" style="font-size: smaller; margin-top: -5px;"><?php echo $position; ?></span>
                     </div>
                 </div>
             </ul>
-            </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
-    </header>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <header>
     <main>
-    <div class="mx-4 px-2 pb-2">
-        <div class="title">
-            <div class="title-sub fw-bold">ACCOUNTS</div>
-            <div class="btn btn-primary pt-2" data-bs-toggle="modal" data-bs-target="#addAcc">
-                Add Account
-            </div>
-            <div class="modal fade" id="addAcc" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Create Account</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">';
-                  echo "<FORM action = 'create' method='POST' enctype='multipart/form-data'>";
-                  echo '
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Campus<span class="text-danger"> *</span></label>
-                       <SELECT name = "campus" id="campus" required onchange="handleCampsSelection()" class="form-control">
-                        <OPTION disabled selected hidden>Campus</OPTION>
-                        <OPTION>General Tinio</OPTION>
-                        <OPTION>San Isidro</OPTION>
-                        <OPTION>Sumacab</OPTION>
-                       <OPTION>Gabaldon</OPTION>
-                        <OPTION>Atate</OPTION>
-                        <OPTION>Fort Magsaysay</OPTION>
-                        </SELECT>
-                      </div>
-                      <div class="mb-3 fw-bold">
-                      <label for="recipient-name" class="col-form-label">Office<span class="text-danger"> *</span></label>
-                      <SELECT name="office" class="form-control" id="office" onchange = "DisableOffice(this.value)" >
-                      <OPTION value = """" disabled selected hidden>From Office</OPTION>
-                      </SELECT>
-                      </div>
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Username<span class="text-danger"> *</span></label>
-                        <INPUT type="text" name="username" class="form-control" placeholder="Username" oninput = "this.value = this.value.toUpperCase()" required>
-                      </div>
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Email<span class="text-danger"> *</span></label>
-                        <INPUT type="email" name="email" placeholder="Ex. Juandelacruz@gmail.com" class="form-control" required>
-                      </div>
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Fullname<span class="text-danger"> *</span></label>
-                        <INPUT type="text" class="form-control" name="owner" placeholder="Fullname" oninput = "this.value = this.value.toUpperCase()" required>
-                      </div>  
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">File<span class="text-danger"> *</span></label>
-                        <input type="file" class="form-control" name="file" required>
-                      </div>
-                      <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Password<span class="text-danger"> *</span></label>';
-                        echo "<INPUT type='password' name='password' class='form-control' placeholder='Create Password' required></div>";
-                        echo ' <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>';
-                        echo "<INPUT type='text' name='position' class='form-control' placeholder='Create position' oninput = 'this.value = this.value.toUpperCase()' required>";
-                      echo '</div>';
-                        echo ' <div class="mb-3 fw-bold">
-                        <label for="recipient-name" class="col-form-label">Privilege<span class="text-danger"> *</span></label>';
-                        echo "<INPUT type='text' class='form-control' name='privilege' placeholder='Privilege' oninput = 'this.value = this.value.toUpperCase()'>";
-                      echo '</div>';
-                      echo '
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                        <div class="table-container mt-2">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Owner</th>
-                                <th>Position</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Email</th>
-                                <th>Office</th>
-                                <th>Campus</th>
-                                <th class="text-center">Action</th>
-                                <!-- <th class="text-center">Action</th> -->
-                            </tr>
-                            </thead>
-                            ';
-                            $query = "SELECT * FROM tbl_users";
-                            $result = $conn->query($query);
+        <div class="mx-4 px-2 pb-2">
+            <div class="title">
+                <div class="title-sub fw-bold">ACCOUNTS</div>
+                <div class="btn btn-primary pt-2" data-bs-toggle="modal" data-bs-target="#addAcc">Add Account</div>
+                <div class="modal fade" id="addAcc" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Account</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="create" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3 fw-bold">
+                                        <label for="recipient-name" class="col-form-label">Campus<span class="text-danger"> *</span></label>
+                                        <select name="campus" id="campus" required onchange="handleCampsSelection()" class="form-control">
+                                            <option disabled selected hidden>Campus</option>
+                                            <option>General Tinio</option>
+                                            <option>San Isidro</option>
+                                            <option>Sumacab</option>
+                                            <option>Gabaldon</option>
+                                            <option>Atate</option>
+                                            <option>Fort Magsaysay</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Username<span class="text-danger"> *</span></label>
+    <input type="text" name="username" class="form-control" placeholder="Username" oninput="this.value = this.value.toUpperCase()" required>
+</div>
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Email<span class="text-danger"> *</span></label>
+    <input type="email" name="email" placeholder="Ex. Juandelacruz@gmail.com" class="form-control" required>
+</div>
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Fullname<span class="text-danger"> *</span></label>
+    <input type="text" class="form-control" name="owner" placeholder="Fullname" oninput="this.value = this.value.toUpperCase()" required>
+</div>  
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">File<span class="text-danger"> *</span></label>
+    <input type="file" class="form-control" name="file" required>
+</div>
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Password<span class="text-danger"> *</span></label>
+    <input type="password" name="password" class="form-control" placeholder="Create Password" required>
+</div>
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>
+    <input type="text" name="position" class="form-control" placeholder="Create position" oninput="this.value = this.value.toUpperCase()" required>
+</div>
+<div class="mb-3 fw-bold">
+    <label for="recipient-name" class="col-form-label">Privilege<span class="text-danger"> *</span></label>
+    <input type="text" class="form-control" name="privilege" placeholder="Privilege" oninput="this.value = this.value.toUpperCase()">
+</div>
 
-                            if ($result->num_rows > 0) {
-                                while ($rows = $result->fetch_assoc()) {
-                                  echo "<tr class='' onclick='toggleRow(this)'>
-                                  <td>" . $rows['Owner'] . "</td>
-                                  <td>" . $rows['Position'] . "</td>
-                                  <td>" . $rows['UserName'] . "</td>
-                                  <td>" . $rows['Password'] . "</td>
-                                  <td>" . $rows['Email'] . "</td>
-                                  <td>" . $rows['Office'] . "</td>
-                                  <td>" . $rows['Campus'] . "</td>";
-                                  
-                                echo '<td class="text-center">';
-
-                                if ($rows["ID"]) {
-                                  echo "<div class='btn-group'>";
-                                    echo "<form action='send_pass' method='post'>";
-                                    echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                                    echo "<button type='submit' name='send_pass' value='Send' class='btn btn-primary btn-sm m-1'>";
-                                    echo '<i class="bi bi-send"></i></button>';
-
-                                    echo "</form>";
-
-                                    echo "<form action='delete' method='post'>";
-                                    echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
-                                    echo "<button type='submit' name='delete_user' value='Delete' class='btn btn-danger btn-sm m-1'>";
-                                    echo "<i class='bi bi-trash3'></i></button>";
-                                  echo "</form>";
-
-                                  echo "</div>";
-                                  }
-                                  echo ' </td>
-                             
-                            </tr>
-                            </tbody
-                            
-                        </table>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                
+                    </div>
+                </div>
             </div>
-            ';
 
-                                }
-                              }
+            <div class="table-container mt-2 p-3">
+                <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Owner</th>
+                            <th>Position</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Email</th>
+                            <th>Office</th>
+                            <th>Campus</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $query = "SELECT * FROM tbl_users";
+                        $result = $conn->query($query);
+                        if ($result->num_rows > 0) {
+                            while ($rows = $result->fetch_assoc()) {
+                        ?>
+                                <tr class='' onclick='toggleRow(this)'>
+                                    <td><?php echo $rows['Owner']; ?></td>
+                                    <td><?php echo $rows['Position']; ?></td>
+                                    <td><?php echo $rows['UserName']; ?></td>
+                                    <td><?php echo $rows['Password']; ?></td>
+                                    <td><?php echo $rows['Email']; ?></td>
+                                    <td><?php echo $rows['Office']; ?></td>
+                                    <td><?php echo $rows['Campus']; ?></td>
+                                    <td class="text-center">
+                                        <?php
+                                        if ($rows["ID"]) {
+                                            echo "<div class='btn-group'>";
+                                            echo "<form action='send_pass' method='post'>";
+                                            echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
+                                            echo "<button type='submit' name='send_pass' value='Send' class='btn btn-primary btn-sm m-1'>";
+                                            echo '<i class="bi bi-send"></i></button>';
+                                            echo "</form>";
+
+                                            echo "<form action='delete' method='post'>";
+                                            echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
+                                            echo "<button type='submit' name='delete_user' value='Delete' class='btn btn-danger btn-sm m-1'>";
+                                            echo "<i class='bi bi-trash3'></i></button>";
+                                            echo "</form>";
+                                            echo "</div>";
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    </header>
+<?php
 }
-
-            ?>
+?>
 
             
 </main>
@@ -409,7 +387,9 @@ echo '
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
+<script>
+  new DataTable('#example');
+</script>
 <style>
   a {
     color: black !important;

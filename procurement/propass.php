@@ -22,6 +22,7 @@ while ($row = $result->fetch_assoc()) {
     <!--Main Navigation-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <style>
     body {
   background-color: #fbfbfb;
@@ -163,7 +164,7 @@ echo '
             ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
     
             <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
-            <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
+            <i class="bi bi-check2-square me-3 text-white"></i><span>Complete Document</span></a>
 
             <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
             ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>

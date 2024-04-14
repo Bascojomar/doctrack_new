@@ -140,6 +140,7 @@ $result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     $imagePath = $row['Image'];
     $position = $row['Position'];
+    $id = $row['ID'];
     $owner = $row['Owner'];
 
     echo '
@@ -232,34 +233,38 @@ while ($row = $result->fetch_assoc()) {
     <!-- Navbar -->
 </header>
 <main>';
-echo '<FORM action = "changepass" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">';
+echo '<FORM action = "change_prof" method = "post" enctype="multipart/form-data">';
     echo '<div class="mx-4 px-2 pb-2">
         <div class="title">
             <div class="title-sub fw-bold">MY ACCOUNT</div>
           </div>
-          <div class="table-container mt-2">
-          <div class="row my-2 mx-3 mt-3">
+                    <div class="table-container mt-2">
+                        <div class="row my-2 mx-3 mt-3">
 
-          <div class="row my-2 mx-3 my-3">
-          <h4>Profile Picture</h4>
-          <div class="col-2 mb-3 form">
-                  <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px;">
-              </div>
+                        <div class="row my-2 mx-3 my-3">
+                        <h4>Profile Picture</h4>
+                        <div class="col-2 mb-3 form">
 
-              <div class="col-8 mt-3">
-                  <label for="" class="form-label">Choose Profile Picture</label>
-                  <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId"/>
-              </div>
+                                <input type="hidden" value="'.$id.'" name="owner">
+                                <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px;">
+                              
+                            </div>
 
-              <div class="col-2 mt-2 text-center">
-              <button type="submit" class="btn btn-primary mt-5" name="approved">
-                            <i class="bi bi-upload"></i> Upload Profile
-              </button>
-              </div>
-          
-          </div>
+                            <div class="col-8 mt-3">
+                                <label for="" class="form-label">Choose Profile Picture</label>
+                                <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId"/>
+                            </div>
 
-          <div class="row my-2 mx-3 my-3">
+                            <div class="col-2 mt-2 text-center">
+                            <button type="submit" class="btn btn-primary mt-5" name="save">
+                                          <i class="bi bi-upload"></i> Upload Profile
+                            </button>
+                            </div>
+                        
+                        </div> </form>';
+
+                        echo '<FORM action = "changepass" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
+                        <div class="row my-2 mx-3 my-3">
           <h4>Account Information</h4>
           <div class="col-1 fw-bold col-form-label">Name</div>
               <div class="col-11 mb-2">

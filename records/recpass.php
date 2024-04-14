@@ -243,8 +243,7 @@ echo '<FORM action = "changepass" method = "post" onsubmit = "return ValidatePas
           <div class="row my-2 mx-3 my-3">
           <h4>Profile Picture</h4>
           <div class="col-2 mb-3 form">
-                  <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px; position: absolute">
-                  <img src="../file/frame.png" style="width:110px; border: 1px solid gray; border-radius: 5px; position: relative"  />
+                  <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px;">
               </div>
 
               <div class="col-8 mt-3">

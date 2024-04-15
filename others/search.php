@@ -355,7 +355,7 @@ echo '
                                 <div class="row">
                                     <div class="col col-5">Reference Number:</div>
                                     <div class="col col-5">';
-                                    echo "<td class='infocells'><h2 id='referenceNumber'>" . $rows["Reference"] . "</h2></td> </div>";
+                                    echo "<td class='infocells'><h3 id='referenceNumber'>" . $rows["Reference"] . "</h3></td> </div>";
                                     echo'<div class="col col-2"> <i class="bi bi-copy" style="cursor: pointer;" onclick="copyReference()"></i></div>
                                 </div>
                                 <div class="row">

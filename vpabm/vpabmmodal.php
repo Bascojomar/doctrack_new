@@ -18,6 +18,13 @@ if (isset($_POST['dateup'])) {
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc' WHERE Channel = 'VPABM' AND Reference = '$reference' AND DocInOut = 'OUT'";
     $result = $conn->query($updateQuery);
 
+    $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
+    WHEN Channel = 'VPABM' AND DocInOut = 'OUT' THEN 'RELEASED'
+    ELSE '-'
+  END 
+  WHERE Reference = '$reference' and Channel='VPABM'";
+  $results = $conn->query($updateQuery);
+
 
     if ($result) {
         if ($doc === 'COMPLETED') {

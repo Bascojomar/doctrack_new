@@ -326,13 +326,13 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="row">
                                     <div class="col col-5">Reference Number:</div>
                                     <div class="col col-5">';
-                                    echo "<td class='infocells'><h2 id='referenceNumber'>" . $rows["Reference"] . "</h2></td> </div>";
+                                    echo "<td class='infocells'><h3 id='referenceNumber'>" . $rows["Reference"] . "</h3></td> </div>";
                                     echo'<div class="col col-2"> <i class="bi bi-copy" style="cursor: pointer;" onclick="copyReference()"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col col-5">Subject:</div>
                                     <div class="col col-6">';
-                                    echo "<td class='infocells'><h2>" . $rows["Subject"] . "</h3></td>";
+                                    echo "<td class='infocells'><h3>" . $rows["Subject"] . "</h3></td>";
                                     echo'</div>
                                     <div class="col col-2"> </div>
                                 </div>
@@ -403,8 +403,15 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 $row = $result->fetch_assoc();
                                 $docstatus_pro = $row['DocStatus'];
 
+                            $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'OUT' and Channel = 'PROCUREMENT' LIMIT 1";
+                            $result = $conn->query($sql);
+                            
+                            if ($result && $result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $docstatus_pro1 = $row['DocStatus'];
+
                     if ($docstatus_pro == 'RECEIVED') {
-                            echo'<div class="row mb-3 on">
+                            echo'<div class="row mb-3 on_half">
                                 <div class="col col-4 text-end">2'.$rows['CDate'].'<br><span style="font-size: 12px;">11:38 AM</span></div>
                                 <div class="col col-1">
                                     <i class="bi bi-check-circle-fill"></i>
@@ -412,6 +419,15 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by PROCUREMENT <br>
                                     Remarks : '.$row['Remarks'].'</div>
                             </div>';
+                        } elseif ($docstatus_pro1== 'RELEASED') {
+                            echo'<div class="row mb-3 on">
+                            <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
+                            <div class="col col-1">
+                                <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            <div class="col col-7 text-start">Received by VPAA <br>
+                                Remarks : '.$rows['Remarks'].'</div>
+                        </div>';
                         }else {
                             echo'<div class="row mb-3 off">
                             <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">11:38 AM</span></div>
@@ -423,6 +439,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                         </div>';
 
                         }
+                    }
                 } 
                 
                 $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'IN' and Channel = 'VPAA' LIMIT 1";
@@ -432,8 +449,15 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 $row = $result->fetch_assoc();
                                 $docstatus_vpaa = $row['DocStatus'];
 
+                $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'OUT' and Channel = 'VPAA' LIMIT 1";
+                            $result = $conn->query($sql);
+                            
+                            if ($result && $result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $docstatus_vpaa1 = $row['DocStatus'];
+
                 if ($docstatus_vpaa == 'RECEIVED') {
-                            echo'<div class="row mb-3 on">
+                            echo'<div class="row mb-3 on_half">
                                 <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
                                 <div class="col col-1">
                                     <i class="bi bi-check-circle-fill"></i>
@@ -441,6 +465,17 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by VPAA <br>
                                     Remarks : '.$rows['Remarks'].'</div>
                             </div>';
+                        }
+                        
+                        elseif ($docstatus_vpaa1== 'RELEASED') {
+                            echo'<div class="row mb-3 on">
+                            <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
+                            <div class="col col-1">
+                                <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            <div class="col col-7 text-start">Received by VPAA <br>
+                                Remarks : '.$rows['Remarks'].'</div>
+                        </div>';
                         }else{
                             echo'<div class="row mb-3 off">
                             <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">11:38 AM</span></div>
@@ -454,6 +489,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                         }
                 }
 
+            }
                 $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'IN' and Channel = 'VPABM' LIMIT 1";
                             $result = $conn->query($sql);
                             
@@ -461,8 +497,15 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 $row = $result->fetch_assoc();
                                 $docstatus_vpabm = $row['DocStatus'];
 
+                $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'OUT' and Channel = 'VPABM' LIMIT 1";
+                            $result = $conn->query($sql);
+                            
+                            if ($result && $result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $docstatus_vpabm1 = $row['DocStatus'];
+
                 if ($docstatus_vpabm == 'RECEIVED') {
-                            echo'<div class="row mb-3 on">
+                            echo'<div class="row mb-3 on_half">
                                 <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">12:04 PM</span></div>
                                 <div class="col col-1">
                                     <i class="bi bi-check-circle-fill"></i>
@@ -470,6 +513,16 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by VPABM <br>
                                     Remarks : '.$rows['Remarks'].'</div>
                             </div>';
+                        }
+                        elseif ($docstatus_vpabm1== 'RELEASED') {
+                            echo'<div class="row mb-3 on">
+                            <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
+                            <div class="col col-1">
+                                <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            <div class="col col-7 text-start">Received by VPAA <br>
+                                Remarks : '.$rows['Remarks'].'</div>
+                        </div>';
                         }else{
                             echo'<div class="row mb-3 off">
                             <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">11:38 AM</span></div>
@@ -482,7 +535,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
 
                         }
                 }
-                
+            }
                     $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'IN' and Channel = 'VPRET' LIMIT 1";
                     $result = $conn->query($sql);
                     
@@ -490,8 +543,15 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                         $row = $result->fetch_assoc();
                         $docstatus_vpret = $row['DocStatus'];
 
+                    $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'OUT' and Channel = 'VPRET' LIMIT 1";
+                    $result = $conn->query($sql);
+                    
+                    if ($result && $result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $docstatus_vpret1 = $row['DocStatus'];
+
                             if ($docstatus_vpret == 'RECEIVED') {
-                            echo'<div class="row mb-3 on">
+                            echo'<div class="row mb-3 on_half">
                                 <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">3:00 PM</span></div>
                                 <div class="col col-1">
                                     <i class="bi bi-check-circle-fill"></i>
@@ -499,6 +559,16 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by VPRET <br>
                                     Remarks : '.$rows['Remarks'].'</div>
                             </div>';
+                        }
+                        elseif ($docstatus_vpret1== 'RELEASED') {
+                            echo'<div class="row mb-3 on">
+                            <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
+                            <div class="col col-1">
+                                <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            <div class="col col-7 text-start">Received by VPAA <br>
+                                Remarks : '.$rows['Remarks'].'</div>
+                        </div>';
                         } else{
                             echo'<div class="row mb-3 off">
                             <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">11:38 AM</span></div>
@@ -511,15 +581,23 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
 
                         }
                 }
+            }
                 $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'IN' and Channel = 'PRESIDENT' LIMIT 1";
                     $result = $conn->query($sql);
                     
                     if ($result && $result->num_rows > 0) {
                         $row = $result->fetch_assoc();
-                        $docstatus_vpret = $row['DocStatus'];
+                        $docstatus_pres = $row['DocStatus'];
 
-                            if ($docstatus_vpret == 'RECEIVED') {
-                            echo'<div class="row mb-3 on">
+                $sql = "SELECT * FROM doctrack.tbl_inout WHERE Reference = '" . $searchRef . "' and DocInOut = 'OUT' and Channel = 'PRESIDENT' LIMIT 1";
+                    $result = $conn->query($sql);
+                    
+                    if ($result && $result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $docstatus_pres1 = $row['DocStatus'];
+
+                            if ($docstatus_pres== 'RECEIVED') {
+                            echo'<div class="row mb-3 on_half">
                                 <div class="col col-4 text-end">'.$rows['CDate'].'<br><span style="font-size: 12px;">3:00 PM</span></div>
                                 <div class="col col-1">
                                     <i class="bi bi-check-circle-fill"></i>
@@ -527,6 +605,16 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by PRESIDENT <br>
                                     Remarks : '.$rows['Remarks'].'</div>
                             </div>';
+                        }
+                        elseif ($docstatus_pres1 == 'RELEASED') {
+                            echo'<div class="row mb-3 on">
+                            <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
+                            <div class="col col-1">
+                                <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            <div class="col col-7 text-start">Received by VPAA <br>
+                                Remarks : '.$rows['Remarks'].'</div>
+                        </div>';
                         } else{
                             echo'<div class="row mb-3 off">
                             <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">11:38 AM</span></div>
@@ -538,6 +626,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                         </div>';
 
                         }
+                    }
                 }
                         echo'</div>
                     </div>

@@ -10,6 +10,10 @@ echo '
                 <a href="request"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
                     <i class="bi bi-card-checklist me-3 text-white"></i><span>Password Request</span></a>
 
+
+                    <a href="audit" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+                    <i class="bi bi-card-checklist me-3 text-white"></i><span>Audit</span></a>
+
                 <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
                     ><i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
 

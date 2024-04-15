@@ -152,12 +152,15 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to records dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'records/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'SITE ADMIN') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
@@ -169,166 +172,212 @@ margin-top: 10%;
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'admin/admin'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to president dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT1') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
-    echo "<script>Swal.fire({
-        title: 'Login Successful!',
-        text: 'Redirecting to admin dashboard...',
-        icon: 'success',
-        timer: 2000,
-        timerProgressBar: true,
-        showConfirmButton: false
-    }).then(function() { window.location = 'president/dashboard'; });</script>";
+					echo "<script>Swal.fire({
+						title: 'Login Successful!',
+						text: 'Redirecting to presidentstaff dashboard...',
+						icon: 'success',
+						timer: 2000,
+						timerProgressBar: true,
+						showConfirmButton: false
+					}).then(function() { window.location = 'president/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'PRESIDENT2') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
     echo "<script>Swal.fire({
         title: 'Login Successful!',
-        text: 'Redirecting to admin dashboard...',
+        text: 'Redirecting to presidentstaff dashboard...',
         icon: 'success',
         timer: 2000,
         timerProgressBar: true,
         showConfirmButton: false
     }).then(function() { window.location = 'president/dashboard'; });</script>";
+	$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+	$result = mysqli_query($conn, $query);
+
 				}
 				elseif ($_SESSION['Office'] === 'VPAA') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpaa dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'VPABM') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpabm dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'VPRET') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpret dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/vpaa'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'VPAA1') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpaastaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'VPAA2') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpaastaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpaa/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'VPABM1') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpabmstaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpabm/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'VPABM2') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpabmstaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpabm/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				}
 				elseif ($_SESSION['Office'] === 'VPRET1') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpretstaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpret/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'VPRET2') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to vpretstaff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'vpret/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} 
 				elseif ($_SESSION['Office'] === 'PROCUREMENT') {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to procurement dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'procurement/dashboard'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 				} else {
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to admin dashboard...',
+						text: 'Redirecting to dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'others/track'; });</script>";
+					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
+					$result = mysqli_query($conn, $query);
+	
 					exit();
 				}
 			} else {
+
 				echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 				echo "<script>Swal.fire({
 					title: 'Login Successful!',
-					text: 'Redirecting to admin dashboard...',
+					text: 'Username or Password...',
 					icon: 'warning',
 					timer: 2000,
 					timerProgressBar: true,

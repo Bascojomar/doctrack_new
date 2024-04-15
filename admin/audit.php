@@ -169,14 +169,14 @@ while ($row = $result->fetch_assoc()) {
                                 <a href="admin"  class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
                                     <i class="bi bi-person-add me-3"></i><span>Create Accounts</span></a>
 
-                                <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+                                <a href="request" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
                                     <i class="bi bi-card-checklist me-3 text-white"></i><span>Password Request</span></a>
 
-                                
-                                <a href="audit" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+                                    
+                                <a href="audit" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
                                 <i class="bi bi-card-checklist me-3 text-white"></i><span>Audit</span></a>
-                                
-                                    <a href="my_account" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+
+                                <a href="my_account" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
                                     <i class="bi bi-person me-3 text-white"></i><span>My Account</span></a>
 
                                 <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white">
@@ -228,35 +228,29 @@ while ($row = $result->fetch_assoc()) {
                     </nav>
                     <!-- Navbar -->';
                 echo '<main>';
-                echo '<div class="mx-4 px-2 pb-2">
+                echo '<div class="mx-4 px-5 pb-2">
                     <div class="title">
-                        <div class="title-sub fw-bold">PASSWORD REQUEST</div>
+                        <div class="title-sub fw-bold">Audit</div>
                     </div>
-                    <div class="table-container mt-2 px-3">
+                    <div class="table-container mt-2 px-5">
                     <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Campus</th>
-                                    <th>Email</th>
-                                    <th>Employee ID</th>
-                                    <th>Letter</th>
-                                    <th>Action</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Activity</th>
+                                    <th class="text-center">Date and Time</th>
                                 </tr>
                             </thead>
                             <tbody>';
-                                $query = "SELECT * FROM tbl_users";
+                                $query = "SELECT * FROM tbl_login";
                                 $result = $conn->query($query);
                                 while ($rows = $result->fetch_assoc()) {
-                                    // Check if the "Letter" column has a value
-                                    if (!empty($rows["Letter"])) {
-                                        echo "<tr>";
-                                        echo "<td>" . $rows["Campus"] . "</td>";
-                                        echo "<td>" . $rows["Email"] . "</td>";
-                                        echo "<td>" . $rows["UserName"] . "</td>";
-                                        echo "<td>" . $rows["Request"] . $rows["Letter"] . "</td>";
-                                        echo "<td><form action='sendreq' method='POST' class='text-center'><input type='hidden' name='users' value='" . $rows["UserName"] . "'><input type='hidden' name='pass' value='" . $rows["Password"] . "'><input type='hidden' name='camp' value='" . $rows["Campus"] . "'><input type='hidden' name='email' value='" . $rows["Email"] . "'><input type='hidden' name='unique_id' value='" . $rows["ID"] . "'><button type='submit' class='btn btn-primary' name='approved' value='Approved'><i class='bi bi-hand-thumbs-up' style='font-size:22px;'></i> Approved</button></form></td>";
+                                        echo "<tr >";
+                                        echo "<td class='text-center'>" . $rows["ID"] . "</td>";
+                                        echo "<td class='text-center'>" . $rows["activity"] . "</td>";
+                                        echo "<td class='text-center'>" . $rows["time_stamp"] . "</td>";
                                         echo "</tr>";
-                                    }
+                                    
                                 }
                             echo '</tbody>
                         </table>

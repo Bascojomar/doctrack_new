@@ -14,6 +14,7 @@ if (isset($_POST['dateup'])) {
     $remarks = $_POST['remarks'];
     $doc = $_POST['doc'];
 
+    // Perform a database update
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc' WHERE Channel = 'VPABM' AND Reference = '$reference' AND DocInOut = 'OUT'";
     $result = $conn->query($updateQuery);
 
@@ -23,7 +24,6 @@ if (isset($_POST['dateup'])) {
   END 
   WHERE Reference = '$reference' and Channel='VPABM'";
   $results = $conn->query($updateQuery);
-
 
     if ($result) {
         if ($doc === 'COMPLETED') {
@@ -129,7 +129,7 @@ if (isset($_POST['dateup'])) {
 
               $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
               WHEN Channel = 'VPABM' AND DocInOut = 'IN' THEN 'DISAPPROVED'
-              ELSE 'NULL'
+              ELSE '-'
             END 
             WHERE Reference = '$reference'";
             $results = $conn->query($updateQuery);
@@ -213,7 +213,7 @@ if (isset($_POST['dateup'])) {
 
                   $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
                   WHEN Channel = 'RECORDS' AND DocInOut = 'IN' THEN 'PENDING'
-                  ELSE 'NULL'
+                  ELSE '-'
                 END 
                 WHERE Reference = '$reference'";
                 $results = $conn->query($updateQuery);

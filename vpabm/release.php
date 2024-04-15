@@ -255,7 +255,7 @@ while ($rowsload = $resultload->fetch_assoc()) {
     echo '</tr>';
 }
 
-echo '</tbody>
+echo '</tbody
     </table>
 </div>
 </div>

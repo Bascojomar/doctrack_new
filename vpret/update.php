@@ -129,10 +129,17 @@ $_SESSION['allowedoffice'] = $office;
     } .title-sub{
         font-size: 30px;
     }
-    *{
-      font-family: arial;
-  overflow: hidden;
-}
+
+    button {
+    border: none;
+    background: none; /* Optional: Removes any background color */
+    padding: 0; /* Optional: Remove any default padding */
+    font-size: 1.7em;
+  }
+
+  .querycells {
+    text-align: center;
+  }
 </style>
 
 <header>
@@ -285,9 +292,10 @@ echo'
         
         echo '</tbody>
             </table>
+                    </div>
+            
         </div>
-        </div>
-        </main>';
+</main>';
 echo '<div class="modal fade" id="update" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
   <div class="modal-content">
@@ -334,25 +342,59 @@ echo '<div class="modal fade" id="update" tabindex="-1">
 </div>
 </div>
 </div>';
-                      }
-?>
-<script>
-
-function Action(selectedValue) {
-    var docSelect = document.getElementById('doc');
-    if (selectedValue === 'DISAPPROVED') {
-        // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
-        docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
-    } else if (selectedValue === 'PENDING') {
-        // If "PENDING" is selected, update the options in the "DocStatus" dropdown.
-        docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
-    } else {
-        // Reset the "DocStatus" dropdown to its default options.
-        docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                             '<option value="RELEASED">RELEASED</option>';
-    }
 }
 
+?>
+	<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("updateModal");
+    const closeModal = document.querySelector(".closeModal"); // Change to querySelector
+    const updateButtons = document.querySelectorAll(".update-button");
+    const referenceInput = document.querySelector(".reference input");
+    
+    // Event listener for clicking an "Update" button
+    updateButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            // Get the reference number from the data attribute of the clicked button
+            const reference = button.getAttribute("data-reference");
+            
+            // Populate the reference input field in the modal with the reference number
+            referenceInput.value = reference;
+
+            // Show the modal
+            modal.classList.add("show-modal");
+        });
+    });
+
+    // Event listener for clicking the close button
+    closeModal.addEventListener("click", () => {
+        modal.classList.remove("show-modal");
+    });
+});
+
+function Action(selectedValue) {
+  var docSelect = document.getElementById('doc');
+  if (selectedValue === 'DISAPPROVED') {
+    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
+    docSelect.innerHTML = '<option value="DISAPPROVED">DISAPPROVED</option>';
+  } else {
+    // Reset the "DocStatus" dropdown to its default options.
+    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
+                         '<option value="RELEASED">RELEASED</option>';
+  }
+}
+
+function Action(selectedValue) {
+  var docSelect = document.getElementById('doc');
+  if (selectedValue === 'PENDING') {
+    // If "DISAPPROVED" is selected, update the options in the "DocStatus" dropdown.
+    docSelect.innerHTML = '<option value="PENDING">PENDING</option>';
+  } else {
+    // Reset the "DocStatus" dropdown to its default options.
+    docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
+                         '<option value="RELEASED">RELEASED</option>';
+  }
+}
 </script>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>

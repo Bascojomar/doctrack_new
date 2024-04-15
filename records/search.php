@@ -349,6 +349,18 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                     <div class="col col-12">
                         <div class="card text-start bg-danger text-dark">
                             <div class="card-body fw-semibold text-center">
+                                <div style="display: flex;">
+                                <div class="bg-black mt-2 mx-3" style="width: 10px; height: 10px;"></div>
+                                <label>Not Receive</label>
+                                </div>
+                                <div style="display: flex;">
+                                <div class="bg-warning mt-2 mx-3" style="width: 10px; height: 10px;"></div>
+                                <label>Received</label>
+                                </div>
+                                <div style="display: flex;">
+                                <div class="bg-success mt-2 mx-3" style="width: 10px; height: 10px;"></div>
+                                <label>Released</label>
+                                </div>
                                 <h1 class="status">PROCESS DONE</h1>
                             </div>
                         </div>

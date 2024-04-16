@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEUST DOCUMENT TRACKING</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 </head>
 <body>
 
@@ -130,16 +130,16 @@ $_SESSION['allowedoffice'] = $office;
         font-size: 30px;
     }
 
-    button {
-    border: none;
-    background: none; /* Optional: Removes any background color */
-    padding: 0; /* Optional: Remove any default padding */
-    font-size: 1.7em;
-  }
-
-  .querycells {
-    text-align: center;
-  }
+    .badge{
+      width: 100px;
+    }
+    .table-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+*{
+      font-family: arial;
+  overflow: hidden;
+}
 </style>
 
 <header>
@@ -155,28 +155,32 @@ while ($row = $result->fetch_assoc()) {
     $owner = $row['Owner'];
     echo '
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-primary text-white">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-2 mt-3">
-          <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
-          ><i class="bi bi-speedometer2 me-3"></i><span>Dashboard</span></a>
-  
-        <a href="pres1" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
-          <i class="bi bi-card-list me-3"></i><span>Receive Document</span></a>
-  
-        <a href="update" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
-        ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
-  
-        <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
-          <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
+  <div class="position-sticky">
+    <div class="list-group list-group-flush mx-2 mt-3">
 
-            <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
-            ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
-        <div class="nav-item order-2 order-lg-1 d-none d-lg-block">
-            <img src="texture_2.png" alt="" style="width: 100vh; position: relative; left: -69vh; opacity: 25%;">
-        </div>
-        </div>
+      <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
+        ><i class="bi bi-speedometer2 me-3"></i><span>Dashboard</span></a>
+
+      <a href="pres" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
+        <i class="bi bi-card-list me-3"></i><span>Receive Document</span></a>
+
+      <a href="update" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
+      ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>Update Status</span></a>
+
+      <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+        <i class="bi bi-check2-square me-3 text-white"></i><span>Complete Document</span></a>
+
+        <a href="list" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
+        <i class="bi bi-card-list me-3"></i><span>List Document</span></a>
+        
+        <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
+        ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
+    <div class="nav-item order-2 order-lg-1 d-none d-lg-block">
+        <img src="texture_2.png" alt="" style="width: 100vh; position: relative; left: -69vh; opacity: 25%;">
     </div>
-    </nav>
+    </div>
+</div>
+</nav>
     <!-- Sidebar -->
 
     <!-- Navbar -->
@@ -233,7 +237,7 @@ echo'
           $query = "SELECT * FROM tbl_inout WHERE Channel = 'PRESIDENT' AND DocStatus = 'RECEIVED' ORDER BY CDate DESC";
             $result = $conn->query($query);
             $numrows = $result->num_rows;
-            echo '<div class="table-container mt-2 px-3">
+            echo '<div class="table-container mt-2 px-3 pt-3">
             <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>

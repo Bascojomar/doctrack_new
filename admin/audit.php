@@ -21,13 +21,13 @@ while ($row = $result->fetch_assoc()) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/dataTables.bootstrap5.min.css">
     
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <style>
         body {
             background-color: #fbfbfb;
@@ -148,6 +148,10 @@ while ($row = $result->fetch_assoc()) {
         * {
             overflow: hidden;
         }
+
+        td{
+            height:3.7vh;
+        }
     </style>
 </head>
 <body>
@@ -232,7 +236,7 @@ while ($row = $result->fetch_assoc()) {
                     <div class="title">
                         <div class="title-sub fw-bold">Audit</div>
                     </div>
-                    <div class="table-container mt-2 px-5">
+                    <div class="table-container mt-2 pt-3 px-3">
                     <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>

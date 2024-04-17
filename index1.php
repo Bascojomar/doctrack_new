@@ -129,7 +129,7 @@ margin-top: 10%;
 			$username = mysqli_real_escape_string($conn,$_POST['username']);
 			$password = mysqli_real_escape_string($conn,$_POST['password']);
 		
-			$sql = "SELECT * FROM doctrack.tbl_users WHERE UserName='$username' AND Password='$password'";
+			$sql = "SELECT * FROM doctrack.tbl_users WHERE Email='$username' AND Password='$password'";
 			$result = $conn->query($sql);
 		
 			if ($result->num_rows == 1) {
@@ -430,7 +430,7 @@ margin-top: 10%;
 		<form action = "" method = "post" enctype = "multipart/form-data" id = "login" name = "loginform" autocomplete = 'off'>
         <div class="input-container">
           <i class="fa fa-envelope icon"></i>
-		  <input type = "text" class="input-field" placeholder="Username" name="username" pattern = "[a-zA-Z0-9]+" onclick = "this.setSelectionRange(0,this.value.length)" required>
+		  <input type = "email" class="input-field" placeholder="Username" name="username" onclick = "this.setSelectionRange(0,this.value.length)" required>
           <!-- <input class="input-field" type="text" placeholder="Enter your username" id="your_username" name="username" autocomplete="off" required>text="email" for requiring @ -->
         </div>
         <div class="input-container">

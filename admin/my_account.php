@@ -215,7 +215,7 @@ echo '<!-- Navbar -->
 
                             <div class="col-8 mt-3">
                                 <label for="" class="form-label">Choose Profile Picture</label>
-                                <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId"/>
+                                <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId" required/>
                             </div>
 
                             <div class="col-2 mt-2 text-center">

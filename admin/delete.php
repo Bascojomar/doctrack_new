@@ -1,5 +1,5 @@
 <?php
-include 'database.php';
+include '../database.php';
 session_start();
 // Assuming you have a database connection established in $conn
 

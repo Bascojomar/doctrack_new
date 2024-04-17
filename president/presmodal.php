@@ -20,7 +20,7 @@ if (isset($_POST['dateup'])) {
     $result = $conn->query($updateQuery);
 
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
-    WHEN Channel = 'PRESIDENT' AND DocInOut = 'OUT' THEN 'RELEASED'
+    WHEN Channel = 'PRESIDENT' AND DocInOut = 'OUT' THEN 'COMPLETED'
     ELSE '-'
   END 
   WHERE Reference = '$reference' and Channel='PRESIDENT'";
@@ -39,11 +39,16 @@ if (isset($_POST['dateup'])) {
                 $campus = $row['Campus'];
                 $email = $row['Gmail'];
                 $subjec = $row['Subject'];
-                $subject = "Document Status Update in $office";
-                 $message = "Greetings, $campus (campus)<br>
-                    Reference: $reference br><br>
-                
-                Your document  $subjec is now completed and its content have been carefully evaluated to ensure accuracy.";
+                $subject = "";
+                 $message = "Subject: $subjec Reference: <br> $reference <br><br> Dear $campus,  <br><br>
+
+I hope this message finds you well. <br><br>
+
+I am pleased to inform you that the $subjec document, previously under review, has been completed and returned to the Records Office. <br><br>
+
+Please be informed that the document is now available for reference and further action as necessary. <br><br>
+
+Thank you for your cooperation throughout this process. ";
                 $mail = new PHPMailer(true);
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';

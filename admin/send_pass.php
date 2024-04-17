@@ -38,9 +38,20 @@ if (isset($_GET['confirmed']) && $_GET['confirmed'] == 1) {
             $email = $row['Email'];
     
         $subject = "Sending Password";
-        $message = "Greetings, $campus (campus)<br><br>
-        Username: $username <br><br>
-        Password: $pass";
+        $message = "Dear $campus, <br> <br> 
+ 
+        Hope this greeting finds you in good health. <br> <br> 
+        
+        In response to your recent request for a password retrieval, kindly locate the required details below: <br> <br>
+        
+        Username: $username <br>
+        Login: $pass <br><br>
+        
+        Please take the appropriate precautions to protect the security of your account and make sure that this information is kept private. <br><br> 
+        
+        Please do not hesitate to get in touch with us at any time if you need further help or have any questions. <br> <br>
+        
+        Thank you for your attention to this matter. <br><br> ";
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';

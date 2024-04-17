@@ -255,7 +255,7 @@ echo'
                             echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
                         echo'</tr>';
                         }
-                    echo '</tbody>
+                    echo '</tbody
                     </table>
                     </div>
             

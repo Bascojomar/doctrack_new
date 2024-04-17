@@ -234,45 +234,50 @@ while ($row = $result->fetch_assoc()) {
                                             <option>Fort Magsaysay</option>
                                         </select>
                                     </div>
+                                    <SELECT name='office' id='office' class='form-control' onchange = 'DisableOffice(this.value)'  required>
+                                        <OPTION value = "" disabled selected hidden>From Office</OPTION>
+                                    </SELECT>
+                                    
                                     <div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Username<span class="text-danger"> *</span></label>
-    <input type="text" name="username" class="form-control" placeholder="Username" oninput="this.value = this.value.toUpperCase()" required>
-</div>
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Email<span class="text-danger"> *</span></label>
-    <input type="email" name="email" placeholder="Ex. Juandelacruz@gmail.com" class="form-control" required>
-</div>
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Fullname<span class="text-danger"> *</span></label>
-    <input type="text" class="form-control" name="owner" placeholder="Fullname" oninput="this.value = this.value.toUpperCase()" required>
-</div>  
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">File<span class="text-danger"> *</span></label>
-    <input type="file" class="form-control" name="file" required>
-</div>
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Password<span class="text-danger"> *</span></label>
-    <input type="password" name="password" class="form-control" placeholder="Create Password" required>
-</div>
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>
-    <input type="text" name="position" class="form-control" placeholder="Create position" oninput="this.value = this.value.toUpperCase()" required>
-</div>
-<div class="mb-3 fw-bold">
-    <label for="recipient-name" class="col-form-label">Privilege<span class="text-danger"> *</span></label>
-    <input type="text" class="form-control" name="privilege" placeholder="Privilege" oninput="this.value = this.value.toUpperCase()">
-</div>
+                                    <label for="recipient-name" class="col-form-label">Username<span class="text-danger"> *</span></label>
+                                    <input type="text" name="username" class="form-control" placeholder="Username" oninput="this.value = this.value.toUpperCase()" required>
+                                </div>
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">Email<span class="text-danger"> *</span></label>
+                                    <input type="email" name="email" placeholder="Ex. Juandelacruz@gmail.com" class="form-control" required>
+                                </div>
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">Fullname<span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control" name="owner" placeholder="Fullname" oninput="this.value = this.value.toUpperCase()" required>
+                                </div>  
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">File<span class="text-danger"> *</span></label>
+                                    <input type="file" class="form-control" name="file" >
+                                </div>
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">Password<span class="text-danger"> *</span></label>
+                                    <input type="password" name="password" class="form-control" placeholder="Create Password" required>
+                                </div>
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>
+                                    <input type="text" name="position" class="form-control" placeholder="Create position" oninput="this.value = this.value.toUpperCase()" required>
+                                </div>
+                                <div class="mb-3 fw-bold">
+                                    <label for="recipient-name" class="col-form-label">Privilege<span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control" name="privilege" placeholder="Privilege" oninput="this.value = this.value.toUpperCase()">
+                                </div>
 
-                                </form>
+                            
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
 
             <div class="table-container mt-2 p-3">
                 <table id="example" class="table table-striped" style="width:100%">

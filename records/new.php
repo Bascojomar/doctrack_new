@@ -345,11 +345,19 @@ use PHPMailer\PHPMailer\PHPMailer;
 		$q = $dbconn->prepare($querynumber);		
 		$q->execute();
 	
-		$subject = "Account Approval";
-		$message = "Greetings, $campus <br>
+		$message = "Subject: $subjec <br>
 		Reference: $reference <br><br>
 		
-		Your document is presently undergoing review and processing.";
+		Dear $campus Campus,<br><br>
+
+
+		I hope this message finds you well.<br><br>
+
+		Records office would like to notify you that a document that is under your jurisdiction at the moment is being processed. Please be advised that it will be handled as soon as it is finished and submitted in compliance with our set protocols.<br><br>
+
+		Please get in touch if you have any questions or need help with any part of this process.<br><br>
+
+		Thank you for your attention to this matter.";
 	
 		$mail = new PHPMailer(true);
 	

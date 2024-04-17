@@ -271,7 +271,7 @@ echo'
             echo '<td class="query">' . $rows["DocStatus"] . '</td>';
             echo '<td class="query">' . $difference . '</td>';
             echo '<td class="query">' . $rows["PresidentRemarks"] . '</td>';
-            echo "<td class='query text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
+            echo "<td class='query text-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a>";
     echo "<TD class='query'>";
     echo "<DIV class='sub'>";
     if ($rows["Upload"]) {
@@ -332,7 +332,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
           echo "
           <select name='doc' id ='doc' class='form-control' required>
           	   <option value='' disabled selected>Status</option>
-          	   <option value='RELEASED'>RELEASED</option>
+          	   <option value='COMPLETED'>COMPLETED</option>
              </select>";
         echo '</div>
       
@@ -384,7 +384,7 @@ function Action(selectedValue) {
   } else {
     // Reset the "DocStatus" dropdown to its default options.
     docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
+                         '<option value="COMPLETED">COMPLETED</option>';
   }
 }
 
@@ -396,7 +396,7 @@ function Action(selectedValue) {
   } else {
     // Reset the "DocStatus" dropdown to its default options.
     docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="RELEASED">RELEASED</option>';
+                         '<option value="COMPLETED">COMPLETED</option>';
   }
 }
 </script>

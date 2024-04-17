@@ -366,7 +366,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
           echo "
           <select name='doc' id ='doc' class='form-control' required>
           	   <option value='' disabled selected>Status</option>
-          	   <option value='COMPLETED'>COMPLETED</option>
+          	   <option value='RELEASED'>RELEASED</option>
              </select>";
         echo '</div>
       
@@ -420,7 +420,7 @@ function Action(selectedValue) {
   } else {
     // Reset the "DocStatus" dropdown to its default options.
     docSelect.innerHTML = '<option value="" disabled selected>Status</option>' +
-                         '<option value="COMPLETED">COMPLETED</option>';
+                         '<option value="RELEASED">RELEASED</option>';
   }
 }
 </script>

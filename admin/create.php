@@ -40,26 +40,16 @@ require '../vendor/autoload.php';
 
 
 
-  $subject = "  Account activated";
-  $message = "Dear $owner, Mr. or Mrs. <br><br>
-
-Hope this greeting finds you in good health. <br><br>
-
-Your account has been successfully established and is now operational, I'm happy to tell you. Your login credentials are listed below: <br><br>
-
-Login: $username <br>
-Password: $password <br>
-
-We advise changing your password after your initial login in order to improve security. The actions to take are as follows: <br><br>
-
-1. Please visit [www.neustdocumenttracking.com]. <br>
-2. 'Login' is the button to click. <br>
-3. Enter the given password along with your login. <br>
-4. Proceed to 'MY ACCOUNT' to generate a robust, new password. <br> <br>
-
-Please get in touch with us if you run into any problems or have any more questions. <br><br>
-
-I appreciate you taking the time to consider this. <br><br>
+  $subject = "Account Approval";
+  $message = "Mr. or Mrs. $owner. <BR><BR>
+  Your account has been successfully created and is now ready for use. Here are your login credentials:
+  Username:$username<br>
+  Password: $password 
+  <br><br>
+  To improve security, we recommend changing your password after your initial login. <br>
+  1.Go to [www.neustdocumenttracking.com] <br>2. Click the 'Login' button.
+  <br>3. Enter your username and the previously created password. 
+  <br>4. In 'MY ACCOUNT', you can create a new strong password.";
 
   $mail = new PHPMailer(true);
 

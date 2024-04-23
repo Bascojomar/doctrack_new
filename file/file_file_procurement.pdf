@@ -1,4 +1,0 @@
-<br />
-<b>Warning</b>:  mime_content_type(file/file_procurement.pdf): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\bootstrack\download.php</b> on line <b>16</b><br />
-<br />
-<b>Warning</b>:  readfile(file/file_procurement.pdf): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\bootstrack\download.php</b> on line <b>23</b><br />

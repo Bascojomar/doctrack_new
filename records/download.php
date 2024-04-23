@@ -1,6 +1,5 @@
 <?php
 include '../database.php';
-if(!isset($_SESSION['Office'])){header("Location: ../index1");}
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['download_file'])) {
     $id = $_POST['id'];
 

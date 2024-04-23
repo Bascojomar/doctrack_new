@@ -532,7 +532,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                             <div class="col col-1">
                                 <i class="bi bi-check-circle-fill"></i>
                                 </div>
-                            <div class="col col-7 text-start">Received by VPAA <br>
+                            <div class="col col-7 text-start">Received by VPABM <br>
                                 Remarks : '.$rows['Remarks'].'</div>
                         </div>';
                         }else{
@@ -578,7 +578,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                             <div class="col col-1">
                                 <i class="bi bi-check-circle-fill"></i>
                                 </div>
-                            <div class="col col-7 text-start">Received by VPAA <br>
+                            <div class="col col-7 text-start">Received by VPRET <br>
                                 Remarks : '.$rows['Remarks'].'</div>
                         </div>';
                         } else{
@@ -624,7 +624,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                             <div class="col col-1">
                                 <i class="bi bi-check-circle-fill"></i>
                                 </div>
-                            <div class="col col-7 text-start">Received by VPAA <br>
+                            <div class="col col-7 text-start">Received by PRESIDENT <br>
                                 Remarks : '.$rows['Remarks'].'</div>
                         </div>';
                         } else{

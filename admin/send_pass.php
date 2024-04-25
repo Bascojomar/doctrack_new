@@ -10,18 +10,37 @@ session_start();
 // Assuming you have a database connection established in $conn
 
 if (isset($_POST['send_pass'])) {
-    $user_id_to_delete = $_POST['id'];
+  $user_id_to_delete = $_POST['id'];
 
-    // Display a confirmation dialog using JavaScript
-    echo "<script>
-            var userConfirmed = confirm('Are you sure you want to Send this Username and Password?');
-            if (userConfirmed) {
-                window.location.href = 'send_pass?id=$user_id_to_delete&confirmed=1';
-            } else {
-                window.location.href = 'admin';
-            }
-          </script>";
+  // Display a confirmation dialog using SweetAlert
+  echo "<script>
+          document.addEventListener('DOMContentLoaded', function() {
+              var sweetAlertScript = document.createElement('script');
+              sweetAlertScript.src = 'https://unpkg.com/sweetalert/dist/sweetalert.min.js';
+              document.head.appendChild(sweetAlertScript);
+              
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: 'Are you sure?',
+                      text:'You want to send this username and password?',
+                      icon: 'warning',
+                      buttons: true,
+                      dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          window.location.href = 'send_pass?id=$user_id_to_delete&confirmed=1';
+                      } else {
+                          window.location.href = 'admin';
+                      }
+                  });
+              };
+          });
+        </script>";
+
 }
+
+
 
 // Check for confirmation parameter and perform the deletion
 if (isset($_GET['confirmed']) && $_GET['confirmed'] == 1) {

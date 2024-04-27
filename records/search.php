@@ -431,7 +431,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                 <div class="col col-7 text-start">Received by PROCUREMENT <br>
                                     Remarks : '.$row['Remarks'].'</div>
                             </div>';
-                        } elseif ($docstatus_pro1== 'RELEASED') {
+                        } elseif ($docstatus_pro1== 'COMPLETED') {
                             echo'<div class="row mb-3 on">
                             <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
                             <div class="col col-1">
@@ -618,7 +618,7 @@ echo ' <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-prim
                                     Remarks : '.$rows['Remarks'].'</div>
                             </div>';
                         }
-                        elseif ($docstatus_pres1 == 'RELEASED') {
+                        elseif ($docstatus_pres1 == 'COMPLETED') {
                             echo'<div class="row mb-3 on">
                             <div class="col col-4 text-end">'.$rows['CDate'].' <br><span style="font-size: 12px;">12:04 PM</span></div>
                             <div class="col col-1">

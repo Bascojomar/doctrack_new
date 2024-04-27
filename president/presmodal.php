@@ -5,8 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 include '../database.php';
-
-
 session_start();
 
 
@@ -89,29 +87,6 @@ Thank you for your cooperation throughout this process. ";
                 
             }
         }
-        if ($doc === 'RELEASED') {
-
-            echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-              var sweetAlertScript = document.createElement("script");
-              sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
-              document.head.appendChild(sweetAlertScript);
-            
-              sweetAlertScript.onload = function() {
-                swal({
-                  title: "Update Successful",
-                  text: "RELEASED",
-                  icon: "success",
-                  buttons: false,
-                  timer: 1200
-                }).then(function() {
-                  window.location.href = "update";
-                });
-              };
-            });
-            </script>';
-                
-            }
         
             elseif ($action === 'DISAPPROVED') {
               echo '<script>

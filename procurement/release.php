@@ -238,7 +238,7 @@ echo'
                 Add Account
             </div> -->
           </div>';
-          $queryload = "SELECT * FROM tbl_inout WHERE Channel = 'PROCUREMNET' and DocInOut = 'OUT' and DocStatus = 'COMPLETED' ORDER BY CDate DESC";
+          $queryload = "SELECT * FROM tbl_inout WHERE Channel = 'PROCUREMENT' and DocInOut = 'OUT' and DocStatus = 'COMPLETED' ORDER BY CDate DESC";
             $resultload = $conn->query($queryload);
             $numrowsload = $resultload->num_rows;
                     echo'<div class="table-container mt-2 px-3 pt-3">
@@ -261,7 +261,7 @@ echo'
                             echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
                         echo'</tr>';
                         }
-                    echo '</tbody>
+                    echo '</tbody
                     </table>
                     </div>
             

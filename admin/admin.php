@@ -312,13 +312,13 @@ while ($row = $result->fetch_assoc()) {
                                         <?php
                                         if ($rows["ID"]) {
                                             echo "<div class='btn-group'>";
-                                            echo "<form action='send_pass' method='post'>";
+                                            echo "<form action='' method='post'>";
                                             echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
                                             echo "<button type='submit' name='send_pass' value='Send' class='btn btn-primary btn-sm m-1'>";
                                             echo '<i class="bi bi-send"></i></button>';
                                             echo "</form>";
 
-                                            echo "<form action='delete' method='post'>";
+                                            echo "<form action='' method='post'>";
                                             echo "<input type='hidden' name='id' value='" . $rows['ID'] . "'>";
                                             echo "<button type='submit' name='delete_user' value='Delete' class='btn btn-danger btn-sm m-1'>";
                                             echo "<i class='bi bi-trash3'></i></button>";
@@ -340,6 +340,164 @@ while ($row = $result->fetch_assoc()) {
     </header>
 <?php
 }
+// delete account
+if (isset($_POST['delete_user'])) {
+    $user_id_to_delete = $_POST['id'];
+
+    // Display a confirmation dialog using JavaScript
+
+          echo "<script>
+          document.addEventListener('DOMContentLoaded', function() {
+              var sweetAlertScript = document.createElement('script');
+              sweetAlertScript.src = 'https://unpkg.com/sweetalert/dist/sweetalert.min.js';
+              document.head.appendChild(sweetAlertScript);
+              
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: 'Are you sure?',
+                      text:'You want to delete this user?',
+                      icon: 'warning',
+                      buttons: true,
+                      dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          window.location.href = 'delete?id=$user_id_to_delete&confirmed=1';
+                      } else {
+                          window.location.href = 'admin';
+                      }
+                  });
+              };
+          });
+        </script>";
+          
+}
+
+// Check for confirmation parameter and perform the deletion
+if (isset($_GET['confirmed']) && $_GET['confirmed'] == 1) {
+    $user_id_to_delete = $_GET['id'];
+
+    // Perform the deletion query
+    $delete_query = "DELETE FROM tbl_users WHERE ID = $user_id_to_delete";
+    $delete_result = $conn->query($delete_query);
+
+    if ($delete_result) {
+        echo "<script>window.location.href = 'admin'</script>";
+    } else {
+        echo "Error deleting user: " . $conn->error;
+    }
+}
+
+// send password and username
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
+
+// Assuming you have a database connection established in $conn
+
+if (isset($_POST['send_pass'])) {
+  $user_id_to_delete = $_POST['id'];
+
+  // Display a confirmation dialog using SweetAlert
+  echo "<script>
+          document.addEventListener('DOMContentLoaded', function() {
+              var sweetAlertScript = document.createElement('script');
+              sweetAlertScript.src = 'https://unpkg.com/sweetalert/dist/sweetalert.min.js';
+              document.head.appendChild(sweetAlertScript);
+              
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: 'Are you sure?',
+                      text:'You want to send this username and password?',
+                      icon: 'warning',
+                      buttons: true,
+                      dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          window.location.href = 'send_pass?id=$user_id_to_delete&confirmed=1';
+                      } else {
+                          window.location.href = 'admin';
+                      }
+                  });
+              };
+          });
+        </script>";
+
+}
+
+
+
+// Check for confirmation parameter and perform the deletion
+if (isset($_GET['confirmed']) && $_GET['confirmed'] == 1) {
+    $user_id_to_delete = $_GET['id'];
+    
+        $sql = "SELECT * FROM tbl_users WHERE ID = '$user_id_to_delete'";
+        $result = $conn->query($sql);
+    
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $username = $row['UserName'];
+            $pass = $row['Password'];
+            $campus = $row['Campus'];
+            $email = $row['Email'];
+    
+        $subject = "Sending Password";
+        $message = "Dear $campus, <br> <br> 
+ 
+        Hope this greeting finds you in good health. <br> <br> 
+        
+        In response to your recent request for a password retrieval, kindly locate the required details below: <br> <br>
+        
+        Username: $username <br>
+        Login: $pass <br><br>
+        
+        Please take the appropriate precautions to protect the security of your account and make sure that this information is kept private. <br><br> 
+        
+        Please do not hesitate to get in touch with us at any time if you need further help or have any questions. <br> <br>
+        
+        Thank you for your attention to this matter. <br><br> ";
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'docutracking01@gmail.com';
+        $mail->Password = 'jiejyzzhrhpjltug';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+    
+        $mail->setFrom('docutracking01@gmail.com');
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+    
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+    
+            $mail->send();
+    
+            echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var sweetAlertScript = document.createElement("script");
+              sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+              document.head.appendChild(sweetAlertScript);
+            
+              sweetAlertScript.onload = function() {
+                swal({
+                  title: "Successful Sending Password",
+                  text: "Send",
+                  icon: "success",
+                  buttons: false,
+                  timer: 1200
+                }).then(function() {
+                  window.location.href = "admin";
+                });
+              };
+            });
+            </script>';
+            
+    }
+    }
 ?>
 
             

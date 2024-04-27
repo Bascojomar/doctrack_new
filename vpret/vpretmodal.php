@@ -26,62 +26,7 @@ if (isset($_POST['dateup'])) {
 
 
     if ($result) {
-        if ($doc === 'COMPLETED') {
-            // Send an email
-            $sql = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET' AND Reference = '$reference' AND DocInOut = 'OUT'";
-            $result = $conn->query($sql);
-
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $office = $row['Channel'];
-                $campus = $row['Campus'];
-                $email = $row['Gmail'];
-                $subjec = $row['Subject'];
-                $subject = "Document Status Update in $office";
-                 $message = "Greetings, $campus (campus)<br>
-                    Reference: $reference br><br>
-                
-                Your document  $subjec is now completed and its content have been carefully evaluated to ensure accuracy.";
-                $mail = new PHPMailer(true);
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'docutracking01@gmail.com';
-                $mail->Password = 'jiejyzzhrhpjltug';
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port = 465;
-            
-                $mail->setFrom('docutracking01@gmail.com');
-                $mail->addAddress($email);
-                $mail->isHTML(true);
-            
-                $mail->Subject = $subject;
-                $mail->Body = $message;
-
-                    $mail->send();
-
-                    echo '<script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          var sweetAlertScript = document.createElement("script");
-                          sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
-                          document.head.appendChild(sweetAlertScript);
-                        
-                          sweetAlertScript.onload = function() {
-                            swal({
-                              title: "Update Successful",
-                              text: "COMPLETED",
-                              icon: "success",
-                              buttons: false,
-                              timer: 1200
-                            }).then(function() {
-                              window.location.href = "update";
-                            });
-                          };
-                        });
-                        </script>';
-                
-            }
-        }
+        
         if ($doc === 'RELEASED') {
 
             echo '<script>

@@ -291,62 +291,94 @@ echo '</tbody>
 // funtion receive
 
 if (isset($_POST['submit'])) {
-  // Sanitize input to prevent SQL injection
-  $reference = mysqli_real_escape_string($conn, $_POST['reference']);
-  $date1 = date('y-m-d');
+  // Establish database connection
 
-  // Check if the reference exists in the database
-  $checkQuery = "SELECT * FROM tbl_inout WHERE Reference = '$reference' and DocInOut = 'IN' and Channel = 'PROCUREMENT'";
+  // Check if there are records for OUT with Remarks 'SIGNED'
+  $reference = mysqli_real_escape_string($conn, $_POST['reference']);
+  $checkQuery = "SELECT * FROM tbl_inout WHERE Reference = '$reference'  and DocInOut = 'OUT' and Channel = 'VPRET' and Remarks='SIGNED'";
   $result = $conn->query($checkQuery);
 
   if ($result->num_rows > 0) {
-      // Perform the database update
-      $updateQuery = "UPDATE tbl_inout SET CDate = '$date1', DocStatus = 'RECEIVED', Remarks = 'FOR SIGNATURE' WHERE Reference = '$reference' and DocInOut = 'IN' and Channel = 'PROCUREMENT'";
-      
-      if ($conn->query($updateQuery) === TRUE) {
+      $reference = mysqli_real_escape_string($conn, $_POST['reference']);
+      $date1 = date('y-m-d');
+
+      // Check if the reference exists in the database for IN records
+      $checkQuery = "SELECT * FROM tbl_inout WHERE Reference = '$reference' and DocInOut = 'IN' and Channel = 'PROCUREMENT'";
+      $result = $conn->query($checkQuery);
+
+      if ($result->num_rows > 0) {
+          // Perform the database update for IN records
+          $updateQuery = "UPDATE tbl_inout SET CDate = '$date1', DocStatus = 'RECEIVED', Remarks = 'FOR SIGNATURE' WHERE Reference = '$reference' and DocInOut = 'IN' and Channel = 'PROCUREMENT'";
+
+          if ($conn->query($updateQuery) === TRUE) {
+              // Display success message for IN records
+              echo '<script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                      var sweetAlertScript = document.createElement("script");
+                      sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+                      document.head.appendChild(sweetAlertScript);
+
+                      sweetAlertScript.onload = function() {
+                          swal({
+                              title: "Update Successful",
+                              text: "Successful",
+                              icon: "success",
+                              buttons: false,
+                              timer: 1200
+                          }).then(function() {
+                              window.location.href = "pro";
+                          });
+                      };
+                  });
+                  </script>';
+  }
+      } else {
+          // Display warning message if no reference found and no OUT records with Remarks 'SIGNED'
           echo '<script>
-          document.addEventListener("DOMContentLoaded", function() {
+              document.addEventListener("DOMContentLoaded", function() {
+                  var sweetAlertScript = document.createElement("script");
+                  sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+                  document.head.appendChild(sweetAlertScript);
+
+                  sweetAlertScript.onload = function() {
+                      swal({
+                          title: "No Reference",
+                          text: "No Reference found",
+                          icon: "warning",
+                          buttons: false,
+                          timer: 1200
+                      }).then(function() {
+                          window.location.href = "pro";
+                      });
+                  };
+              });
+              </script>';
+      }
+  }else {
+    // Display warning message if no reference found and no OUT records with Remarks 'SIGNED'
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
             var sweetAlertScript = document.createElement("script");
             sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
             document.head.appendChild(sweetAlertScript);
-          
+
             sweetAlertScript.onload = function() {
-              swal({
-                title: "Update Successful",
-                text: "Successful",
-                icon: "success",
-                buttons: false,
-                timer: 1200
-              }).then(function() {
-                window.location.href = "pro";
-              });
+                swal({
+                    title: "No Reference",
+                    text: "No Reference found",
+                    icon: "warning",
+                    buttons: false,
+                    timer: 1200
+                }).then(function() {
+                    window.location.href = "pro";
+                });
             };
-          });
-          </script>';
-      } else {
-          echo "<script>alert('Error updating the database');</script>";
-      }
-  } else {
-    echo '<script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var sweetAlertScript = document.createElement("script");
-      sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
-      document.head.appendChild(sweetAlertScript);
-    
-      sweetAlertScript.onload = function() {
-        swal({
-          title: "No Rerenece",
-          text: "No Reference",
-          icon: "warning",
-          buttons: false,
-          timer: 1200
-        }).then(function() {
-          window.location.href = "pro";
         });
-      };
-    });
-    </script>';
-  }
+        </script>';
+      }
+
+  // Close database connection
+  mysqli_close($conn);
 }
 ?>
 <!--Main layout-->

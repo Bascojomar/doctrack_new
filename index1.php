@@ -376,7 +376,7 @@ margin-top: 10%;
 
 				echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 				echo "<script>Swal.fire({
-					title: 'Login Successful!',
+					title: 'Invalide Username or Passwoord!',
 					text: 'Username or Password...',
 					icon: 'warning',
 					timer: 2000,

@@ -129,7 +129,7 @@ margin-top: 10%;
 			$username = mysqli_real_escape_string($conn,$_POST['username']);
 			$password = mysqli_real_escape_string($conn,$_POST['password']);
 		
-			$sql = "SELECT * FROM doctrack.tbl_users WHERE UserName='$username' AND Password='$password'";
+			$sql = "SELECT * FROM doctrack.tbl_users WHERE BINARY UserName='$username' AND BINARY Password='$password'";
 			$result = $conn->query($sql);
 		
 			if ($result->num_rows == 1) {
@@ -194,7 +194,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to presidentstaff dashboard...',
+						text: 'Redirecting to president staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -208,7 +208,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
     echo "<script>Swal.fire({
         title: 'Login Successful!',
-        text: 'Redirecting to presidentstaff dashboard...',
+        text: 'Redirecting to president staff dashboard...',
         icon: 'success',
         timer: 2000,
         timerProgressBar: true,
@@ -264,7 +264,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpaastaff dashboard...',
+						text: 'Redirecting to vpaa staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -278,7 +278,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpaastaff dashboard...',
+						text: 'Redirecting to vpaa staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -292,7 +292,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpabmstaff dashboard...',
+						text: 'Redirecting to vpabm staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -306,7 +306,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpabmstaff dashboard...',
+						text: 'Redirecting to vpabm staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -320,7 +320,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpretstaff dashboard...',
+						text: 'Redirecting to vpret staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -334,7 +334,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to vpretstaff dashboard...',
+						text: 'Redirecting to vpret staff dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,
@@ -361,7 +361,7 @@ margin-top: 10%;
 					echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>';
 					echo "<script>Swal.fire({
 						title: 'Login Successful!',
-						text: 'Redirecting to dashboard...',
+						text: 'Redirecting to ".$username." dashboard...',
 						icon: 'success',
 						timer: 2000,
 						timerProgressBar: true,

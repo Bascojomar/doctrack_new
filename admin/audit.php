@@ -233,33 +233,41 @@ while ($row = $result->fetch_assoc()) {
                     <!-- Navbar -->';
                 echo '<main>';
                 echo '<div class="mx-4 px-5 pb-2">
-                    <div class="title">
-                        <div class="title-sub fw-bold">Audit</div>
-                    </div>
-                    <div class="table-container mt-2 pt-3 px-3">
-                    <table id="example" class="table table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">Activity</th>
-                                    <th class="text-center">Date and Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
-                                $query = "SELECT * FROM tbl_login";
-                                $result = $conn->query($query);
-                                while ($rows = $result->fetch_assoc()) {
-                                        echo "<tr >";
-                                        echo "<td class='text-center'>" . $rows["ID"] . "</td>";
-                                        echo "<td class='text-center'>" . $rows["activity"] . "</td>";
-                                        echo "<td class='text-center'>" . $rows["time_stamp"] . "</td>";
-                                        echo "</tr>";
-                                    
-                                }
-                            echo '</tbody>
-                        </table>
-                    </div>
-                </div>';
+                <div class="title">
+                    <div class="title-sub fw-bold">Audit</div>
+                </div>
+                <div class="table-container mt-2 pt-3 px-3">
+                <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Role</th>
+                                <th class="text-center">Time </th>
+                                <th class="text-center">Date </th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                            $query = "SELECT * FROM tbl_login ORDER  BY time_stamp DESC";
+                            $result = $conn->query($query);
+
+
+                            while ($rows = $result->fetch_assoc()) {
+                                    echo "<tr >";
+                                    // echo "<td class='text-center'>" . $rows["ID"] . "</td>";
+                                    echo "<td class='text-center'>" . $rows["activity"] . "</td>";
+
+                                    date_default_timezone_set('Asia/Manila');
+
+                                    $time_formatted = date('h:i A', strtotime($rows["time_stamp"]));
+                                    $date_formatted = date('Y-m-d', strtotime($rows["time_stamp"]));
+                                    echo "<td class='text-center'>" . $time_formatted . "</td>";
+                                    echo "<td class='text-center'>"  . $date_formatted . "</td>";
+                                    echo "</tr>";
+                                
+                            }
+                        echo '</tbody>
+                    </table>
+                </div>
+            </div>';
             }
         ?>
     </main>

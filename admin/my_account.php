@@ -110,6 +110,11 @@ while ($row = $result->fetch_assoc()) {
       position: sticky;
       top: 0;
     }
+
+    .buttons {
+  justify-content: space-between;
+  display: flex;
+}
   
     .title {
       display: flex;
@@ -226,61 +231,157 @@ echo '<!-- Navbar -->
                         
                         </div> </form>';
 
-                        echo '<FORM action = "changepass" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
+                        echo '<FORM action = "change_name" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
                         <div class="row my-2 mx-3 my-3">
-                        <h4>Account Information</h4>
-                        <div class="col-1 fw-bold col-form-label">Name</div>
-                            <div class="col-11 mb-2">
-                                <input type="text" class="form-control" name="" id="" placeholder="'.$owner.'" disabled>
-                            </div>
-                           
+                        <div class="buttons">
+          <h4>Account Information</h4>
+          
+          <button type="button" class="btn btn-primary mx-5 mb-2" data-bs-toggle="modal" data-bs-target="#addAcc">
+          <i class="bi bi-arrow-up-circle"></i>
+          Update Account Information
+          </button>
+          </div>
 
-                            <div class="col-1 fw-bold col-form-label">Office</div>
-                            <div class="col-11 mb-2">
-                                <input type="text" class="form-control" name="" id="" placeholder="'.$office.'" disabled>
-                            </div>
+          <div class="col-1 fw-bold col-form-label">Name</div>
+              <div class="col-11 mb-2">
+                  <input type="text" class="form-control" name="" id="" placeholder="'.$owner.'" disabled>
+              </div>
+             
 
-                            <div class="col-1 fw-bold col-form-label">Position</div>
-                            <div class="col-11 mb-2">
-                                <input type="text" class="form-control" name="" id="" placeholder="'.$position.'" disabled>
-                            </div>
+              <div class="col-1 fw-bold col-form-label">Office</div>
+              <div class="col-11 mb-2">
+                  <input type="text" class="form-control" name="" id="" placeholder="'.$office.'" disabled>
+              </div>
 
-                            <div class="col-1 fw-bold col-form-label">Privillege</div>
-                            <div class="col-11 mb-2">
-                                <input type="text" class="form-control" name="" id="" placeholder="'.$pri.'" disabled>
-                            </div>
+              <div class="col-1 fw-bold col-form-label">Position</div>
+              <div class="col-11 mb-2">
+                  <input type="text" class="form-control" name="" id="" placeholder="'.$position.'" disabled>
+              </div>
 
-                            <div class="col-1 fw-bold col-form-label">Password</div>';
-                            
-                            echo "<INPUT type = 'hidden' value = '".$password."' name = 'password' id = 'currentpass'>";
-			                      echo"<INPUT type = 'hidden' value = '".$username."' name = 'currentuser' id = 'currentuser'>";
-                            echo '
-                            <div class="col-11 mb-2">
-                                <input type="password" class="form-control" name="currentpass" placeholder="Current Password" >
-                            </div>
+              <div class="col-1 fw-bold col-form-label">Privillege</div>
+              <div class="col-11 mb-2">
+                  <input type="text" class="form-control" name="" id="" placeholder="'.$pri.'" disabled>
+              </div>
+              </form>
+              </div>
+              <FORM action = "changepass" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
+              <div class="row mx-3 ">
+              <div class="col-1 fw-bold col-form-label">Password</div>';
+              
+              echo "<INPUT type = 'hidden' value = '".$password."' name = 'password' id = 'currentpass'>";
+              echo"<INPUT type = 'hidden' value = '".$username."' name = 'currentuser' id = 'currentuser'>";
+              echo '
+              <div class="col-11 mb-2">
+                  <input type="password" class="form-control" name="currentpass" placeholder="Current Password" >
+              </div>
 
-                            <div class="col-1 fw-bold col-form-label"></div>
-                            <div class="col-11 mb-2">
-                                <input type="password" class="form-control" name="newpass" placeholder="New Password" >
-                            </div>
+              <div class="col-1 fw-bold col-form-label"></div>
+              <div class="col-11 mb-2">
+                  <input type="password" class="form-control" name="newpass" placeholder="New Password" >
+              </div>
 
-                            <div class="col-1 fw-bold col-form-label"></div>
-                            <div class="col-11 mb-1">
-                                <input type="password" class="form-control" name="confirmpass" placeholder="Confirm New Password" >
-                            </div>
+              <div class="col-1 fw-bold col-form-label"></div>
+              <div class="col-11 mb-1">
+                  <input type="password" class="form-control" name="confirmpass" placeholder="Confirm New Password" >
+              </div>
 
-                        </div>
+          </div>
 
-                        </div>
-                        <div class="text-center">
-                        <INPUT type ="submit" value = "SAVE" name="save" class="btn btn-primary px-5" />
-                        </div>
-                        </form>
-                    </div>
+          </div>
+          <div class="text-center">
+          <INPUT type ="submit" value = "SAVE" name="save" class="btn btn-primary px-5" />
+          </div>
+          </form>
         </div>
-</main>
+</main>';
+}
+
+echo '
+<div class="modal fade" id="addAcc" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Account Information</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form action="change_name" method="POST" enctype="multipart/form-data">';
+
+                          $query = "SELECT * FROM tbl_users WHERE Office = '$office'";
+                          $result = $conn->query($query);
+                          $numrows = $result->num_rows;
+                          while ($rows = $result->fetch_assoc()) {
+
+                          echo "<div class='id'>
+                          <input type='hidden' name='id' value='". $rows['ID'] ."'>
+                            </div>";
+                          }
+
+                              echo '<div class="mb-3 fw-bold">
+                              <label for="recipient-name" class="col-form-label">Name<span class="text-danger"> *</span></label>
+                              <input type="text" name="owner" class="form-control" placeholder="Owner" oninput="this.value = this.value.toUpperCase()" required>
+                          </div>
+
+                          <div class="mb-3 fw-bold">
+                          <label for="recipient-name" class="col-form-label">Office<span class="text-danger"> *</span></label>
+                          <input type="text" class="form-control" name="office" value="'.$office.'" placeholder="Office" oninput="this.value = this.value.toUpperCase()" disabled>
+                          </div>  
+
+                          <div class="mb-3 fw-bold">
+                              <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>
+                              <input type="text" name="position" placeholder="Position" class="form-control" required>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="save">Save changes</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 ';
+
+// update account information
+
+if (isset($_POST['save'])) {
+  // Ensure that the variables are properly sanitized to prevent SQL injection
+  $owner = mysqli_real_escape_string($conn, $_POST['owner']);
+  $office = mysqli_real_escape_string($conn, $_POST['office']);
+  $position = mysqli_real_escape_string($conn, $_POST['position']);
+
+  // Construct the update query
+  $updateQuery = "UPDATE tbl_users SET Owner = '$owner', Office = '$office', Position = '$position' WHERE Office = 'RECORDS'";
+
+  // Perform the update operation
+  if ($conn->query($updateQuery) === TRUE) {
+      // If update successful, display success message using SweetAlert
+      echo '<script>
+          document.addEventListener("DOMContentLoaded", function() {
+              var sweetAlertScript = document.createElement("script");
+              sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+              document.head.appendChild(sweetAlertScript);
+
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: "Change Successful",
+                      text: "Account Information updated",
+                      icon: "success",
+                      buttons: false,
+                      timer: 1200
+                  }).then(function() {
+                      window.location.href = "recpass";
+                  });
+              };
+          });
+      </script>';
+  } else {
+      // If update failed, display error message
+      echo "Error updating record: " . $conn->error;
+  }
 }
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

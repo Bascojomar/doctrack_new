@@ -201,7 +201,7 @@ while ($row = $result->fetch_assoc()) {
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-2 mt-3">
 
-          <a href="" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
+          <a href="vpaa" id="active" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold"
             ><i class="bi bi-file-earmark-break me-3 text-white"></i><span>All Document</span></a>
 
           <a href="vpaapending" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold" aria-current="true">
@@ -213,7 +213,9 @@ while ($row = $result->fetch_assoc()) {
           <a href="vpaacomplete" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
             <i class="bi bi-card-checklist me-3 text-white"></i><span>Complete Document</span></a>
 
-
+            <a href="my_account.php" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+            <i class="bi bi-card-checklist me-3 text-white"></i><span>My Account</span></a>
+            
             <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
             ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
         <div class="nav-item order-2 order-lg-1 d-none d-lg-block">

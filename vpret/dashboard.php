@@ -157,6 +157,10 @@ while ($row = $result->fetch_assoc()) {
         <a href="release" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
           <i class="bi bi-check2-square me-3 text-white"></i><span>Release Document</span></a>
   
+          
+          <a href="account" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white fw-semibold">
+          <i class="bi bi-check2-square me-3 text-white"></i><span>My Account</span></a>
+
           <a href="../logout" class="list-group-item list-group-item-action py-2 ripple bg-primary text-white"
           ><i class="bi bi-box-arrow-right me-3 text-white"></i><span>Logout</span></a>
       <div class="nav-item order-2 order-lg-1 d-none d-lg-block">

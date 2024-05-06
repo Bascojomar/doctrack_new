@@ -202,16 +202,23 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Right links -->
     <ul class="navbar-nav ms-auto d-flex flex-row align-items-center">
-    <!-- Avatar -->
-
-        <div class="d-flex flex-column mx-2">
-            <p class="text-white fw-semibold mb-0">
-                '.$owner.'
-            </p>
-            <span class="text-white" style="font-size: smaller;">'.$position.'</span>
+        <!-- Avatar -->
+        <div class="d-flex align-items-center">
+        <img
+        src="' . $imagePath .'"
+        class="rounded-circle"
+        style="height: 9vh;width: 9vh;"
+    />
+            <img src="../file/logos.png" class=" rounded-circle"
+            style="height: 9vh; position: absolute;"/>
+            <div class="d-flex flex-column mx-2">
+                <p class="text-white fw-semibold mb-0">
+                    '.$owner.'
+                </p>
+                <span class="text-white" style="font-size: smaller; margin-top: -5px;">'.$position.'</span>
+            </div>
         </div>
-    </div>
-</ul>
+    </ul>
     </div>
     <!-- Container wrapper -->
 </nav>

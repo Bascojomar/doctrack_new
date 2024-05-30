@@ -292,7 +292,7 @@ while ($row = $result->fetch_assoc()) {
               
                 while ($rows = $results->fetch_assoc()) 
                 {
-                  echo "<OPTION id = '' disabled selected hidden>Campus</OPTION>";
+                  echo "<OPTION id = 'camp' disabled selected hidden>Campus</OPTION>";
                   echo "<OPTION id = 'camp' value = '".$rows["campus_id"]."'>".$rows["campus_name"]."</OPTION>";
                 }
 
@@ -307,10 +307,10 @@ while ($row = $result->fetch_assoc()) {
                 echo "</SELECT>";
                 echo'</div>
 
-                <div class="col- 2 fw-bold col-form-label" onchange="toggleOther(this.value);"">Other Office</div>
-                <div class="col- 10" id="othersSection" style="display: none;> </div>
+                <div class="col- 2 fw-bold col-form-label">Other Office</div>
+                <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<INPUT type = 'text' name = 'othersoffice' id = 'otheroffice' class = 'form-control' oninput = 'this.value = this.value.toUpperCase()' placeholder = '  From Other Office'>";
+                echo "<INPUT type = 'text' value='-' name = 'othersoffice' id = 'otheroffice' class = 'form-control' oninput = 'this.value = this.value.toUpperCase()' placeholder = '  From Other Office'>";
                 echo '</div>
 
                 <div class="col- 2 fw-bold col-form-label">Email</div>
@@ -355,8 +355,8 @@ while ($row = $result->fetch_assoc()) {
                 echo'</div>
 
                 <div id="voucherSection" style="display: none;">
-              <div class="col-2 fw-bold col-form-label">VoucherType</div>
-              <div class="col-10">';
+    <div class="col-2 fw-bold col-form-label">VoucherType</div>
+    <div class="col-10">';
         echo "<SELECT name='vouchertype' id='vouchertype' class='form-control'>";
         echo "<OPTION value='' disabled selected hidden>Voucher Type</OPTION>";
 
@@ -454,16 +454,6 @@ function toggleVoucherType(selectedValue) {
         voucherSection.style.display = 'none';
     } else {
         voucherSection.style.display = 'block';
-    }
-}
-</script>
-<script>
-function toggleOther(selectedValue) {
-    const othersSection = document.getElementById('othersSection');
-    if (selectedValue === 'OTHERS') {
-      othersSection.style.display = 'block';
-    } else {
-      othersSection.style.display = 'none';
     }
 }
 </script>

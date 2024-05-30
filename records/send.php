@@ -452,6 +452,9 @@ function toggleVoucherType(selectedValue) {
     const voucherSection = document.getElementById('voucherSection');
     if (selectedValue === 'COMMUNICATIONS') {
         voucherSection.style.display = 'none';
+    }
+    else if (selectedValue === '-') {
+        voucherSection.style.display = 'none';
     } else {
         voucherSection.style.display = 'block';
     }

@@ -290,8 +290,8 @@ while ($row = $result->fetch_assoc()) {
                         echo "<td class='auto-shrink'>" . $rowsload["FromOffice"] . "</td>";
                         echo "<td class='auto-shrink'>" . $rowsload["Subject"] . "</td>";
                         echo "<td class='auto-shrink'>" . $rowsload["DocStatus"] . "</td>";
-                        echo "<td class='auto-shrink text-center'><a href=' " . $rows["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
-                        echo "<td class='auto-shrink'>" . $rowsload["Received"] . "</td>";
+                        echo "<td class='auto-shrink text-center'><a href=' " . $rowsload["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
+                        echo "<td class='auto-shrink'>" . $rowsload["Received"] . " <br> ".$rowsload["Contact"]."</td>";
                         echo'</tr>';
                         echo'</tbody';
                             }

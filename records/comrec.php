@@ -26,68 +26,75 @@ require '../vendor/autoload.php';
 
 
 if (isset($_POST['archive'])) {
-    // Handle the archiving logic
-    $archive_id = $_POST['archive_id'];
-    $received = $_POST['received'];
+  // Handle the archiving logic
+  $reference = $_POST['reference'];
+  $received = $_POST['received'];
+  $contact = $_POST['contact'];
 
-    // Assuming you have an update query like this:
-    $updateQuery = "UPDATE tbl_inout SET DocStatus = 'STORED', Received = '$received', time =NOW() WHERE ID = $archive_id";
-    $result = $conn->query($updateQuery);
+  // Prepare the update query with a prepared statement to prevent SQL injection
+  $updateQuery = "UPDATE tbl_inout SET DocStatus = 'STORED', Received = ?, Contact = ?, time = NOW() WHERE Reference = ?";
+  $stmt = $conn->prepare($updateQuery);
+  $stmt->bind_param("sss", $received, $contact, $reference);
+  
 
+  // Set the document status for the update
+  $docStatus = 'STORED';
 
-    if ($conn->query($updateQuery) === TRUE) {
-        echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-          var sweetAlertScript = document.createElement("script");
-          sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
-          document.head.appendChild(sweetAlertScript);
-        
-          sweetAlertScript.onload = function() {
-            swal({
-              title: "Update Successful",
-              text: "STORED",
-              icon: "success",
-              buttons: false,
-              timer: 1200
-            }).then(function() {
-              window.location.href = "comrec.php";
-            });
-          };
-        });
-        </script>';
-        
+  // Execute the update query
+  if ($stmt->execute()) {
+      // Update successful
+      echo '<script>
+          document.addEventListener("DOMContentLoaded", function() {
+              var sweetAlertScript = document.createElement("script");
+              sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+              document.head.appendChild(sweetAlertScript);
+          
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: "Update Successful",
+                      text: "STORED",
+                      icon: "success",
+                      buttons: false,
+                      timer: 1200
+                  }).then(function() {
+                      window.location.href = "comrec.php";
+                  });
+              };
+          });
+      </script>';
 
-        $sql = "SELECT * FROM tbl_inout WHERE ID = '$archive_id' AND DocInOut = 'IN'";
-        $result = $conn->query($sql);
+      // Select relevant information for the email notification
+      $sql = "SELECT * FROM tbl_inout WHERE Reference = ? AND DocInOut = 'IN'";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("i", $reference);
+      $stmt->execute();
+      $result = $stmt->get_result();
 
-        if ($result && $result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $email = $row['Gmail'];
-            $office = $row['Channel'];
-            $subject = "Document Status Update in $office";
-					$message = "Greetings<br>
-					Your document is now on hand of $received.";
-					$mail = new PHPMailer(true);
-					$mail->isSMTP();
-					$mail->Host = 'smtp.gmail.com';
-					$mail->SMTPAuth = true;
-					$mail->Username = 'docutracking01@gmail.com';
-					$mail->Password = 'jiejyzzhrhpjltug';
-					$mail->SMTPSecure = 'ssl';
-					$mail->Port = 465;
-				
-					$mail->setFrom('docutracking01@gmail.com');
-					$mail->addAddress($email);
-					$mail->isHTML(true);
-				
-					$mail->Subject = $subject;
-					$mail->Body = $message;
-	
-						$mail->send();
-        }
-    }
+      if ($result && $result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $email = $row['Gmail'];
+          $office = $row['Channel'];
+          $subject = "Document Status Update in $office";
+          $message = "Greetings<br>Your document is now on hand of $received.";
 
+          // Send email notification
+          require 'path/to/PHPMailerAutoload.php'; // Make sure to adjust the path
+          $mail = new PHPMailer(true);
+          // Configure PHPMailer
+          // ...
+          // Send email
+          $mail->send();
+      }
+  } else {
+      // Update failed
+      echo "Error updating record: " . $conn->error;
+  }
+
+  // Close statement and connection
+  $stmt->close();
+  $conn->close();
 }
+
 
 
 $_SESSION['allowedoffice'] = $office;
@@ -401,22 +408,14 @@ while ($row = $result->fetch_assoc()) {
                         echo "<td class='querycells'>" . $rowsload["FromOffice"] . "</td>";
                         echo "<td class='querycells'>" . $rowsload["Subject"] . "</td>";
                         echo "<td class='querycells'>" . $rowsload["DocStatus"] . "</td>";
-                            echo'<td>';
-                            if ($rowsload["DocStatus"]) {
-                              echo'<div class="row ms-8">
-                                <div class="col-8">';
-                                echo "<FORM action='comrec' method='post'>";
-                                echo "<INPUT type='text' name ='received' class='form-control' required>";
-                                echo "<INPUT type='hidden' name='archive_id' value='" . $rowsload['ID'] . "'>";
-                                echo '</div>
-                                <div class="col-4">';
-                                echo " <div class='text-start'> <button type='submit' class='update-button btn btn-danger' name='archive'>";
-                        echo '<i class="bi bi-pencil-square"></i></button> ';
-                                echo "</FORM>";
-                            }
+                            echo "<TD class='querycells'>";
+                            echo '<div class="text-center" data-bs-toggle="modal" data-bs-target="#update">';
+                            echo "<button type='button' class='update-button btn btn-danger' data-reference='" . $rowsload['Reference'] . "' value='Update'>
+                                <i class='bi bi-pencil-square'></i>
+                                </button> </div>";
+                            echo "</TD>";
                                 echo'</div>
                               </div>
-                            </td>
                         </tr>
                         </tbody
                     </table>
@@ -426,6 +425,39 @@ while ($row = $result->fetch_assoc()) {
 </main>';
 }
                         }
+
+                        echo '<div class="modal fade" id="update" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Update Document Status</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">';
+      echo"<FORM action='comrec' method='post'>";
+
+        echo "<div class='reference'>
+        <input type='text' name='reference' value='". $rowsload['Reference'] ."'>
+          </div>";
+        
+        echo'<div class="mb-3 fw-bold">
+          <label for="recipient-name" class="col-form-label">Fullname:</label>';
+          echo "<INPUT type='text' name ='received' class='form-control' placeholder='Fullname' required>";
+        echo'</div>
+        <div class="mb-3 fw-bold">
+          <label for="recipient-name" class="col-form-label">Contact</label>
+          <input type="number" name="contact" class="form-control" placeholder="09XX-XXX-XXXX" required>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-success" name="archive">
+    </div>
+  </div>
+  </form>
+</div>
+</div>
+</div>';
                     }
 
 ?>
@@ -433,6 +465,33 @@ while ($row = $result->fetch_assoc()) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("updateModal");
+    const closeModal = document.querySelector(".closeModal"); // Change to querySelector
+    const updateButtons = document.querySelectorAll(".update-button");
+    const referenceInput = document.querySelector(".reference input");
+    
+    // Event listener for clicking an "Update" button
+    updateButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            // Get the reference number from the data attribute of the clicked button
+            const reference = button.getAttribute("data-reference");
+            
+            // Populate the reference input field in the modal with the reference number
+            referenceInput.value = reference;
+
+            // Show the modal
+            modal.classList.add("show-modal");
+        });
+    });
+
+    // Event listener for clicking the close button
+    closeModal.addEventListener("click", () => {
+        modal.classList.remove("show-modal");
+    });
+});
+
+
   $(document).ready(function() {
     $('#example').DataTable();
   });

@@ -359,6 +359,9 @@ use PHPMailer\PHPMailer\PHPMailer;
         Please get in touch if you have any questions or need help with any part of this process.<br><br>
 
         Thank you for your attention to this matter.";
+        
+
+        
     
         $mail = new PHPMailer(true);
     
@@ -381,7 +384,8 @@ use PHPMailer\PHPMailer\PHPMailer;
     
         if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], '../file/' . $_FILES['uploadfile']['name'])) {
             // File was successfully moved to the "file" directory
-        } ?>
+        } 
+        ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>

@@ -278,33 +278,37 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col- 2 fw-bold col-form-label">Files</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<INPUT type = 'file' name='uploadfile' class = 'form-control'>";
+                echo "<INPUT type = 'file' name='uploadfile' class = 'form-control' accept='application/pdf'>";
                 echo'</div>
 
                 <div class="col- 2 fw-bold col-form-label">Campus</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<SELECT name='campus' id='campus' class='form-control' required onchange='handleCampusSelection()'>";
-                echo "<OPTION disabled selected hidden>Campus</OPTION>";
-                echo "<OPTION>General Tinio</OPTION>";
-                echo "<OPTION>San Isidro</OPTION>";
-                echo "<OPTION>Sumacab</OPTION>";
-                echo "<OPTION>Gabaldon</OPTION>";
-                echo "<OPTION>Atate</OPTION>";
-                echo "<OPTION>Fort Magsaysay</OPTION>";
-                ECHO "</SELECT>";
+                echo '<select name="campus" id="campus" class="form-control" required onchange="loadOffices(this.value)">';
+                
+                $query = "SELECT * FROM tbl_campus ORDER BY campus_id";
+                $results = $conn->query($query);
+                $numrows = $result->num_rows;
+              
+                while ($rows = $results->fetch_assoc()) 
+                {
+                  echo "<OPTION id = '' disabled selected hidden>Campus</OPTION>";
+                  echo "<OPTION id = 'camp' value = '".$rows["campus_id"]."'>".$rows["campus_name"]."</OPTION>";
+                }
+
+                echo'</select>';
                 echo'</div>
 
                 <div class="col- 2 fw-bold col-form-label">From Office</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<SELECT name='fromoffice' id='fromoffice' class='form-control' onchange = 'DisableOffice(this.value)' required>";
-                echo "<OPTION value = '' disabled selected hidden>From Office</OPTION>";
+                echo '<select name="fromoffice" id="fromoffice" class="form-control" required>';
+                echo "<option value='' disabled selected hidden>Select Office</option>";
                 echo "</SELECT>";
                 echo'</div>
 
-                <div class="col- 2 fw-bold col-form-label">Other Office</div>
-                <div class="col- 10"> </div>
+                <div class="col- 2 fw-bold col-form-label" onchange="toggleOther(this.value);"">Other Office</div>
+                <div class="col- 10" id="othersSection" style="display: none;> </div>
                 <div class="col-12 mb-2">';
                 echo "<INPUT type = 'text' name = 'othersoffice' id = 'otheroffice' class = 'form-control' oninput = 'this.value = this.value.toUpperCase()' placeholder = '  From Other Office'>";
                 echo '</div>
@@ -336,7 +340,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col- 2 fw-bold col-form-label">Document Type</div>
                 <div class="col- 10"> </div>
                 <div class="col-12 mb-2">';
-                echo "<SELECT name = 'docutype' class = 'form-control' onchange = 'DisableVoucherType(this.value)' required>";
+                echo "<SELECT name='docutype' class='form-control' onchange='toggleVoucherType(this.value); DisableVoucherType(this.value);' required>";
                 echo "<OPTION value = '' disabled selected hidden>Document Type</OPTION>";
               
                 $query = "SELECT * FROM tbl_docutype ORDER BY DocuType";
@@ -350,35 +354,31 @@ while ($row = $result->fetch_assoc()) {
                 echo "</SELECT>";
                 echo'</div>
 
-                <div class="col- 2 fw-bold col-form-label">VoucherType</div>
-                <div class="col- 10"> </div>
-                <div class="col-12 mb-2">';
-                echo "<SELECT name = 'vouchertype' id = 'vouchertype' class = 'form-control'>";
-                echo "<OPTION value = '' disabled selected hidden>Voucher Type</OPTION>";
-              
-                $query = "SELECT * FROM tbl_vouchertype ORDER BY VoucherType";
-                $result = $conn->query($query);
-                $numrows = $result->num_rows;
-              
-                while ($rows = $result->fetch_assoc()) 
-                {
-                  echo "<OPTION value = '".$rows["VoucherType"]."'>".$rows["VoucherType"]."</OPTION>";
-                }
-              
-                echo "</SELECT>";
-                echo'</div>
+                <div id="voucherSection" style="display: none;">
+              <div class="col-2 fw-bold col-form-label">VoucherType</div>
+              <div class="col-10">';
+        echo "<SELECT name='vouchertype' id='vouchertype' class='form-control'>";
+        echo "<OPTION value='' disabled selected hidden>Voucher Type</OPTION>";
 
-                <div class="col- 2 fw-bold col-form-label">Voucher No.</div>
-                <div class="col- 10"> </div>
-                <div class="col-12 mb-2">';
-                echo "<INPUT type = 'text' name = 'voucherno' class = 'form-control' id = 'voucherno' oninput = 'this.value = this.value.toUpperCase()' placeholder = '  Voucher No.'>";
-                echo '</div>
+        $query = "SELECT * FROM tbl_vouchertype ORDER BY VoucherType";
+        $result = $conn->query($query);
 
-                <div class="col- 2 fw-bold col-form-label">Voucher Amount</div>
-                <div class="col- 10"> </div>
-                <div class="col-12 mb-2">';
-                echo "<INPUT type = 'text' name = 'voucheramt' class = 'form-control' id = 'voucheramt' placeholder = '  Voucher Amount' oninput = 'this.value = this.value.toUpperCase()'>";
-                echo '</div>
+        while ($rows = $result->fetch_assoc()) {
+            echo "<OPTION value='".$rows["VoucherType"]."'>".$rows["VoucherType"]."</OPTION>";
+        }
+
+        echo '</SELECT>
+
+    </div>
+    <div class="col-2 fw-bold col-form-label">Voucher No.</div>
+    <div class="col-10">
+        <input type="text" name="voucherno" class="form-control" id="voucherno" oninput="this.value = this.value.toUpperCase()" placeholder="  Voucher No.">
+    </div>
+    <div class="col-2 fw-bold col-form-label">Voucher Amount</div>
+    <div class="col-10">
+        <input type="text" name="voucheramt" class="form-control" id="voucheramt" placeholder="  Voucher Amount" oninput="this.value = this.value.toUpperCase()">
+    </div>
+</div>
                 <div class="col-12 mb-2">
                     <div class="card">
                         <div class="card-body">
@@ -435,6 +435,38 @@ while ($row = $result->fetch_assoc()) {
 }
         ?>
 </main>
+<script>
+function loadOffices(campusId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'send_select_campus.php?campus_name=' + campusId, true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            document.getElementById('fromoffice').innerHTML = this.responseText;
+        }
+    };
+    xhr.send();
+}
+</script>
+<script>
+function toggleVoucherType(selectedValue) {
+    const voucherSection = document.getElementById('voucherSection');
+    if (selectedValue === 'COMMUNICATIONS') {
+        voucherSection.style.display = 'none';
+    } else {
+        voucherSection.style.display = 'block';
+    }
+}
+</script>
+<script>
+function toggleOther(selectedValue) {
+    const othersSection = document.getElementById('othersSection');
+    if (selectedValue === 'OTHERS') {
+      othersSection.style.display = 'block';
+    } else {
+      othersSection.style.display = 'none';
+    }
+}
+</script>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
@@ -536,7 +568,7 @@ else{
                 fromOfficeSelect.innerHTML += "<option>USG</option>";
                 fromOfficeSelect.innerHTML += "<option>CASHIER</option>";
                 fromOfficeSelect.innerHTML += "<option>REGISTRAR</option>";
-                fromOfficeSelect.innerHTML += "<option>OTHERS</option>";
+                fromOfficeSelect.innerHTML += "<option onchange='toggleOther(this.value)'>OTHERS</option>";
             }
             
             if (selectedCampus === "Atate") {

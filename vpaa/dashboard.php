@@ -320,7 +320,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
     <table class="ms-3">
     ';
-    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPAA'and DocInOut='IN' and DocStatus='RECEIVED' ORDER BY CDate DESC";
+    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPAA'and DocInOut='IN' and DocStatus='INCOMING' ORDER BY CDate DESC";
     $result = $conn->query($query);
     $numrows = $result->num_rows;
     echo '

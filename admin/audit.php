@@ -240,27 +240,28 @@ while ($row = $result->fetch_assoc()) {
                 <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="text-center">Role</th>
+                            <th class="text-center">Date </th>
                                 <th class="text-center">Time </th>
-                                <th class="text-center">Date </th>
+                                <th class="text-center">Role</th>
                             </tr>
                         </thead>
                         <tbody>';
-                            $query = "SELECT * FROM tbl_login ORDER  BY time_stamp DESC";
+                            $query = "SELECT * FROM tbl_login ORDER BY time_stamp DESC";
                             $result = $conn->query($query);
 
 
                             while ($rows = $result->fetch_assoc()) {
                                     echo "<tr >";
                                     // echo "<td class='text-center'>" . $rows["ID"] . "</td>";
-                                    echo "<td class='text-center'>" . $rows["activity"] . "</td>";
+                                    
 
                                     date_default_timezone_set('Asia/Manila');
 
                                     $time_formatted = date('h:i A', strtotime($rows["time_stamp"]));
                                     $date_formatted = date('Y-m-d', strtotime($rows["time_stamp"]));
-                                    echo "<td class='text-center'>" . $time_formatted . "</td>";
                                     echo "<td class='text-center'>"  . $date_formatted . "</td>";
+                                    echo "<td class='text-center'>" . $time_formatted . "</td>";
+                                    echo "<td class='text-center'>" . $rows["activity"] . "</td>";
                                     echo "</tr>";
                                 
                             }

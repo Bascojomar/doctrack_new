@@ -183,6 +183,7 @@ $result = $conn->query($sql);
 
 while ($row = $result->fetch_assoc()) {
     $owner = $row['Owner'];
+    $id = $row['ID'];
     $suffix = $row['Suffix'];
     $position = $row['Position'];
     $pri = $row['Privilege'];
@@ -254,72 +255,184 @@ echo '
 </nav>
 <!-- Navbar -->
 </header>
-<main>
-    <div class="mx-4 px-2 pb-2">
-        <div class="title">
+<main>';
+echo '<FORM action = "change_prof" method = "post" enctype="multipart/form-data">';
+echo '<div class="mx-4 px-2 pb-2">
+    <div class="title">
         <div class="title-sub fw-bold">MY ACCOUNT</div>
       </div>
                 <div class="table-container mt-2">
-                    <div class="row my-2 mx-2">
+                    <div class="row my-2 mx-3 mt-3">
 
-                        <div class="col-2 mb-3 form">
-                            <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px; position: absolute">
-                            <img src="../file/frame.png" style="width:110px; border: 1px solid gray; border-radius: 5px; position: relative"  />
-                        </div>
+                    <div class="row my-2 mx-3 my-3">
+                    <h4>Profile Picture</h4>
+                    <div class="col-2 mb-3 form">
 
-                        <div class="col-10 mt-3">
-                            <label for="" class="form-label">Choose Profile Picture</label>
-                            <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId"/>
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label">Name</div>
-                        <div class="col-11 mb-2">
-                            <input type="text" class="form-control" name="" id="" placeholder="'.$owner.'" disabled>
-                        </div>
-                       
-
-                        <div class="col-1 fw-bold col-form-label">Office</div>
-                        <div class="col-11 mb-2">
-                            <input type="text" class="form-control" name="" id="" placeholder="'.$office.'" disabled>
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label">Position</div>
-                        <div class="col-11 mb-2">
-                            <input type="text" class="form-control" name="" id="" placeholder="'.$position.'" disabled>
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label">Privillege</div>
-                        <div class="col-11 mb-2">
-                            <input type="text" class="form-control" name="" id="" placeholder="'.$pri.'" disabled>
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label">Password</div>';
-                        
-                        echo "<INPUT type = 'hidden' value = '".$password."' name = 'password' id = 'currentpass'>";
-                              echo"<INPUT type = 'hidden' value = '".$username."' name = 'currentuser' id = 'currentuser'>";
-                        echo '
-                        <div class="col-11 mb-2">
-                            <input type="password" class="form-control" name="currentpass" placeholder="Current Password" >
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label"></div>
-                        <div class="col-11 mb-2">
-                            <input type="password" class="form-control" name="newpass" placeholder="New Password" >
-                        </div>
-
-                        <div class="col-1 fw-bold col-form-label"></div>
-                        <div class="col-11 mb-1">
-                            <input type="password" class="form-control" name="confirmpass" placeholder="Confirm New Password" >
-                        </div>
-                    </div>
-                    <div class="text-center">
-                    <INPUT type ="submit" value = "SAVE" name="save" class="btn btn-primary px-5" />
-                    </div>
-                    </form>
+                    <input type="hidden" value="'.$id.'" name="owner">
+                    <img class="p-2" src="'.$imagePath.'" alt="" style="width:110px; border: 1px solid gray; border-radius: 5px;">
+                  
                 </div>
+                        <div class="col-8 mt-3">
+                            <label for="" class="form-label">Choose Profile Picture</label>
+                            <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId" required/>
+                        </div>
+
+                        <div class="col-2 mt-2 text-center">
+                        <button type="submit" class="btn btn-primary mt-5" name="save">
+                                      <i class="bi bi-upload"></i> Upload Profile
+                        </button>
+                        </div>
+                    
+                    </div> </form>';
+
+                    echo '<FORM action = "my_account" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
+                    <div class="row my-2 mx-3 my-3">
+                    <div class="buttons">
+      <h4>Account Information</h4>
+      
+      <button type="button" class="btn btn-primary mx-5 mb-2" data-bs-toggle="modal" data-bs-target="#addAcc">
+      <i class="bi bi-arrow-up-circle"></i>
+      Update Account Information
+      </button>
+      </div>
+
+      <div class="col-1 fw-bold col-form-label">Name</div>
+          <div class="col-11 mb-2">
+              <input type="text" class="form-control" name="" id="" placeholder="'.$owner.'" disabled>
+          </div>
+         
+
+          <div class="col-1 fw-bold col-form-label">Office</div>
+          <div class="col-11 mb-2">
+              <input type="text" class="form-control" name="" id="" placeholder="'.$office.'" disabled>
+          </div>
+
+          <div class="col-1 fw-bold col-form-label">Position</div>
+          <div class="col-11 mb-2">
+              <input type="text" class="form-control" name="" id="" placeholder="'.$position.'" disabled>
+          </div>
+
+          <div class="col-1 fw-bold col-form-label">Privillege</div>
+          <div class="col-11 mb-2">
+              <input type="text" class="form-control" name="" id="" placeholder="'.$pri.'" disabled>
+          </div>
+          </form>
+          </div>
+          <FORM action = "changepass" method = "post" onsubmit = "return ValidatePassword()" enctype = "multipart/form-data" name = "frmChangePass">
+          <div class="row mx-3 ">
+          <div class="col-1 fw-bold col-form-label">Password</div>';
+          
+          echo "<INPUT type = 'hidden' value = '".$password."' name = 'password' id = 'currentpass'>";
+          echo"<INPUT type = 'hidden' value = '".$username."' name = 'currentuser' id = 'currentuser'>";
+          echo '
+          <div class="col-11 mb-2">
+              <input type="password" class="form-control" name="currentpass" placeholder="Current Password" >
+          </div>
+
+          <div class="col-1 fw-bold col-form-label"></div>
+          <div class="col-11 mb-2">
+              <input type="password" class="form-control" name="newpass" placeholder="New Password" >
+          </div>
+
+          <div class="col-1 fw-bold col-form-label"></div>
+          <div class="col-11 mb-1">
+              <input type="password" class="form-control" name="confirmpass" placeholder="Confirm New Password" >
+          </div>
+
+      </div>
+
+      </div>
+      <div class="text-center">
+      <INPUT type ="submit" value = "SAVE" name="save" class="btn btn-primary px-5" />
+      </div>
+      </form>
     </div>
 </main>';
+}echo '
+<div class="modal fade" id="addAcc" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Account Information</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form action="my_account" method="POST" enctype="multipart/form-data">';
+
+                          $query = "SELECT * FROM tbl_users WHERE Office = '$office'";
+                          $result = $conn->query($query);
+                          $numrows = $result->num_rows;
+                          while ($rows = $result->fetch_assoc()) {
+
+                          echo "<div class='id'>
+                          <input type='hidden' name='id' value='". $rows['ID'] ."'>
+                            </div>";
+                          }
+
+                              echo '<div class="mb-3 fw-bold">
+                              <label for="recipient-name" class="col-form-label">Name<span class="text-danger"> *</span></label>
+                              <input type="text" value="'.$owner.'" class="form-control" placeholder="Owner" oninput="this.value = this.value.toUpperCase()" required>
+                          </div>
+
+                          <div class="mb-3 fw-bold">
+                          <label for="recipient-name" class="col-form-label">Office<span class="text-danger"> *</span></label>
+                          <input type="text" class="form-control" name="office" value="'.$office.'" placeholder="Office" oninput="this.value = this.value.toUpperCase()" disabled>
+                          </div>  
+
+                          <div class="mb-3 fw-bold">
+                              <label for="recipient-name" class="col-form-label">Position<span class="text-danger"> *</span></label>
+                              <input type="text" name="position" placeholder="Position" class="form-control" required>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="save">Save changes</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+';
+
+// update account information
+if (isset($_POST['save'])) {
+  // Ensure that the variables are properly sanitized to prevent SQL injection
+  $owner = mysqli_real_escape_string($conn, $_POST['owner']);
+  $office = mysqli_real_escape_string($conn, $_POST['office']);
+  $position = mysqli_real_escape_string($conn, $_POST['position']);
+
+  // Construct the update query
+  $updateQuery = "UPDATE tbl_users SET Owner = '$owner', Office = '$office', Position = '$position' WHERE Office = 'SITE ADMIN'";
+
+  // Perform the update operation
+  if ($conn->query($updateQuery) === TRUE) {
+      // If update successful, display success message using SweetAlert
+      echo '<script>
+          document.addEventListener("DOMContentLoaded", function() {
+              var sweetAlertScript = document.createElement("script");
+              sweetAlertScript.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+              document.head.appendChild(sweetAlertScript);
+
+              sweetAlertScript.onload = function() {
+                  swal({
+                      title: "Change Successful",
+                      text: "Account Information updated",
+                      icon: "success",
+                      buttons: false,
+                      timer: 1200
+                  }).then(function() {
+                      window.location.href = "recpass";
+                  });
+              };
+          });
+      </script>';
+  } else {
+      // If update failed, display error message
+      echo "Error updating record: " . $conn->error;
+  }
 }
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -362,7 +362,6 @@ echo '
 ';
 
 // update account information
-
 if (isset($_POST['save'])) {
   // Ensure that the variables are properly sanitized to prevent SQL injection
   $owner = mysqli_real_escape_string($conn, $_POST['owner']);

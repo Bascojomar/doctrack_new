@@ -367,6 +367,7 @@ margin-top: 10%;
 						timerProgressBar: true,
 						showConfirmButton: false
 					}).then(function() { window.location = 'others/track'; });</script>";
+					
 					$query = "INSERT INTO tbl_login (user_id, activity, time_stamp) VALUES ('1', '$username', NOW())";
 					$result = mysqli_query($conn, $query);
 	

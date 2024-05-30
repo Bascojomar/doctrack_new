@@ -286,7 +286,7 @@ while ($row = $result->fetch_assoc()) {
                             <th>Owner</th>
                             <th>Position</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <!-- <th>Password</th> -->
                             <th>Email</th>
                             <th>Office</th>
                             <th>Campus</th>
@@ -304,7 +304,7 @@ while ($row = $result->fetch_assoc()) {
                                     <td><?php echo $rows['Owner']; ?></td>
                                     <td><?php echo $rows['Position']; ?></td>
                                     <td><?php echo $rows['UserName']; ?></td>
-                                    <td><?php echo $rows['Password']; ?></td>
+                                    <!-- <td><?php echo $rows['Password']; ?></td> -->
                                     <td><?php echo $rows['Email']; ?></td>
                                     <td><?php echo $rows['Office']; ?></td>
                                     <td><?php echo $rows['Campus']; ?></td>

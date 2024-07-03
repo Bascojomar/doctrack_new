@@ -325,6 +325,10 @@ echo '<div class="modal fade" id="update" tabindex="-1">
           <input type="text" name="remarks" class="form-control">
         </div>
         <div class="mb-3 fw-bold">
+          <label for="recipient-name" class="col-form-label">Signed File :</label>
+          <input type="file" name="new_upload" class="form-control" accept="application/pdf" required>
+        </div>
+        <div class="mb-3 fw-bold">
           <label for="recipient-name" class="col-form-label">Document Status :</label>';
           echo "
           <select name='doc' id ='doc' class='form-control' required>
@@ -352,13 +356,21 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 if (isset($_POST['dateup'])) {
-    $reference = $_POST['reference'];
-    $action = $_POST['action'];
-    $remarks = $_POST['remarks'];
-    $doc = $_POST['doc'];
+  $reference = $_POST['reference'];
+  $action = $_POST['action'];
+  $remarks = $_POST['remarks'];
+  $doc = $_POST['doc'];
 
-    // Perform a database update
-    $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc' WHERE Channel = 'VPRET' AND Reference = '$reference' AND DocInOut = 'OUT'";
+  if (isset($_FILES["new_upload"]["name"])) {
+    if (isset($_FILES["new_upload"]) && $_FILES["new_upload"]["error"] == UPLOAD_ERR_OK) {
+      $uploadDir = "../file/";
+      $uploadFile = $uploadDir . basename($_FILES["new_upload"]["name"]);
+  
+      if (move_uploaded_file($_FILES["new_upload"]["tmp_name"], $uploadFile)) {
+          // File uploaded successfully, now update database
+          $uploadValue = $uploadFile;
+  
+          $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc', new_upload = '$uploadValue' WHERE Channel = 'VPRET' AND Reference = '$reference' AND DocInOut = 'OUT'";
     $result = $conn->query($updateQuery);
 
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
@@ -391,7 +403,9 @@ if (isset($_POST['dateup'])) {
               };
             });
             </script>';
-                
+        }
+      }
+    }
             }
             elseif ($action === 'DISAPPROVED') {
               echo '<script>

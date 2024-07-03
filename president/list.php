@@ -301,14 +301,22 @@ while ($row = $result->fetch_assoc()) {
                 $from = strtotime($rowsload["CDate"]);
                 $today = time();
                 $difference = floor(($today - $from) / 86400);
+
+                 // Determine CSS class based on $difference
+                  $idleClass = '';
+                  if ($difference >= 3) {
+                      $idleClass = 'bg-danger'; // Red background for 3 or more days idle
+                  } elseif ($difference >= 2) {
+                      $idleClass = 'bg-warning'; // Yellow background for 2 days idle
+                  }
             
                         echo'<tr>'; // Move table row opening tag here
-                        echo "<td class='querycells'>" . $rowsload["Reference"] . "</td>";
-                        echo "<td class='querycells'>" . $rowsload["Channel"] . "</td>";
-                        echo "<td class='querycells'>" . $rowsload["Subject"] . "</td>";
-                        echo "<td class='querycells'>" . $rowsload["FromOffice"] . "</td>";
-                        echo "<TD class='querycells'>" . $difference . "</TD>";
-                        echo "<td class='querycells'>" . $rowsload["DocStatus"] . "</td>";
+                        echo "<td class='querycells " . $idleClass . "'>" . $rowsload["Reference"] . "</td>";
+                        echo "<td class='querycells " . $idleClass . "'>" . $rowsload["Channel"] . "</td>";
+                        echo "<td class='querycells " . $idleClass . "'>" . $rowsload["Subject"] . "</td>";
+                        echo "<td class='querycells " . $idleClass . "'>" . $rowsload["FromOffice"] . "</td>";
+                        echo "<TD class='querycells " . $idleClass . "'>" . $difference . "</TD>";
+                        echo "<td class='querycells " . $idleClass . "'>" . $rowsload["DocStatus"] . "</td>";
                         echo "<td class='query text-center'><a href=' " . $rowsload["Upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
             }
         }

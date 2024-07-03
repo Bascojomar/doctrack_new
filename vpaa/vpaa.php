@@ -284,47 +284,59 @@ while ($row = $result->fetch_assoc()) {
                 Add Account
             </div> -->
           </div>';
-                    echo '<div class="table-container mt-2  px-3 pt-3 ">
-                    <table id="example" class="table table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>Tracking Number</th>
-                            <th>Subject</th>
-                            <th>Office origin</th>
-                            <th>Days Idle</th>
-                            <th>Document Status</th>
-                            <th class="text-center">View</th>
-                        </tr>
-                        </thead>';
-                        $queryload = "SELECT * FROM tbl_inout WHERE Channel = '$office' ORDER BY time DESC";
-                        $resultload = $conn->query($queryload);
-
-                        if ($resultload->num_rows > 0) {
-                            while ($rowsload = $resultload->fetch_assoc()) {
-                                $from = strtotime($rowsload["CDate"]);
-                                $today = time();
-                                $difference = floor(($today - $from) / 86400);
-                                
-                        echo'<tbody>
-                        <tr>';
-                        echo "<td class='query'>" . $rowsload["Reference"] . "</td>";
-                        echo "<td class='query'>" . $rowsload["Subject"] . "</td>";
-                        echo "<td class='query'>" . $rowsload["FromOffice"] . "</td>";
-                        echo "<td class='query'>" . $difference . "</td>";
-                        echo "<td class='query'>" . $rowsload["DocStatus"] . "</td>";
-                        echo "<td class='querycellstext-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
-                              echo '
-                            </td>
-                        </tr>
-                        </tbody
-                    </table>
-                    </div>
-            
+          echo '<div class="table-container mt-2 px-3 pt-3">
+          <table id="example" class="table table-striped" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Tracking Number</th>
+                      <th>Subject</th>
+                      <th>Office origin</th>
+                      <th>Days Idle</th>
+                      <th>Document Status</th>
+                      <th class="text-center">View</th>
+                  </tr>
+              </thead>
+              <tbody>';
+  
+          $queryload = "SELECT * FROM tbl_inout WHERE Channel = '$office' ORDER BY time DESC";
+          $resultload = $conn->query($queryload);
+          
+          if ($resultload->num_rows > 0) {
+              while ($rowsload = $resultload->fetch_assoc()) {
+                  $from = strtotime($rowsload["CDate"]);
+                  $today = time();
+                  $difference = floor(($today - $from) / 86400);
+  
+          // Determine CSS class based on $difference
+          $idleClass = '';
+          if ($difference >= 3) {
+              $idleClass = 'bg-danger'; // Red background for 3 or more days idle
+          } elseif ($difference >= 2) {
+              $idleClass = 'bg-warning'; // Yellow background for 2 days idle
+          }
+  
+          echo '<tr>';
+          echo "<td class='query " . $idleClass . "'>" . $rowsload["Reference"] . "</td>";
+          echo "<td class='query " . $idleClass . "'>" . $rowsload["Subject"] . "</td>";
+          echo "<td class='query " . $idleClass . "'>" . $rowsload["FromOffice"] . "</td>";
+          echo "<td class='query " . $idleClass . "'>" . $difference . "</td>";
+          echo "<td class='query " . $idleClass . "'>" . $rowsload["DocStatus"] . "</td>";
+          echo "<td class='querycellstext-center ' style='display:flex; justify-content:center;'>
+                  <a href='" . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary'></i></a>
+                </td>";
+          echo '</tr>';
+      }
+  } else {
+      echo '<tr><td colspan="6" class="text-center">No records found</td></tr>';
+  }
+  
+  echo '</tbody>
+        </table>
         </div>
+  
 </main>';
 }
-    }
-}
+
 ?>
 <!--Main layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-BNL3+R/wV+lY8dTlyryAO/b4mvjqKp1pSVsjv3IVyC1vQCZBM4B2L2eKJP5h/gjv" crossorigin="anonymous"></script>

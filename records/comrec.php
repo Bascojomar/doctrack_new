@@ -57,7 +57,7 @@ if (isset($_POST['archive'])) {
                       buttons: false,
                       timer: 1200
                   }).then(function() {
-                      window.location.href = "comrec.php";
+                      window.location.href = "comrec";
                   });
               };
           });
@@ -437,7 +437,7 @@ while ($row = $result->fetch_assoc()) {
       echo"<FORM action='comrec' method='post'>";
 
         echo "<div class='reference'>
-        <input type='text' name='reference' value='". $rowsload['Reference'] ."'>
+        <input type='hidden' name='reference' value='". $rowsload['Reference'] ."'>
           </div>";
         
         echo'<div class="mb-3 fw-bold">

@@ -307,7 +307,7 @@ echo '<div class="modal fade" id="update" tabindex="-1">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">';
-      echo"<FORM method='post' action=''>";
+      echo"<FORM method='post' action='' enctype='multipart/form-data'>";
 
         echo "<div class='reference'>
         <input type='hidden' name='reference' value='". $rows['Reference'] ."'>
@@ -325,6 +325,10 @@ echo '<div class="modal fade" id="update" tabindex="-1">
         <div class="mb-3 fw-bold">
           <label for="recipient-name" class="col-form-label">Remarks :</label>
           <input type="text" name="remarks" class="form-control">
+        </div>
+        <div class="mb-3 fw-bold">
+          <label for="recipient-name" class="col-form-label">Signed File :</label>
+          <input type="file" name="new_upload" class="form-control" accept="application/pdf" required>
         </div>
         <div class="mb-3 fw-bold">
           <label for="recipient-name" class="col-form-label">Document Status :</label>';
@@ -360,16 +364,26 @@ if (isset($_POST['dateup'])) {
     $remarks = $_POST['remarks'];
     $doc = $_POST['doc'];
 
-    // Perform a database update
-    $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc' WHERE Channel = 'VPAA' AND Reference = '$reference' AND DocInOut = 'OUT'";
-    $result = $conn->query($updateQuery);
+    if (isset($_FILES["new_upload"]["name"])) {
+      if (isset($_FILES["new_upload"]) && $_FILES["new_upload"]["error"] == UPLOAD_ERR_OK) {
+        $uploadDir = "../file/";
+        $uploadFile = $uploadDir . basename($_FILES["new_upload"]["name"]);
+    
+        if (move_uploaded_file($_FILES["new_upload"]["tmp_name"], $uploadFile)) {
+            // File uploaded successfully, now update database
+            $uploadValue = $uploadFile;
+    
+            $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = '$doc', new_upload = '$uploadValue' WHERE Channel = 'VPAA' AND Reference = '$reference' AND DocInOut = 'OUT'";
+            $result = $conn->query($updateQuery);
 
+    
     $updateQuery = "UPDATE tbl_inout SET ActionTaken = '$action', Remarks = '$remarks', DocStatus = CASE 
     WHEN Channel = 'VPAA' AND DocInOut = 'OUT' THEN 'RELEASED'
     ELSE '-'
   END 
   WHERE Reference = '$reference' and Channel='VPAA'";
   $results = $conn->query($updateQuery);
+    
 
     if ($result) {
       
@@ -396,6 +410,10 @@ if (isset($_POST['dateup'])) {
             </script>';
                 
             }
+          }
+        }
+      }
+    
         
             elseif ($action === 'DISAPPROVED') {
               echo '<script>

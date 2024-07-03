@@ -315,7 +315,7 @@ echo'<div class="mx-4 px-2 pb-2">
 </div>
 <table class="ms-3">
 ';
-    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET'and DocInOut='IN' and DocStatus='RECEIVED' ORDER BY CDate DESC";
+    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPRET'and DocInOut='OUT' ORDER BY CDate DESC";
     $result = $conn->query($query);
     $numrows = $result->num_rows;
     echo '
@@ -349,7 +349,7 @@ echo'<div class="mx-4 px-2 pb-2">
             echo "<TD class = 'query'>".$rows["Campus"]."</TD>";
             echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
             echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
-            echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
+            echo "<TD class = 'query'>".$rows["Remarks"]."</TD>";
             echo "<td class='query text-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a>";
             echo "<DIV class='sub'>";
             if ($rows["Upload"]) {

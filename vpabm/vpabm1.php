@@ -287,9 +287,10 @@ if (isset($_POST['submit'])) {
   // Establish database connection
 
   // Check if there are records for OUT with Remarks 'SIGNED'
-  $reference = mysqli_real_escape_string($conn, $_POST['reference']);
-  $checkQuery = "SELECT * FROM tbl_inout WHERE Reference = '$reference'  and DocInOut = 'OUT' and Channel = 'VPAA' and Remarks='SIGNED'";
-  $result = $conn->query($checkQuery);
+  
+  // $reference = mysqli_real_escape_string($conn, $_POST['reference']);
+  // $checkQuery = "SELECT * FROM tbl_inout WHERE Reference = '$reference'  and DocInOut = 'OUT' and Channel = 'VPAA' and Remarks='SIGNED'";
+  // $result = $conn->query($checkQuery);
 
   if ($result->num_rows > 0) {
       $reference = mysqli_real_escape_string($conn, $_POST['reference']);

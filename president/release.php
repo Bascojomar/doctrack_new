@@ -246,6 +246,7 @@ echo'
                         echo "<TH class = 'text-center'>Subject</TH>";
                         echo "<TH class = 'text-center'>Office Origin</TH>";
                         echo "<TH class = 'text-center'>Document Status</TH>";
+                        echo '<th class="text-center">View</th>';
                         echo'</tr>
                         </thead>
                         <tbody>';
@@ -256,6 +257,7 @@ echo'
                             echo "<TD class = 'query'>".$rowsload["Subject"]."</TD>";
                             echo "<TD class = 'query'>".$rowsload["FromOffice"]."</TD>";
                             echo "<TD class = 'query'>".$rowsload["DocStatus"]."</TD>";
+                            echo "<td class='query text-center'><a href=' " . $rowsload["new_upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
                         echo'</tr>';
                         }
                     echo '</tbody

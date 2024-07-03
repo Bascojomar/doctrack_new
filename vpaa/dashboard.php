@@ -320,7 +320,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
     <table class="ms-3">
     ';
-    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPAA'and DocInOut='IN' and DocStatus='INCOMING' ORDER BY CDate DESC";
+    $query = "SELECT * FROM tbl_inout WHERE Channel = 'VPAA' and DocInOut='OUT' ORDER BY CDate DESC";
     $result = $conn->query($query);
     $numrows = $result->num_rows;
     echo '
@@ -354,7 +354,7 @@ while ($row = $result->fetch_assoc()) {
             echo "<TD class = 'query'>".$rows["Campus"]."</TD>";
             echo "<TD class = 'query'>".$rows["FromOffice"]."</TD>";
             echo "<TD class = 'query'>".$rows["Subject"]."</TD>";
-            echo "<TD class = 'query'>".$rows["PresidentRemarks"]."</TD>";
+            echo "<TD class = 'query'>".$rows["Remarks"]."</TD>";
             echo "<td class='query text-center' style='display:flex; justify-content:center;''><a href=' " . $rows["Upload"] . "' style='margin-right:5px;'><i class='bi bi-eye btn btn-primary';'></i></a>";
             echo "<DIV class='sub'>";
             if ($rows["Upload"]) {

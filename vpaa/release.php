@@ -240,6 +240,7 @@ echo '<div class="table-container mt-2 px-3 pt-3">
                 <th class="text-center">Subject</th>
                 <th class="text-center">Office Origin</th>
                 <th class="text-center">Document Status</th>
+                <th class="text-center">View</th>
             </tr>
         </thead>
         <tbody>';
@@ -250,6 +251,7 @@ while ($rowsload = $resultload->fetch_assoc()) {
     echo '<td class="query">' . $rowsload["Subject"] . '</td>';
     echo '<td class="query">' . $rowsload["FromOffice"] . '</td>';
     echo '<td class="query">' . $rowsload["DocStatus"] . '</td>';
+    echo "<td class='query text-center'><a href=' " . $rowsload["new_upload"] . "'><i class='bi bi-eye btn btn-primary';'></i></a></td>";
     echo '</tr>';
 }
 

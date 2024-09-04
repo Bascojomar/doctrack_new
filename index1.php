@@ -9,7 +9,7 @@
 </HEAD>
 <style>
         body {
-    background: url(Back.jpg) no-repeat fixed top/cover;
+    background: url(Back1.png) no-repeat fixed top/cover;
 }
 
 .login_logo{

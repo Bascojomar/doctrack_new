@@ -396,7 +396,7 @@ if (isset($_GET['confirmed']) && $_GET['confirmed'] == 1) {
             $email = $row['Gmail'];
             $office = $row['Channel'];
             $campus = $row['Campus'];
-                    $subject = "Document Status Update in $office <br>";
+            $subject = "Document Status Update in $office <br>";
 					$message = "Greetings $campus (campus)<br><br>
 					Your document is now completed, Get in Record Section.";
 					$mail = new PHPMailer(true);

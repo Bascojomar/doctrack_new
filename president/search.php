@@ -37,7 +37,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 .navbar{
-    background: linear-gradient(to left, #0E2A7D, white) !important;
+    background: gray !important;
 }
 
 /* Sidebar */
@@ -68,10 +68,10 @@ while ($row = $result->fetch_assoc()) {
 }
 
 #sidebarMenu{
-    background-color:#0E2A7D !important;
+    background-color: white !important;
 }
 #sidebarMenu a{
-    background-color:#0E2A7D !important;
+    background-color: gray !important;
     margin-bottom: .5vh;
     border-bottom: none;
 }

@@ -9,7 +9,7 @@
 </HEAD>
 <style>
         body {
-    background: url(log.png) no-repeat fixed top/cover;
+    background: url(Back.jpg) no-repeat fixed top/cover;
 }
 
 .login_logo{
@@ -24,7 +24,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 border-radius: 10px 10px 10px 10px;
-background: rgba(255, 255, 255, 0.80);
+background: rgba(255, 255, 255, 0.50);
 margin: 0 auto;
 position: relative;
 z-index: 1;
@@ -36,6 +36,7 @@ padding-bottom: 100px;
 width: 110%;
 display: flex;
 flex-direction: row;
+background: rgba(255, 255, 255, 0.70);
 align-items: center;
 margin: 15px 0;
 }
@@ -53,7 +54,7 @@ border-radius: 0px 5px 5px 0px;
 
 .icon {
 padding: 10px;
-background-color:#0E2A7D;
+background-color:lightblue;
 color: white;
 min-width: 35px;
 min-height: 20px;
@@ -67,7 +68,7 @@ width: 60%;
 padding: 10px;
 font-size: 18px;
 border-radius: 5px;
-background: #F89318;
+background: orange;
 color: white;
 border: none;
 cursor: pointer;
@@ -80,7 +81,7 @@ width: 60%;
 padding: 10px;
 font-size: 18px;
 border-radius: 5px;
-background: #0E2A7D;
+background: lightblue;
 color: white;
 border: none;
 cursor: pointer;
@@ -426,7 +427,7 @@ margin-top: 10%;
 <div class="all">
     <div class="login-container">
         <div >
-            <a href="index"><img class="login_logo" src="NEUSTlogo.png" alt=""></a>
+            <a href="index"><img class="login_logo" src="Tech.png" alt=""></a>
         </div>
 		<form action = "" method = "post" enctype = "multipart/form-data" id = "login" name = "loginform" autocomplete = 'off'>
         <div class="input-container">
@@ -443,7 +444,7 @@ margin-top: 10%;
             <input type="submit" id="loginButton" class="btn" value="LOGIN" name="Login">
         </div>
         <div class="center">
-            <a href="forget"><p style="color: #14369C;">Forgot your password?</p></a>
+            <a href="forget"><p style="color: blue;">Forgot your password?</p></a>
         </div>
         <br>
       </form>

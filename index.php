@@ -23,7 +23,7 @@
     .navbar {
         transition: all 0.3s ease-in-out;
         height: 80px;
-        background-color: #0E2A7D !important;
+        background-color: black !important;
     }
     .navbar.active {
         background-color: #343a40;

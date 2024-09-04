@@ -264,7 +264,7 @@ echo'<div class="mx-4 px-2 pb-2">
 <div class="table-container mt-2">
 <div class="row mx-2 my-2">
     <div class="col">
-        <div class="card text-start bg-danger text-white">
+        <div class="card text-start bg-secondary text-white">
             <div class="card-body">
                 <h4 class="card-title">Incoming Documents</h4>';
                 $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPRET' AND DocStatus = '-' AND DocInOut = 'IN'";

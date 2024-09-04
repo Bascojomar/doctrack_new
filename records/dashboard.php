@@ -37,9 +37,15 @@ while ($row = $result->fetch_assoc()) {
 }
 
 .navbar{
-    background: linear-gradient(to left, #0E2A7D, white) !important;
+    background: gray !important;
 }
 
+.table-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+* {
+  overflow: hidden;
+}
 /* Sidebar */
 .sidebar {
   position: fixed;
@@ -68,10 +74,10 @@ while ($row = $result->fetch_assoc()) {
 }
 
 #sidebarMenu{
-    background-color:#0E2A7D !important;
+    background-color: white !important;
 }
 #sidebarMenu a{
-    background-color:#0E2A7D !important;
+    background-color: gray !important;
     margin-bottom: .5vh;
     border-bottom: none;
 }
@@ -223,8 +229,6 @@ while ($row = $result->fetch_assoc()) {
         class="rounded-circle"
         style="height: 9vh;width: 9vh;"
     />
-            <img src="../file/logos.png" class=" rounded-circle"
-            style="height: 9vh; position: absolute;"/>
                 <div class="d-flex flex-column mx-2">
                     <p class="text-white fw-semibold mb-0">
                         '.$owner.'
@@ -256,7 +260,7 @@ while ($row = $result->fetch_assoc()) {
         <div class="table-container mt-2">
         <div class="row mx-2 my-2">
             <div class="col">
-                <div class="card text-start bg-danger text-white">
+                <div class="card text-start bg-secondary text-white">
                     <div class="card-body">
                         <h4 class="card-title">Outgoing Documents</h4>';
                         $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'RECORDS' AND DocStatus = 'RECEiVED' AND DocInOut = 'IN'";

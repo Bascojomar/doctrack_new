@@ -36,9 +36,15 @@ while ($row = $result->fetch_assoc()) {
 }
 
 .navbar{
-    background: linear-gradient(to left, #0E2A7D, white) !important;
+    background: gray !important;
 }
 
+.table-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+* {
+  overflow: hidden;
+}
 /* Sidebar */
 .sidebar {
   position: fixed;
@@ -61,17 +67,16 @@ while ($row = $result->fetch_assoc()) {
   }
 }
 
-
 .sidebar .active {
   border-radius: 5px;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 #sidebarMenu{
-    background-color:#0E2A7D !important;
+    background-color: white !important;
 }
 #sidebarMenu a{
-    background-color:#0E2A7D !important;
+    background-color: gray !important;
     margin-bottom: .5vh;
     border-bottom: none;
 }
@@ -223,9 +228,6 @@ while ($row = $result->fetch_assoc()) {
             class="rounded-circle"
             style="height: 9vh;width: 9vh;"
         />
-                <img src="../file/logos.png" class=" rounded-circle"
-                style="height: 9vh; position: absolute;"/>
-
                 <div class="d-flex flex-column mx-2">
                     <p class="text-white fw-semibold mb-0">
                         '.$owner.'

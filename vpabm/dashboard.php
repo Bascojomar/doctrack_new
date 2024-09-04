@@ -265,7 +265,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="table-container mt-2">
     <div class="row mx-2 my-2">
         <div class="col">
-            <div class="card text-start bg-danger text-white">
+            <div class="card text-start bg-secondary text-white">
                 <div class="card-body">
                     <h4 class="card-title">Incoming Documents</h4>';
                     $queryload = "SELECT COUNT(*) as count FROM tbl_inout WHERE Channel = 'VPABM' AND DocStatus = '-' AND DocInOut = 'IN'";
